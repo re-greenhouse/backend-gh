@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package personas;
+
+service ProfilesService {
+  rpc CreateProfile (CreateProfileDto) returns (Profile) {}
+}
+
+service CompaniesService {
+  rpc CreateCompany (CreateCompanyDto) returns (Company) {}
+}
+
+message Profile {
+  string id = 1;
+  string userId = 2;
+  string companyId = 3;
+  string firstName = 4;
+  string lastName = 5;
+  string iconUrl = 6;
+  string role = 7;
+}
+
+message Company {
+  string id = 1;
+  string name = 2;
+  string logoUrl = 3;
+  string tin = 4;
+  string membershipId = 5;
+}
+
+message CreateProfileDto {
+  string userId = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string iconUrl = 4;
+}
+
+message CreateCompanyDto {
+  string ownerId = 1;
+  string name = 2;
+  string tin = 3;
+  string logoUrl = 4;
+}

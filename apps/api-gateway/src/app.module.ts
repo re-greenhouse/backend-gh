@@ -1,0 +1,11 @@
+import { Module } from '@nestjs/common';
+import { IamModule } from './iam/iam.module';
+import { PersonasModule } from './personas/personas.module';
+import { SharedModule } from './shared/shared.module';
+
+@Module({
+  imports: [IamModule, PersonasModule, SharedModule],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
