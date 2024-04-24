@@ -6,7 +6,13 @@ export class UserEntity {
   @PrimaryColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column({
+    unique: true,
+    transformer: {
+      to: (value: string) => value.toLowerCase(),
+      from: (value: string) => value.toLowerCase(),
+    },
+  })
   username: string;
 
   @Column()
