@@ -22,4 +22,8 @@ export class ProfilesService implements OnModuleInit {
   create(createProfileDto: CreateProfileDto) {
     return this.profilesService.createProfile(createProfileDto);
   }
+
+  findByUserId(userId: string) {
+    return this.profilesService.findByUserId({ userId: userId });
+  }
 }
