@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { ProfilesService } from '../services/profiles.service';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 
@@ -14,5 +14,10 @@ export class ProfilesController {
       lastName: createProfileDto.lastName,
       iconUrl: createProfileDto.iconUrl,
     });
+  }
+
+  @Get('/users/me')
+  findByUserMe(@Req() req: Request) {
+    return this.profilesService.findByUserId(req['user']['sub']);
   }
 }

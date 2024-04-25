@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
 import {
   CreateProfileDto,
+  FindOneProfileByUserIdDto,
   Profile,
   ProfilesServiceController,
   ProfilesServiceControllerMethods,
@@ -22,5 +23,11 @@ export class ProfilesController implements ProfilesServiceController {
         createProfileDto.userId,
       ),
     );
+  }
+
+  async findByUserId(
+    findOneUserByIdDto: FindOneProfileByUserIdDto,
+  ): Promise<Profile> {
+    return this.profileService.findByUserId(findOneUserByIdDto.userId);
   }
 }

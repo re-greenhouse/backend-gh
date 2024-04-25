@@ -29,6 +29,10 @@ export interface CreateProfileDto {
   iconUrl: string;
 }
 
+export interface FindOneProfileByUserIdDto {
+  userId: string;
+}
+
 export interface CreateCompanyDto {
   ownerId: string;
   name: string;
@@ -40,15 +44,19 @@ export const PERSONAS_PACKAGE_NAME = "personas";
 
 export interface ProfilesServiceClient {
   createProfile(request: CreateProfileDto): Observable<Profile>;
+
+  findByUserId(request: FindOneProfileByUserIdDto): Observable<Profile>;
 }
 
 export interface ProfilesServiceController {
   createProfile(request: CreateProfileDto): Promise<Profile> | Observable<Profile> | Profile;
+
+  findByUserId(request: FindOneProfileByUserIdDto): Promise<Profile> | Observable<Profile> | Profile;
 }
 
 export function ProfilesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createProfile"];
+    const grpcMethods: string[] = ["createProfile", "findByUserId"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("ProfilesService", method)(constructor.prototype[method], method, descriptor);
