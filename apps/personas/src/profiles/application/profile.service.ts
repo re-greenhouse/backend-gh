@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateProfileCommand } from './commands/create-profile.command';
 import { GetProfileByUserIdQuery } from './queries/get-profile-by-user-id.query';
-import { Profile } from '../domain/profile';
 
 @Injectable()
 export class ProfileService {
@@ -15,7 +14,7 @@ export class ProfileService {
     return this.commandBus.execute(createProfileCommand);
   }
 
-  findByUserId(id: string): Promise<Profile> {
+  findByUserId(id: string) {
     return this.queryBus.execute(new GetProfileByUserIdQuery(id));
   }
 }

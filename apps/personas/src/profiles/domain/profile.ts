@@ -5,19 +5,11 @@ export class Profile {
   public firstName: string;
   public lastName: string;
   public iconUrl: string;
-  public roles: Array<Role>;
+  public role: Role;
 
   constructor(
     public id: string,
     public userId: string,
     public company: Company | null,
   ) {}
-
-  addRole(role: Role) {
-    this.roles.push(role);
-  }
-
-  removeRole(role: Role) {
-    this.roles = this.roles.filter((existingRole) => existingRole !== role);
-  }
 }

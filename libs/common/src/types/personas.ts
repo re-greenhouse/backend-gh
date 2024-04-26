@@ -7,7 +7,6 @@ export const protobufPackage = "personas";
 export interface Profile {
   id: string;
   userId: string;
-  companyId: string;
   firstName: string;
   lastName: string;
   iconUrl: string;

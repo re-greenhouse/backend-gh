@@ -14,11 +14,10 @@ service CompaniesService {
 message Profile {
   string id = 1;
   string userId = 2;
-  string companyId = 3;
-  string firstName = 4;
-  string lastName = 5;
-  string iconUrl = 6;
-  string role = 7;
+  string firstName = 3;
+  string lastName = 4;
+  string iconUrl = 5;
+  string role = 6;
 }
 
 message Company {
