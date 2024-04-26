@@ -4,7 +4,7 @@ import {
   Company,
   CreateCompanyDto,
 } from '@app/common/types/personas';
-import { Controller, Logger } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { CompaniesService } from '../../application/companies.service';
 import { CreateCompanyCommand } from '../../application/commands/create-company.command';
 import { Profile } from '../../domain/profile';
