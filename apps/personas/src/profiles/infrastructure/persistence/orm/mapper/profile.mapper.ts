@@ -15,7 +15,7 @@ export class ProfileMapper {
     profile.iconUrl = profileEntity.iconUrl;
     profile.firstName = profileEntity.firstName;
     profile.lastName = profileEntity.lastName;
-    profile.roles = profileEntity.roles;
+    profile.role = profileEntity.role;
 
     return profile;
   }
@@ -28,7 +28,7 @@ export class ProfileMapper {
     profileEntity.userId = profile.userId;
     profileEntity.firstName = profile.firstName;
     profileEntity.lastName = profile.lastName;
-    profileEntity.roles = profile.roles;
+    profileEntity.role = profile.role;
     profileEntity.company = profile.company
       ? CompanyMapper.toPersistence(profile.company)
       : null;

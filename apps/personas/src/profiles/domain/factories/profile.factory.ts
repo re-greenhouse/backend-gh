@@ -17,7 +17,7 @@ export class ProfileFactory {
     profile.firstName = firstName;
     profile.lastName = lastName;
     profile.iconUrl = iconUrl;
-    profile.roles = [Role.Technician];
+    profile.role = Role.Technician;
 
     return profile;
   }

@@ -22,10 +22,9 @@ export class ProfileEntity {
   @Column({
     type: 'enum',
     enum: Role,
-    array: true,
     default: [Role.Technician],
   })
-  roles: Array<Role>;
+  role: Role;
 
   @ManyToOne(() => CompanyEntity, (company) => company.employees, {
     nullable: true,
