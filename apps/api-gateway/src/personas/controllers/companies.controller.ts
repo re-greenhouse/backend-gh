@@ -1,8 +1,11 @@
 import { Body, Controller, Post, Req } from '@nestjs/common';
 import { CompaniesService } from '../services/companies.service';
 import { CreateCompanyDto } from '../dto/create-company.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@Controller('companies')
+@ApiBearerAuth()
+@ApiTags('Companies')
+@Controller('api/v1/companies')
 export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 

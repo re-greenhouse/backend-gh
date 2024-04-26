@@ -1,8 +1,11 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { ProfilesService } from '../services/profiles.service';
 import { CreateProfileDto } from '../dto/create-profile.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@Controller('profiles')
+@ApiBearerAuth()
+@ApiTags('Profiles')
+@Controller('api/v1/profiles')
 export class ProfilesController {
   constructor(private readonly profilesService: ProfilesService) {}
 
