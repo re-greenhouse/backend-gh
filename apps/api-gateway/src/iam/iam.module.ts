@@ -8,6 +8,7 @@ import { join } from 'path';
 import { AuthService } from './services/auth.service';
 import { AuthController } from './controllers/auth.controller';
 import { SharedModule } from '../shared/shared.module';
+import { PersonasModule } from '../personas/personas.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
         },
       },
     ]),
+    PersonasModule,
     SharedModule,
   ],
   controllers: [AuthController, UsersController],
