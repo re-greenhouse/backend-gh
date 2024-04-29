@@ -1,26 +1,11 @@
-import { User } from '@app/common';
-import { Profile } from '@app/common/types/personas';
 import { ApiProperty } from '@nestjs/swagger';
-
-class UserObj implements User {
-  id: string;
-  username: string;
-  role: string;
-}
-
-class ProfileObj implements Profile {
-  id: string;
-  userId: string;
-  firstName: string;
-  lastName: string;
-  iconUrl: string;
-  role: string;
-}
+import { ProfileDto } from './Profile.dto';
+import { UserDto } from './User.dto';
 
 export class SignUpResponseDto {
   @ApiProperty()
-  user: UserObj;
+  user: UserDto;
 
   @ApiProperty()
-  profile: ProfileObj;
+  profile: ProfileDto;
 }
