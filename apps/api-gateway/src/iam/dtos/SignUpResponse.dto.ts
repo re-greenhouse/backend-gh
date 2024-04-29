@@ -3,9 +3,9 @@ import { ProfileDto } from './Profile.dto';
 import { UserDto } from './User.dto';
 
 export class SignUpResponseDto {
-  @ApiProperty()
+  @ApiProperty({ type: UserDto })
   user: UserDto;
 
-  @ApiProperty()
+  @ApiProperty({ type: ProfileDto })
   profile: ProfileDto;
 }
