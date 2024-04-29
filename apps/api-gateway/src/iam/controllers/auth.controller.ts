@@ -7,6 +7,8 @@ import { SignUpRequestDto } from '../dtos/SignUpRequest.dto';
 import { ProfileFacadeService } from '../../personas/facades/profile-facade.service';
 import { firstValueFrom } from 'rxjs';
 import { SignUpResponseDto } from '../dtos/SignUpResponse.dto';
+import { SignInRequestDto } from '../dtos/SignInRequest.dto';
+import { SignInResponseDto } from '../dtos/SignInResponse.dto';
 
 @ApiTags('Auth')
 @Controller('api/v1/auth')
@@ -22,8 +24,9 @@ export class AuthController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'User signed token',
+    type: SignInResponseDto,
   })
-  signIn(@Body() signInDto: SignInDto) {
+  signIn(@Body() signInDto: SignInRequestDto) {
     return this.authService.signIn(signInDto);
   }
 
