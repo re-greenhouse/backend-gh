@@ -1,6 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
-import { SignInDto } from '@app/common';
 import { Public } from '../../shared/decorators/public.decorator';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SignUpRequestDto } from '../dtos/SignUpRequest.dto';
@@ -26,8 +25,16 @@ export class AuthController {
     description: 'User signed token',
     type: SignInResponseDto,
   })
-  signIn(@Body() signInDto: SignInRequestDto) {
-    return this.authService.signIn(signInDto);
+  async signIn(
+    @Body() signInDto: SignInRequestDto,
+  ): Promise<SignInResponseDto> {
+    const authenticatedUser = await firstValueFrom(
+      this.authService.signIn(signInDto),
+    );
+    const profile = await firstValueFrom(
+      this.profileFacadeService.findByUserId(authenticatedUser.userId),
+    );
+    return { token: authenticatedUser.token, profile: profile };
   }
 
   @Public()

@@ -67,6 +67,7 @@ message User {
 
 message AuthenticatedUser {
   string token = 1;
+  string userId = 2;
 }
 
 message Users {
