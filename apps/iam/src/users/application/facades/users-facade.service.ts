@@ -31,4 +31,11 @@ export class UsersFacadeService {
     );
     return user.role;
   }
+
+  async getIdByUsername(username: string): Promise<string> {
+    const user: User = await this.queryBus.execute(
+      new GetUserByUsernameQuery(username),
+    );
+    return user.id;
+  }
 }

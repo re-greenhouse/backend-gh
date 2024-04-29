@@ -7,6 +7,7 @@ import { PERSONAS_PACKAGE_NAME } from '@app/common/types/personas';
 import { join } from 'path';
 import { CompaniesService } from './services/companies.service';
 import { CompaniesController } from './controllers/companies.controller';
+import { ProfileFacadeService } from './facades/profile-facade.service';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CompaniesController } from './controllers/companies.controller';
     ]),
   ],
   controllers: [ProfilesController, CompaniesController],
-  providers: [ProfilesService, CompaniesService],
+  providers: [ProfilesService, CompaniesService, ProfileFacadeService],
+  exports: [ProfileFacadeService],
 })
 export class PersonasModule {}

@@ -55,6 +55,7 @@ export interface User {
 
 export interface AuthenticatedUser {
   token: string;
+  userId: string;
 }
 
 export interface Users {

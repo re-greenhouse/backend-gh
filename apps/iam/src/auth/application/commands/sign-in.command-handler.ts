@@ -30,11 +30,16 @@ export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
       command.username,
     );
 
+    const userId = await this.usersFacadeService.getIdByUsername(
+      command.username,
+    );
+
     return {
       token: await this.signTokenService.signToken<{ role: string }>(
         command.username,
         { role: userRole },
       ),
+      userId: userId,
     };
   }
 }
