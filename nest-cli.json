@@ -21,7 +21,9 @@
         "assets": [
           "proto/*.proto"
         ],
-        "plugins": ["@nestjs/swagger/plugin"],
+        "plugins": [
+          "@nestjs/swagger/plugin"
+        ],
         "watchAssets": true
       }
     },
@@ -58,6 +60,15 @@
       "sourceRoot": "libs/common/src",
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "crops": {
+      "type": "application",
+      "root": "apps/crops",
+      "entryFile": "main",
+      "sourceRoot": "apps/crops/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/crops/tsconfig.app.json"
       }
     }
   }
