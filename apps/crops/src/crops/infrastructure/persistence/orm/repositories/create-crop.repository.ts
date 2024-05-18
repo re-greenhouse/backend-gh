@@ -4,7 +4,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CropEntity } from '../entities/crop.entity';
 import { Repository } from 'typeorm';
 import { CropMapper } from '../mapper/crop.mapper';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class OrmCreateCropRepository implements CreateCropRepository {
   constructor(
     @InjectRepository(CropEntity)
