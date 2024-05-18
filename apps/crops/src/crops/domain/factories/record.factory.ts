@@ -6,16 +6,19 @@ import { Crop } from '../crop';
 @Injectable()
 export class RecordFactory {
   create(
-    cropId: string,
     author: string,
     phase: string,
     payload: Record<string, any>,
     crop: Crop,
-  ): Record {
+  ): CropRecord {
     const recordId = randomUUID();
-    const record = new CropRecord(recordId, Date.now(), Date.now());
+    const record = new CropRecord(
+      recordId,
+      Date.now().toString(),
+      Date.now().toString(),
+      crop,
+    );
 
-    record.cropId = cropId;
     record.author = author;
     record.phase = phase;
     record.payload = payload;

@@ -6,7 +6,7 @@ import { randomUUID } from 'crypto';
 export class CropFactory {
   create(author: string): Crop {
     const cropId = randomUUID();
-    const crop: Crop = new Crop(cropId, Date.now());
+    const crop: Crop = new Crop(cropId, Date.now().toString(), false);
     crop.author = author;
 
     return crop;
