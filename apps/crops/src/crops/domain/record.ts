@@ -1,12 +1,14 @@
-export class Record {
-  public createdDate: Date;
-  public updatedDate: Date;
+import { Crop } from './crop';
+
+export class CropRecord {
   public author: string;
   public phase: string;
-  public payload: Map<string, string>;
+  public payload: Record<string, any>;
+  public crop: Crop;
 
   constructor(
     public id: string,
-    public cropId: string,
+    public createdDate: Date,
+    public updatedDate: Date,
   ) {}
 }
