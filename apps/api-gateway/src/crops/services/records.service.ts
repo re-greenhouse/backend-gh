@@ -1,0 +1,37 @@
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import {
+  Crop,
+  RECORDS_SERVICE_NAME,
+  RecordsServiceClient,
+} from '@app/common/types/crops';
+import { CROPS_SERVICE } from '../constants';
+import { ClientGrpc } from '@nestjs/microservices';
+import { CreateRecordDto } from '../dto/create-record.dto';
+
+@Injectable()
+export class RecordsService implements OnModuleInit {
+  private recordsService: RecordsServiceClient;
+
+  constructor(@Inject(CROPS_SERVICE) private readonly client: ClientGrpc) {}
+
+  onModuleInit(): void {
+    this.recordsService =
+      this.client.getService<RecordsServiceClient>(RECORDS_SERVICE_NAME);
+  }
+
+  create(createRecordDto: CreateRecordDto) {
+    return this.recordsService.createRecord(createRecordDto);
+  }
+
+  findAll() {
+    return this.recordsService.findAll();
+  }
+
+  // This looks like a bad idea
+  findAllByCropAndPhase(crop: Crop, phase: string) {
+    return this.recordsService.findAllByCropAndPhase({
+      crop: crop,
+      phase: phase,
+    });
+  }
+}
