@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package crops;
+
+service CropsService {
+    rpc CreateCrop (CreateCropDto) returns (Crop) {}
+    rpc FindAll (FindAllCropsDto) returns (CropResponse) {}
+    rpc FindAllByState (FindAllCropsByStateDto) returns (CropResponse) {}
+}
+
+service RecordsService {
+    rpc CreateRecord (CreateRecordDto) returns (CropRecord) {}
+    rpc FindAll (FindAllRecordsDto) returns (CropRecordResponse) {}
+    rpc FindAllByCropAndPhase (FindAllRecordsByCropAndPhase) returns (CropRecordResponse) {}
+}
+
+message Crop {
+    string id = 1;
+    string createdDate = 2;
+    string name = 3;
+    string author = 4;
+    bool active = 5;
+}
+
+message CropResponse {
+    repeated Crop crops = 1;
+}
+
+message CropRecord {
+    string id = 1;
+    string createdDate = 2;
+    string updatedDate = 3;
+    string author = 4;
+    string phase = 5;
+    string payload = 6;
+}
+
+message CropRecordResponse {
+    repeated CropRecord records = 1;
+}
+
+message CreateCropDto {
+    string name = 1;
+    string author = 2;
+}
+
+message FindAllCropsDto {}
+
+message FindAllCropsByStateDto {
+    bool state = 1;
+}
+
+message CreateRecordDto {
+    string author = 1;
+    string phase = 2;
+    map<string, string> payload = 3;
+    Crop crop = 4;
+}
+
+message FindAllRecordsDto {}
+
+message FindAllRecordsByCropAndPhase{
+    Crop crop = 1;
+    string phase = 2;
+}

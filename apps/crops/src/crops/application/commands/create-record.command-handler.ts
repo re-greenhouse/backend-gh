@@ -1,11 +1,14 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { CreatedRecordCommand } from './created-record.command';
+import {
+  CreatedRecordCommand,
+  CreateRecordCommand,
+} from './create-record.command';
 import { RecordFactory } from '../../domain/factories/record.factory';
 import { CreateRecordRepository } from '../ports/create-record.repository';
 import { CropRecord } from '../../domain/record';
 
-@CommandHandler(CreatedRecordCommand)
-export class CreatedRecordCommandHandler
+@CommandHandler(CreateRecordCommand)
+export class CreateRecordCommandHandler
   implements ICommandHandler<CreatedRecordCommand>
 {
   constructor(

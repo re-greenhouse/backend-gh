@@ -1,6 +1,6 @@
 import { Crop } from '../../domain/crop';
 
-export class CreatedRecordCommand {
+export class CreateRecordCommand {
   constructor(
     public author: string,
     public phase: string,
