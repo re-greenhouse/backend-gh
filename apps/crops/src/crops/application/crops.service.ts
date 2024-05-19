@@ -3,6 +3,7 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateCropCommand } from './commands/create-crop.command';
 import { GetCropsQuery } from './queries/get-crops.query';
 import { GetCropsByStateQuery } from './queries/get-crops-by-state.query';
+import { GetCropByIdQuery } from './queries/get-crop-by-id.query';
 
 @Injectable()
 export class CropsService {
@@ -17,6 +18,10 @@ export class CropsService {
 
   findAll() {
     return this.queryBus.execute(new GetCropsQuery());
+  }
+
+  findById(id: string) {
+    return this.queryBus.execute(new GetCropByIdQuery(id));
   }
 
   findByState(state: boolean) {

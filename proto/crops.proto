@@ -54,12 +54,12 @@ message CreateRecordDto {
     string author = 1;
     string phase = 2;
     map<string, string> payload = 3;
-    Crop crop = 4;
+    string cropId = 4;
 }
 
 message FindAllRecordsDto {}
 
 message FindAllRecordsByCropAndPhase{
-    Crop crop = 1;
+    string cropId = 1;
     string phase = 2;
 }
