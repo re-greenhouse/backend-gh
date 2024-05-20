@@ -55,7 +55,7 @@ export interface CreateRecordDto_PayloadEntry {
 export interface FindAllRecordsDto {}
 
 export interface FindAllRecordsByCropAndPhase {
-  crop: Crop | undefined;
+  cropId: string;
   phase: string;
 }
 

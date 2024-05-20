@@ -27,10 +27,9 @@ export class RecordsService implements OnModuleInit {
     return this.recordsService.findAll();
   }
 
-  // This looks like a bad idea
-  findAllByCropAndPhase(crop: Crop, phase: string) {
+  findAllByCropAndPhase(cropId: string, phase: string) {
     return this.recordsService.findAllByCropAndPhase({
-      crop: crop,
+      cropId: cropId,
       phase: phase,
     });
   }
