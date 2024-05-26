@@ -22,7 +22,7 @@ export class CropsController implements CropsServiceController {
     );
   }
   async findAll(request: FindAllCropsDto): Promise<CropResponse> {
-    return this.cropsService.findAll();
+    return { crops: await this.cropsService.findAll() };
   }
   async findAllByState(request: FindAllCropsByStateDto): Promise<CropResponse> {
     return this.cropsService.findByState(request.state);
