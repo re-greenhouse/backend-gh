@@ -10,17 +10,17 @@ export class CropsController {
   constructor(private readonly cropsService: CropsService) {}
 
   @Post()
-  create(@Req() req: Request, @Body() createCropDto: CreateCropDto) {
-    return this.cropsService.create(req['user']['sub'], createCropDto);
+  create(@Body() createCropDto: CreateCropDto) {
+    return this.cropsService.create(createCropDto);
   }
 
   @Get()
-  findAll(@Req() req: Request) {
-    return this.cropsService.findAll(req['user']['sub']);
+  findAll() {
+    return this.cropsService.findAll();
   }
 
   @Get(':state')
-  findAllByState(@Req() req: Request, @Param('state') state: boolean) {
-    return this.cropsService.findAllByState(req['user']['sub'], state);
+  findAllByState(@Param('state') state: boolean) {
+    return this.cropsService.findAllByState(state);
   }
 }

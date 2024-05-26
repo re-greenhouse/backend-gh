@@ -6,7 +6,7 @@ import { GetRecordsByCropAndPhaseQuery } from './queries/get-records-by-crop-and
 import { Crop } from '../domain/crop';
 
 @Injectable()
-export class RecordService {
+export class RecordsService {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,

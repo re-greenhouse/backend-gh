@@ -65,10 +65,14 @@
     "crops": {
       "type": "application",
       "root": "apps/crops",
-      "entryFile": "main",
-      "sourceRoot": "apps/crops/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/crops/tsconfig.app.json"
+        "tsConfigPath": "apps/crops/tsconfig.app.json",
+        "assets": [
+          "proto/*.proto"
+        ],
+        "watchAssets": true
       }
     }
   }

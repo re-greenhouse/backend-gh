@@ -8,5 +8,8 @@ export class CreateRecordDto {
   phase: string;
 
   @IsNotEmpty()
-  payload: object;
+  payload: Record<string, string>;
+
+  @IsNotEmpty()
+  cropId: string;
 }

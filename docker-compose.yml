@@ -14,3 +14,10 @@ services:
       - "5433:5432"
     environment:
       POSTGRES_PASSWORD: pass123
+  pg-crops:
+    image: postgres
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: pass123

@@ -26,7 +26,7 @@ export class CropsService implements OnModuleInit {
   }
 
   findAll() {
-    return this.cropsService.findAll();
+    return this.cropsService.findAll({});
   }
 
   findAllByState(state: boolean) {

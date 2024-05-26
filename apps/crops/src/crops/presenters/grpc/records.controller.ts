@@ -8,8 +8,7 @@ import {
   RecordsServiceControllerMethods,
 } from '@app/common/types/crops';
 import { Controller } from '@nestjs/common';
-import { RecordService } from '../../application/records.service';
-import { Observable } from 'rxjs';
+import { RecordsService } from '../../application/records.service';
 import { CreateRecordCommand } from '../../application/commands/create-record.command';
 import { CropsService } from '../../application/crops.service';
 import { Crop } from '../../domain/crop';
@@ -18,7 +17,7 @@ import { Crop } from '../../domain/crop';
 @RecordsServiceControllerMethods()
 export class RecordsController implements RecordsServiceController {
   constructor(
-    private readonly recordService: RecordService,
+    private readonly recordService: RecordsService,
     private readonly cropService: CropsService,
   ) {}
 
@@ -41,9 +40,7 @@ export class RecordsController implements RecordsServiceController {
   async findAllByCropAndPhase(
     request: FindAllRecordsByCropAndPhase,
   ): Promise<CropRecordResponse> {
-    return this.recordService.findAllByCropAndPhase(
-      request.crop,
-      request.phase,
-    );
+    const requestCrop: Crop = await this.cropService.findById(request.cropId);
+    return this.recordService.findAllByCropAndPhase(requestCrop, request.phase);
   }
 }

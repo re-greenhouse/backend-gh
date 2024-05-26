@@ -1,6 +1,5 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import {
-  Crop,
   RECORDS_SERVICE_NAME,
   RecordsServiceClient,
 } from '@app/common/types/crops';
@@ -24,7 +23,7 @@ export class RecordsService implements OnModuleInit {
   }
 
   findAll() {
-    return this.recordsService.findAll();
+    return this.recordsService.findAll({});
   }
 
   findAllByCropAndPhase(cropId: string, phase: string) {

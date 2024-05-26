@@ -6,8 +6,8 @@ export class RecordMapper {
   static toDomain(recordEntity: RecordEntity): CropRecord {
     const record = new CropRecord(
       recordEntity.id,
-      recordEntity.createdAt,
-      recordEntity.updatedAt,
+      recordEntity.createdAt.toDateString(),
+      recordEntity.updatedAt.toDateString(),
       CropMapper.toDomain(recordEntity.crop),
     );
 
@@ -22,8 +22,8 @@ export class RecordMapper {
     const recordEntity = new RecordEntity();
 
     recordEntity.id = record.id;
-    recordEntity.createdAt = record.createdDate;
-    recordEntity.updatedAt = record.updatedDate;
+    recordEntity.createdAt = new Date(record.createdDate);
+    recordEntity.updatedAt = new Date(record.updatedDate);
     recordEntity.author = record.author;
     recordEntity.phase = record.phase;
     recordEntity.payload = record.payload;

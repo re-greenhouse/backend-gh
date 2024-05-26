@@ -10,7 +10,7 @@ import { GetCropByIdQuery } from './queries/get-crop-by-id.query';
 import { GetCropByIdQueryHandler } from './queries/get-crop-by-id.query-handler';
 import { GetCropsByStateQuery } from './queries/get-crops-by-state.query';
 import { GetCropsByStateQueryHandler } from './queries/get-crops-by-state.query-handler';
-import { RecordService } from './records.service';
+import { RecordsService } from './records.service';
 import { RecordFactory } from '../domain/factories/record.factory';
 import { CreateRecordCommand } from './commands/create-record.command';
 import { CreateRecordCommandHandler } from './commands/create-record.command-handler';
@@ -35,7 +35,7 @@ import { RecordsController } from '../presenters/grpc/records.controller';
     GetCropByIdQueryHandler,
     GetCropsByStateQuery,
     GetCropsByStateQueryHandler,
-    RecordService,
+    RecordsService,
     RecordFactory,
     CreateRecordCommand,
     CreateRecordCommandHandler,

@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { CropsModule } from './crops.module';
+import { CropsRecordsModule } from './crops.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
@@ -7,7 +7,7 @@ import { CROPS_PACKAGE_NAME } from '@app/common/types/crops';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    CropsModule,
+    CropsRecordsModule,
     {
       transport: Transport.GRPC,
       options: {
