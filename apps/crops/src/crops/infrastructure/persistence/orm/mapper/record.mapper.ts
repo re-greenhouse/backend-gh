@@ -8,12 +8,11 @@ export class RecordMapper {
       recordEntity.id,
       recordEntity.createdAt.toDateString(),
       recordEntity.updatedAt.toDateString(),
-      CropMapper.toDomain(recordEntity.crop),
     );
 
     record.author = recordEntity.author;
     record.phase = recordEntity.phase;
-    record.payload = recordEntity.payload; // Does this lose information?
+    record.payload = recordEntity.payload;
 
     return record;
   }
@@ -22,8 +21,8 @@ export class RecordMapper {
     const recordEntity = new RecordEntity();
 
     recordEntity.id = record.id;
-    recordEntity.createdAt = new Date(record.createdDate);
-    recordEntity.updatedAt = new Date(record.updatedDate);
+    /*recordEntity.createdAt = new Date(record.createdDate);
+    recordEntity.updatedAt = new Date(record.updatedDate);*/
     recordEntity.author = record.author;
     recordEntity.phase = record.phase;
     recordEntity.payload = record.payload;

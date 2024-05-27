@@ -25,6 +25,6 @@ export class CropsController implements CropsServiceController {
     return { crops: await this.cropsService.findAll() };
   }
   async findAllByState(request: FindAllCropsByStateDto): Promise<CropResponse> {
-    return this.cropsService.findByState(request.state);
+    return { crops: await this.cropsService.findByState(request.state) };
   }
 }

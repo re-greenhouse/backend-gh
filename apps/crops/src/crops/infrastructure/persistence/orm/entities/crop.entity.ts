@@ -1,4 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { RecordEntity } from './record.entity';
 
 @Entity('crops')
@@ -9,11 +15,11 @@ export class CropEntity {
   @Column()
   name: string;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: string;
 
   @Column()
-  createdBy: string;
+  author: string;
 
   @Column()
   state: boolean;

@@ -16,9 +16,9 @@ export class RecordFactory {
       recordId,
       Date.now().toString(),
       Date.now().toString(),
-      crop,
     );
 
+    record.crop = crop;
     record.author = author;
     record.phase = phase;
     record.payload = payload;

@@ -1,14 +1,6 @@
 import { RecordsService } from '../services/records.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  RawBodyRequest,
-  Req,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateRecordDto } from '../dto/create-record.dto';
 
 @ApiBearerAuth()

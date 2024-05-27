@@ -9,7 +9,7 @@ export class CropMapper {
       cropEntity.state,
     );
 
-    crop.author = cropEntity.createdBy;
+    crop.author = cropEntity.author;
     crop.name = cropEntity.name;
     return crop;
   }
@@ -19,9 +19,9 @@ export class CropMapper {
 
     cropEntity.id = crop.id;
     cropEntity.name = crop.name;
-    cropEntity.createdBy = crop.author;
-    cropEntity.createdAt = crop.createdDate;
-    cropEntity.state = crop.active;
+    cropEntity.author = crop.author;
+    /* cropEntity.createdAt = crop.createdDate; */
+    cropEntity.state = crop.state;
 
     return cropEntity;
   }

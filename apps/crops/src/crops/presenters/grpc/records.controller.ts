@@ -34,13 +34,18 @@ export class RecordsController implements RecordsServiceController {
   }
 
   async findAll(request: FindAllRecordsDto): Promise<CropRecordResponse> {
-    return this.recordService.findAll();
+    return { records: await this.recordService.findAll() };
   }
 
   async findAllByCropAndPhase(
     request: FindAllRecordsByCropAndPhase,
   ): Promise<CropRecordResponse> {
     const requestCrop: Crop = await this.cropService.findById(request.cropId);
-    return this.recordService.findAllByCropAndPhase(requestCrop, request.phase);
+    return {
+      records: await this.recordService.findAllByCropAndPhase(
+        requestCrop,
+        request.phase,
+      ),
+    };
   }
 }

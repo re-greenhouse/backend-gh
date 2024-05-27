@@ -4,7 +4,7 @@ export class Crop {
 
   constructor(
     public id: string,
-    public createdDate: string,
-    public active: boolean,
+    public createdAt: string,
+    public state: boolean,
   ) {}
 }
