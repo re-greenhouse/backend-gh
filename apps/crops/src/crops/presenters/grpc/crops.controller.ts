@@ -9,7 +9,7 @@ import {
   FindOneCropDto,
   UpdateCropDto,
 } from '@app/common/types/crops';
-import { Controller, Logger } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { CropsService } from '../../application/crops.service';
 import { CreateCropCommand } from '../../application/commands/create-crop.command';
 import { UpdateCropCommand } from '../../application/commands/update-crop.command';
