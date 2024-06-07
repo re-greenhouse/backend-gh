@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { ProfilesService } from '../services/profiles.service';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -22,5 +22,10 @@ export class ProfilesController {
   @Get('/users/me')
   findByUserMe(@Req() req: Request) {
     return this.profilesService.findByUserId(req['user']['sub']);
+  }
+
+  @Get('/companies/:companyId')
+  findByCompany(@Req() req: Request, @Param('companyId') companyId: string) {
+    return this.profilesService.findByCompanyId(companyId);
   }
 }
