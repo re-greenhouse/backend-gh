@@ -40,6 +40,10 @@ export interface FindAllByCompanyIdDto {
   companyId: string;
 }
 
+export interface FindOneCompanyByProfileId {
+  profileId: string;
+}
+
 export interface CreateCompanyDto {
   ownerId: string;
   name: string;
@@ -84,15 +88,19 @@ export const PROFILES_SERVICE_NAME = "ProfilesService";
 
 export interface CompaniesServiceClient {
   createCompany(request: CreateCompanyDto): Observable<Company>;
+
+  findByProfileId(request: FindOneCompanyByProfileId): Observable<Company>;
 }
 
 export interface CompaniesServiceController {
   createCompany(request: CreateCompanyDto): Promise<Company> | Observable<Company> | Company;
+
+  findByProfileId(request: FindOneCompanyByProfileId): Promise<Company> | Observable<Company> | Company;
 }
 
 export function CompaniesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createCompany"];
+    const grpcMethods: string[] = ["createCompany", "findByProfileId"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CompaniesService", method)(constructor.prototype[method], method, descriptor);

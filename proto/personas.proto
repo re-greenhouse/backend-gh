@@ -10,6 +10,7 @@ service ProfilesService {
 
 service CompaniesService {
   rpc CreateCompany (CreateCompanyDto) returns (Company) {}
+  rpc FindByProfileId (FindOneCompanyByProfileId) returns (Company) {}
 }
 
 message Profile {
@@ -46,6 +47,10 @@ message FindOneProfileByUserIdDto {
 
 message FindAllByCompanyIdDto {
   string companyId = 1;
+}
+
+message FindOneCompanyByProfileId {
+  string profileId = 1;
 }
 
 message CreateCompanyDto {
