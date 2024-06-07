@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
 import { CompaniesService } from '../services/companies.service';
 import { CreateCompanyDto } from '../dto/create-company.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -12,5 +12,14 @@ export class CompaniesController {
   @Post()
   create(@Req() req: Request, @Body() createCompanyDto: CreateCompanyDto) {
     return this.companiesService.create(req['user']['sub'], createCompanyDto);
+  }
+
+  /*
+    TODO: Take care that person B can't access person A data
+     if person B is not the owner and doesn't have admin roles.
+  */
+  @Get()
+  findByProfile(@Query('profileId') profileId: string) {
+    return this.companiesService.findByProfileId(profileId);
   }
 }
