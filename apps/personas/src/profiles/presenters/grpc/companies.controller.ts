@@ -3,6 +3,7 @@ import {
   CompaniesServiceControllerMethods,
   Company,
   CreateCompanyDto,
+  FindOneCompanyByProfileId,
 } from '@app/common/types/personas';
 import { Controller } from '@nestjs/common';
 import { CompaniesService } from '../../application/companies.service';
@@ -30,5 +31,9 @@ export class CompaniesController implements CompaniesServiceController {
         owner,
       ),
     );
+  }
+
+  async findByProfileId(request: FindOneCompanyByProfileId): Promise<Company> {
+    return this.companiesService.findOneByProfileId(request.profileId);
   }
 }
