@@ -1,6 +1,6 @@
 import { RecordsService } from '../services/records.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateRecordDto } from '../dto/create-record.dto';
 import { firstValueFrom } from 'rxjs';
 
@@ -12,15 +12,12 @@ export class RecordsController {
 
   @Post()
   create(@Body() createRecordDto: CreateRecordDto) {
-    Logger.log(`APIGATEWAY>> ${JSON.stringify(createRecordDto.payload)}`);
-    createRecordDto.payload = JSON.stringify(createRecordDto.payload);
     return this.recordsService.create(createRecordDto);
   }
 
   @Get()
   async findAll() {
     const res = await firstValueFrom(this.recordsService.findAll());
-    Logger.log(res);
     res.records.forEach(
       (records) => (records.payload = JSON.parse(records.payload)),
     );

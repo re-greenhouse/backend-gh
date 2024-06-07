@@ -19,6 +19,7 @@ export class RecordsService implements OnModuleInit {
   }
 
   create(createRecordDto: CreateRecordDto) {
+    createRecordDto.payload = JSON.stringify(createRecordDto.payload);
     return this.recordsService.createRecord(createRecordDto);
   }
 

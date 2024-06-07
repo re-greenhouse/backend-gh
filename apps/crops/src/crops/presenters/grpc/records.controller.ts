@@ -7,7 +7,7 @@ import {
   RecordsServiceController,
   RecordsServiceControllerMethods,
 } from '@app/common/types/crops';
-import { Controller, Logger } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { RecordsService } from '../../application/records.service';
 import { CreateRecordCommand } from '../../application/commands/create-record.command';
 import { CropsService } from '../../application/crops.service';
@@ -22,7 +22,6 @@ export class RecordsController implements RecordsServiceController {
   ) {}
 
   async createRecord(request: CreateRecordDto): Promise<CropRecord> {
-    Logger.log(`>>>>>>>>>>${JSON.stringify(request.payload)}`);
     const requestCrop: Crop = await this.cropService.findById(request.cropId);
     return this.recordService.create(
       new CreateRecordCommand(
