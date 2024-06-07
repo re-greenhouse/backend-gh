@@ -4,11 +4,9 @@ import {
   Controller,
   Delete,
   Get,
-  Logger,
   Param,
   Patch,
   Post,
-  Req,
 } from '@nestjs/common';
 import { CropsService } from '../services/crops.service';
 import { CreateCropDto } from '../dto/create-crop.dto';
