@@ -6,6 +6,7 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 import { RecordEntity } from './record.entity';
+import { CropPhase } from '../enums/phase.enum';
 
 @Entity('crops')
 export class CropEntity {
@@ -17,6 +18,9 @@ export class CropEntity {
 
   @CreateDateColumn()
   createdAt: string;
+
+  @Column({ enum: CropPhase, default: CropPhase.Stock })
+  phase: string;
 
   @Column()
   author: string;

@@ -4,12 +4,21 @@ import { CropMapper } from './crop.mapper';
 
 export class RecordMapper {
   static toDomain(recordEntity: RecordEntity): CropRecord {
-    const record = new CropRecord(
-      recordEntity.id,
-      recordEntity.createdAt.toDateString(),
-      recordEntity.updatedAt.toDateString(),
-    );
-
+    const dateOptions = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timezone: 'America/Chicago',
+    } as const;
+    const record = new CropRecord(recordEntity.id);
+    record.createdDate = new Intl.DateTimeFormat('es', dateOptions)
+      .format(recordEntity.createdAt)
+      .toString();
+    record.updatedDate = new Intl.DateTimeFormat('es', dateOptions)
+      .format(recordEntity.updatedAt)
+      .toString();
     record.author = recordEntity.author;
     record.phase = recordEntity.phase;
     record.payload = recordEntity.payload;
@@ -21,8 +30,6 @@ export class RecordMapper {
     const recordEntity = new RecordEntity();
 
     recordEntity.id = record.id;
-    /*recordEntity.createdAt = new Date(record.createdDate);
-    recordEntity.updatedAt = new Date(record.updatedDate);*/
     recordEntity.author = record.author;
     recordEntity.phase = record.phase;
     recordEntity.payload = record.payload;

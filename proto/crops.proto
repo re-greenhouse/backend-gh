@@ -6,6 +6,9 @@ service CropsService {
     rpc CreateCrop (CreateCropDto) returns (Crop) {}
     rpc FindAll (FindAllCropsDto) returns (CropResponse) {}
     rpc FindAllByState (FindAllCropsByStateDto) returns (CropResponse) {}
+    rpc FindOneCrop (FindOneCropDto) returns (Crop) {}
+    rpc UpdateCrop (UpdateCropDto) returns (Crop) {}
+    rpc RemoveCrop (FindOneCropDto) returns (Crop) {}
 }
 
 service RecordsService {
@@ -19,7 +22,7 @@ message Crop {
     string createdDate = 2;
     string name = 3;
     string author = 4;
-    bool active = 5;
+    bool state = 5;
 }
 
 message CropResponse {
@@ -50,10 +53,20 @@ message FindAllCropsByStateDto {
     bool state = 1;
 }
 
+message FindOneCropDto {
+    string id = 1;
+}
+
+message UpdateCropDto {
+    string id = 1;
+    optional string phase = 2;
+    optional bool state = 3;
+}
+
 message CreateRecordDto {
     string author = 1;
     string phase = 2;
-    map<string, string> payload = 3;
+    string payload = 3;
     string cropId = 4;
 }
 

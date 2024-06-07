@@ -6,10 +6,10 @@ export const protobufPackage = 'crops';
 
 export interface Crop {
   id: string;
-  createdDate: string;
   name: string;
   author: string;
-  active: boolean;
+  phase: string;
+  state: boolean;
 }
 
 export interface CropResponse {
@@ -40,16 +40,21 @@ export interface FindAllCropsByStateDto {
   state: boolean;
 }
 
+export interface FindOneCropDto {
+  id: string;
+}
+
+export interface UpdateCropDto {
+  id: string;
+  phase?: string | undefined;
+  state?: boolean | undefined;
+}
+
 export interface CreateRecordDto {
   author: string;
   phase: string;
-  payload: { [key: string]: string };
+  payload: string;
   cropId: string;
-}
-
-export interface CreateRecordDto_PayloadEntry {
-  key: string;
-  value: string;
 }
 
 export interface FindAllRecordsDto {}
@@ -67,6 +72,12 @@ export interface CropsServiceClient {
   findAll(request: FindAllCropsDto): Observable<CropResponse>;
 
   findAllByState(request: FindAllCropsByStateDto): Observable<CropResponse>;
+
+  findOneCrop(request: FindOneCropDto): Observable<Crop>;
+
+  updateCrop(request: UpdateCropDto): Observable<Crop>;
+
+  removeCrop(request: FindOneCropDto): Observable<Crop>;
 }
 
 export interface CropsServiceController {
@@ -79,11 +90,24 @@ export interface CropsServiceController {
   findAllByState(
     request: FindAllCropsByStateDto,
   ): Promise<CropResponse> | Observable<CropResponse> | CropResponse;
+
+  findOneCrop(request: FindOneCropDto): Promise<Crop> | Observable<Crop> | Crop;
+
+  updateCrop(request: UpdateCropDto): Promise<Crop> | Observable<Crop> | Crop;
+
+  removeCrop(request: FindOneCropDto): Promise<Crop> | Observable<Crop> | Crop;
 }
 
 export function CropsServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['createCrop', 'findAll', 'findAllByState'];
+    const grpcMethods: string[] = [
+      'createCrop',
+      'findAll',
+      'findAllByState',
+      'findOneCrop',
+      'updateCrop',
+      'removeCrop',
+    ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(
         constructor.prototype,

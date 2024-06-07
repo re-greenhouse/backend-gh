@@ -8,15 +8,11 @@ export class RecordFactory {
   create(
     author: string,
     phase: string,
-    payload: Record<string, any>,
+    payload: string,
     crop: Crop,
   ): CropRecord {
     const recordId = randomUUID();
-    const record = new CropRecord(
-      recordId,
-      Date.now().toString(),
-      Date.now().toString(),
-    );
+    const record = new CropRecord(recordId);
 
     record.crop = crop;
     record.author = author;

@@ -10,6 +10,10 @@ import { FindCropsRepository } from '../../../application/ports/find-crops.repos
 import { OrmFindCropsRepository } from './repositories/find-crops.repository';
 import { FindRecordsRepository } from '../../../application/ports/find-records.repository';
 import { OrmFindRecordsRepository } from './repositories/find-records.repository';
+import { RemoveCropRepository } from '../../../application/ports/remove-crop.repository';
+import { OrmRemoveCropRepository } from './repositories/remove-crop.repository';
+import { SaveCropRepository } from '../../../application/ports/save-crop.repository';
+import { OrmSaveCropRepository } from './repositories/save-crop.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CropEntity, RecordEntity])],
@@ -30,12 +34,22 @@ import { OrmFindRecordsRepository } from './repositories/find-records.repository
       provide: FindRecordsRepository,
       useClass: OrmFindRecordsRepository,
     },
+    {
+      provide: RemoveCropRepository,
+      useClass: OrmRemoveCropRepository,
+    },
+    {
+      provide: SaveCropRepository,
+      useClass: OrmSaveCropRepository,
+    },
   ],
   exports: [
     CreateCropRepository,
     CreateRecordRepository,
     FindCropsRepository,
     FindRecordsRepository,
+    RemoveCropRepository,
+    SaveCropRepository,
   ],
 })
 export class OrmCropsPersistenceModule {}

@@ -26,7 +26,7 @@ export class RecordEntity {
   phase: string;
 
   @Column({ type: 'json' })
-  payload: Record<string, string>;
+  payload: string;
 
   @ManyToOne(() => CropEntity, (crop) => crop.records)
   crop: CropEntity;
