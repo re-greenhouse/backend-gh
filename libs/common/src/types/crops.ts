@@ -10,6 +10,7 @@ export interface Crop {
   author: string;
   phase: string;
   state: boolean;
+  startDate: string;
 }
 
 export interface CropResponse {

@@ -19,10 +19,11 @@ service RecordsService {
 
 message Crop {
     string id = 1;
-    string createdDate = 2;
-    string name = 3;
-    string author = 4;
-    bool state = 5;
+    string name = 2;
+    string author = 3;
+    bool state = 4;
+    string phase = 5;
+    string startDate = 6;
 }
 
 message CropResponse {
