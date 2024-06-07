@@ -1,6 +1,7 @@
 import { RecordEntity } from '../entities/record.entity';
 import { CropRecord } from '../../../../domain/record';
 import { CropMapper } from './crop.mapper';
+import { CropPhase } from '../enums/phase.enum';
 
 export class RecordMapper {
   static toDomain(recordEntity: RecordEntity): CropRecord {
@@ -20,7 +21,7 @@ export class RecordMapper {
       .format(recordEntity.updatedAt)
       .toString();
     record.author = recordEntity.author;
-    record.phase = recordEntity.phase;
+    record.phase = recordEntity.phase as CropPhase;
     record.payload = recordEntity.payload;
 
     return record;
