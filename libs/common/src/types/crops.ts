@@ -1,15 +1,15 @@
 /* eslint-disable */
-import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
+import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { Observable } from "rxjs";
 
-export const protobufPackage = 'crops';
+export const protobufPackage = "crops";
 
 export interface Crop {
   id: string;
   name: string;
   author: string;
-  phase: string;
   state: boolean;
+  phase: string;
   startDate: string;
 }
 
@@ -35,7 +35,8 @@ export interface CreateCropDto {
   author: string;
 }
 
-export interface FindAllCropsDto {}
+export interface FindAllCropsDto {
+}
 
 export interface FindAllCropsByStateDto {
   state: boolean;
@@ -58,14 +59,24 @@ export interface CreateRecordDto {
   cropId: string;
 }
 
-export interface FindAllRecordsDto {}
+export interface FindOneRecordDto {
+  id: string;
+}
+
+export interface FindAllRecordsDto {
+}
 
 export interface FindAllRecordsByCropAndPhase {
   cropId: string;
   phase: string;
 }
 
-export const CROPS_PACKAGE_NAME = 'crops';
+export interface UpdateRecordDto {
+  id: string;
+  payload: string;
+}
+
+export const CROPS_PACKAGE_NAME = "crops";
 
 export interface CropsServiceClient {
   createCrop(request: CreateCropDto): Observable<Crop>;
@@ -84,13 +95,9 @@ export interface CropsServiceClient {
 export interface CropsServiceController {
   createCrop(request: CreateCropDto): Promise<Crop> | Observable<Crop> | Crop;
 
-  findAll(
-    request: FindAllCropsDto,
-  ): Promise<CropResponse> | Observable<CropResponse> | CropResponse;
+  findAll(request: FindAllCropsDto): Promise<CropResponse> | Observable<CropResponse> | CropResponse;
 
-  findAllByState(
-    request: FindAllCropsByStateDto,
-  ): Promise<CropResponse> | Observable<CropResponse> | CropResponse;
+  findAllByState(request: FindAllCropsByStateDto): Promise<CropResponse> | Observable<CropResponse> | CropResponse;
 
   findOneCrop(request: FindOneCropDto): Promise<Crop> | Observable<Crop> | Crop;
 
@@ -102,102 +109,79 @@ export interface CropsServiceController {
 export function CropsServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
-      'createCrop',
-      'findAll',
-      'findAllByState',
-      'findOneCrop',
-      'updateCrop',
-      'removeCrop',
+      "createCrop",
+      "findAll",
+      "findAllByState",
+      "findOneCrop",
+      "updateCrop",
+      "removeCrop",
     ];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcMethod('CropsService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("CropsService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcStreamMethod('CropsService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("CropsService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const CROPS_SERVICE_NAME = 'CropsService';
+export const CROPS_SERVICE_NAME = "CropsService";
 
 export interface RecordsServiceClient {
   createRecord(request: CreateRecordDto): Observable<CropRecord>;
 
   findAll(request: FindAllRecordsDto): Observable<CropRecordResponse>;
 
-  findAllByCropAndPhase(
-    request: FindAllRecordsByCropAndPhase,
-  ): Observable<CropRecordResponse>;
+  findAllByCropAndPhase(request: FindAllRecordsByCropAndPhase): Observable<CropRecordResponse>;
+
+  findOneRecord(request: FindOneRecordDto): Observable<CropRecord>;
+
+  updateRecord(request: UpdateRecordDto): Observable<CropRecord>;
+
+  removeRecord(request: FindOneRecordDto): Observable<CropRecord>;
 }
 
 export interface RecordsServiceController {
-  createRecord(
-    request: CreateRecordDto,
-  ): Promise<CropRecord> | Observable<CropRecord> | CropRecord;
+  createRecord(request: CreateRecordDto): Promise<CropRecord> | Observable<CropRecord> | CropRecord;
 
   findAll(
     request: FindAllRecordsDto,
-  ):
-    | Promise<CropRecordResponse>
-    | Observable<CropRecordResponse>
-    | CropRecordResponse;
+  ): Promise<CropRecordResponse> | Observable<CropRecordResponse> | CropRecordResponse;
 
   findAllByCropAndPhase(
     request: FindAllRecordsByCropAndPhase,
-  ):
-    | Promise<CropRecordResponse>
-    | Observable<CropRecordResponse>
-    | CropRecordResponse;
+  ): Promise<CropRecordResponse> | Observable<CropRecordResponse> | CropRecordResponse;
+
+  findOneRecord(request: FindOneRecordDto): Promise<CropRecord> | Observable<CropRecord> | CropRecord;
+
+  updateRecord(request: UpdateRecordDto): Promise<CropRecord> | Observable<CropRecord> | CropRecord;
+
+  removeRecord(request: FindOneRecordDto): Promise<CropRecord> | Observable<CropRecord> | CropRecord;
 }
 
 export function RecordsServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
-      'createRecord',
-      'findAll',
-      'findAllByCropAndPhase',
+      "createRecord",
+      "findAll",
+      "findAllByCropAndPhase",
+      "findOneRecord",
+      "updateRecord",
+      "removeRecord",
     ];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcMethod('RecordsService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("RecordsService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcStreamMethod('RecordsService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("RecordsService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const RECORDS_SERVICE_NAME = 'RecordsService';
+export const RECORDS_SERVICE_NAME = "RecordsService";

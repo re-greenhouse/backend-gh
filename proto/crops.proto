@@ -15,6 +15,9 @@ service RecordsService {
     rpc CreateRecord (CreateRecordDto) returns (CropRecord) {}
     rpc FindAll (FindAllRecordsDto) returns (CropRecordResponse) {}
     rpc FindAllByCropAndPhase (FindAllRecordsByCropAndPhase) returns (CropRecordResponse) {}
+    rpc FindOneRecord (FindOneRecordDto) returns (CropRecord) {}
+    rpc UpdateRecord (UpdateRecordDto) returns (CropRecord) {}
+    rpc RemoveRecord (FindOneRecordDto) returns (CropRecord) {}
 }
 
 message Crop {
@@ -71,9 +74,18 @@ message CreateRecordDto {
     string cropId = 4;
 }
 
+message FindOneRecordDto {
+    string id = 1;
+}
+
 message FindAllRecordsDto {}
 
 message FindAllRecordsByCropAndPhase{
     string cropId = 1;
     string phase = 2;
+}
+
+message UpdateRecordDto {
+    string id = 1;
+    string payload = 2;
 }

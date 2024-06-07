@@ -4,14 +4,18 @@ import {
   CropRecordResponse,
   FindAllRecordsByCropAndPhase,
   FindAllRecordsDto,
+  FindOneRecordDto,
   RecordsServiceController,
   RecordsServiceControllerMethods,
+  UpdateRecordDto,
 } from '@app/common/types/crops';
 import { Controller } from '@nestjs/common';
 import { RecordsService } from '../../application/records.service';
 import { CreateRecordCommand } from '../../application/commands/create-record.command';
 import { CropsService } from '../../application/crops.service';
 import { Crop } from '../../domain/crop';
+import { UpdateRecordCommand } from '../../application/commands/update-record.command';
+import { DeleteRecordCommand } from '../../application/commands/delete-record.command';
 
 @Controller()
 @RecordsServiceControllerMethods()
@@ -47,5 +51,21 @@ export class RecordsController implements RecordsServiceController {
         request.phase,
       ),
     };
+  }
+
+  updateRecord(updateRecordDto: UpdateRecordDto): Promise<CropRecord> {
+    return this.recordService.update(
+      new UpdateRecordCommand(updateRecordDto.id, updateRecordDto.payload),
+    );
+  }
+
+  removeRecord(findOneRecordDto: FindOneRecordDto): Promise<CropRecord> {
+    return this.recordService.remove(
+      new DeleteRecordCommand(findOneRecordDto.id),
+    );
+  }
+
+  findOneRecord(findOneRecordDto: FindOneRecordDto): Promise<CropRecord> {
+    return this.recordService.findById(findOneRecordDto.id);
   }
 }

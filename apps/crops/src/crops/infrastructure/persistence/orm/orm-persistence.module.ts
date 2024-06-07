@@ -14,6 +14,10 @@ import { RemoveCropRepository } from '../../../application/ports/remove-crop.rep
 import { OrmRemoveCropRepository } from './repositories/remove-crop.repository';
 import { SaveCropRepository } from '../../../application/ports/save-crop.repository';
 import { OrmSaveCropRepository } from './repositories/save-crop.repository';
+import { RemoveRecordRepository } from '../../../application/ports/remove-record.repository';
+import { OrmRemoveRecordRepository } from './repositories/remove-record.repository';
+import { SaveRecordRepository } from '../../../application/ports/save-record.repository';
+import { OrmSaveRecordRepository } from './repositories/save-record.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CropEntity, RecordEntity])],
@@ -42,6 +46,14 @@ import { OrmSaveCropRepository } from './repositories/save-crop.repository';
       provide: SaveCropRepository,
       useClass: OrmSaveCropRepository,
     },
+    {
+      provide: RemoveRecordRepository,
+      useClass: OrmRemoveRecordRepository,
+    },
+    {
+      provide: SaveRecordRepository,
+      useClass: OrmSaveRecordRepository,
+    },
   ],
   exports: [
     CreateCropRepository,
@@ -50,6 +62,8 @@ import { OrmSaveCropRepository } from './repositories/save-crop.repository';
     FindRecordsRepository,
     RemoveCropRepository,
     SaveCropRepository,
+    RemoveRecordRepository,
+    SaveRecordRepository,
   ],
 })
 export class OrmCropsPersistenceModule {}

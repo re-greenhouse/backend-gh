@@ -24,6 +24,10 @@ import { UpdateCropCommand } from './commands/update-crop.command';
 import { UpdateCropCommandHandler } from './commands/update-crop.command-handler';
 import { DeleteCropCommand } from './commands/delete-crop.command';
 import { DeleteCropCommandHandler } from './commands/delete-crop.command-handler';
+import { UpdateRecordCommand } from './commands/update-record.command';
+import { UpdateRecordCommandHandler } from './commands/update-record.command-handler';
+import { DeleteRecordCommand } from './commands/delete-record.command';
+import { DeleteRecordCommandHandler } from './commands/delete-record.command-handler';
 
 @Module({
   imports: [CropsInfrastructureModule],
@@ -51,6 +55,10 @@ import { DeleteCropCommandHandler } from './commands/delete-crop.command-handler
     GetRecordsQueryHandler,
     GetRecordsByCropAndPhaseQuery,
     GetRecordsByCropAndPhaseQueryHandler,
+    UpdateRecordCommand,
+    UpdateRecordCommandHandler,
+    DeleteRecordCommand,
+    DeleteRecordCommandHandler,
   ],
   controllers: [CropsController, RecordsController],
 })

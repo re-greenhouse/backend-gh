@@ -17,7 +17,6 @@ export class OrmFindRecordsRepository implements FindRecordsRepository {
   async findAll(): Promise<Array<CropRecord>> {
     const recordEntities: Array<RecordEntity> =
       await this.recordRepository.find();
-    Logger.log(typeof recordEntities[0].payload);
     Logger.log(recordEntities.length);
     return recordEntities.map(RecordMapper.toDomain);
   }

@@ -4,19 +4,8 @@ import { CropPhase } from '../enums/phase.enum';
 
 export class CropMapper {
   static toDomain(cropEntity: CropEntity): Crop {
-    const dateOptions = {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      timezone: 'America/Chicago',
-    } as const;
     const crop = new Crop(cropEntity.id, cropEntity.state);
-    const newDate = new Date(cropEntity.startDate);
-    crop.startDate = new Intl.DateTimeFormat('en-US', dateOptions).format(
-      newDate,
-    );
+    crop.startDate = new Date(cropEntity.startDate).toLocaleString();
     crop.author = cropEntity.author;
     crop.name = cropEntity.name;
     crop.phase = cropEntity.phase as CropPhase;

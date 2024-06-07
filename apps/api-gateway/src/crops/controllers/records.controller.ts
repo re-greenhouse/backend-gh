@@ -1,8 +1,17 @@
 import { RecordsService } from '../services/records.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreateRecordDto } from '../dto/create-record.dto';
 import { firstValueFrom } from 'rxjs';
+import { UpdateRecordDto } from '../dto/update-record.dto';
 
 @ApiBearerAuth()
 @ApiTags('Records')
@@ -18,9 +27,11 @@ export class RecordsController {
   @Get()
   async findAll() {
     const res = await firstValueFrom(this.recordsService.findAll());
-    res.records.forEach(
-      (records) => (records.payload = JSON.parse(records.payload)),
-    );
+    if (res.records !== undefined) {
+      res.records.forEach(
+        (records) => (records.payload = JSON.parse(records.payload)),
+      );
+    }
     return res;
   }
 
@@ -30,5 +41,20 @@ export class RecordsController {
     @Param('phase') phase: string,
   ) {
     return this.recordsService.findAllByCropAndPhase(cropId, phase);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.recordsService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateRecordDto: UpdateRecordDto) {
+    return this.recordsService.update(id, updateRecordDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.recordsService.remove(id);
   }
 }
