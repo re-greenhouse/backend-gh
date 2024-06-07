@@ -1,8 +1,10 @@
 import { Controller } from '@nestjs/common';
 import {
   CreateProfileDto,
+  FindAllByCompanyIdDto,
   FindOneProfileByUserIdDto,
   Profile,
+  Profiles,
   ProfilesServiceController,
   ProfilesServiceControllerMethods,
 } from '@app/common/types/personas';
@@ -29,5 +31,15 @@ export class ProfilesController implements ProfilesServiceController {
     findOneUserByIdDto: FindOneProfileByUserIdDto,
   ): Promise<Profile> {
     return this.profileService.findByUserId(findOneUserByIdDto.userId);
+  }
+
+  async findByCompanyId(
+    findAllByCompanyIdDto: FindAllByCompanyIdDto,
+  ): Promise<Profiles> {
+    return {
+      profiles: await this.profileService.findByCompanyId(
+        findAllByCompanyIdDto.companyId,
+      ),
+    };
   }
 }
