@@ -20,6 +20,16 @@ import { GetRecordsByCropAndPhaseQuery } from './queries/get-records-by-crop-and
 import { GetRecordsByCropAndPhaseQueryHandler } from './queries/get-records-by-crop-and-phase.query-handler';
 import { CropsController } from '../presenters/grpc/crops.controller';
 import { RecordsController } from '../presenters/grpc/records.controller';
+import { UpdateCropCommand } from './commands/update-crop.command';
+import { UpdateCropCommandHandler } from './commands/update-crop.command-handler';
+import { DeleteCropCommand } from './commands/delete-crop.command';
+import { DeleteCropCommandHandler } from './commands/delete-crop.command-handler';
+import { UpdateRecordCommand } from './commands/update-record.command';
+import { UpdateRecordCommandHandler } from './commands/update-record.command-handler';
+import { DeleteRecordCommand } from './commands/delete-record.command';
+import { DeleteRecordCommandHandler } from './commands/delete-record.command-handler';
+import { GetRecordByIdQuery } from './queries/get-record-by-id.query';
+import { GetRecordByIdQueryHandler } from './queries/get-record-by-id.query-handler';
 
 @Module({
   imports: [CropsInfrastructureModule],
@@ -35,6 +45,10 @@ import { RecordsController } from '../presenters/grpc/records.controller';
     GetCropByIdQueryHandler,
     GetCropsByStateQuery,
     GetCropsByStateQueryHandler,
+    UpdateCropCommand,
+    UpdateCropCommandHandler,
+    DeleteCropCommand,
+    DeleteCropCommandHandler,
     RecordsService,
     RecordFactory,
     CreateRecordCommand,
@@ -43,6 +57,12 @@ import { RecordsController } from '../presenters/grpc/records.controller';
     GetRecordsQueryHandler,
     GetRecordsByCropAndPhaseQuery,
     GetRecordsByCropAndPhaseQueryHandler,
+    GetRecordByIdQuery,
+    GetRecordByIdQueryHandler,
+    UpdateRecordCommand,
+    UpdateRecordCommandHandler,
+    DeleteRecordCommand,
+    DeleteRecordCommandHandler,
   ],
   controllers: [CropsController, RecordsController],
 })

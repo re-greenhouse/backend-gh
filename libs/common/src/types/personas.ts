@@ -13,6 +13,10 @@ export interface Profile {
   role: string;
 }
 
+export interface Profiles {
+  profiles: Profile[];
+}
+
 export interface Company {
   id: string;
   name: string;
@@ -32,6 +36,14 @@ export interface FindOneProfileByUserIdDto {
   userId: string;
 }
 
+export interface FindAllByCompanyIdDto {
+  companyId: string;
+}
+
+export interface FindOneCompanyByProfileId {
+  profileId: string;
+}
+
 export interface CreateCompanyDto {
   ownerId: string;
   name: string;
@@ -45,17 +57,21 @@ export interface ProfilesServiceClient {
   createProfile(request: CreateProfileDto): Observable<Profile>;
 
   findByUserId(request: FindOneProfileByUserIdDto): Observable<Profile>;
+
+  findByCompanyId(request: FindAllByCompanyIdDto): Observable<Profiles>;
 }
 
 export interface ProfilesServiceController {
   createProfile(request: CreateProfileDto): Promise<Profile> | Observable<Profile> | Profile;
 
   findByUserId(request: FindOneProfileByUserIdDto): Promise<Profile> | Observable<Profile> | Profile;
+
+  findByCompanyId(request: FindAllByCompanyIdDto): Promise<Profiles> | Observable<Profiles> | Profiles;
 }
 
 export function ProfilesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createProfile", "findByUserId"];
+    const grpcMethods: string[] = ["createProfile", "findByUserId", "findByCompanyId"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("ProfilesService", method)(constructor.prototype[method], method, descriptor);
@@ -72,15 +88,19 @@ export const PROFILES_SERVICE_NAME = "ProfilesService";
 
 export interface CompaniesServiceClient {
   createCompany(request: CreateCompanyDto): Observable<Company>;
+
+  findByProfileId(request: FindOneCompanyByProfileId): Observable<Company>;
 }
 
 export interface CompaniesServiceController {
   createCompany(request: CreateCompanyDto): Promise<Company> | Observable<Company> | Company;
+
+  findByProfileId(request: FindOneCompanyByProfileId): Promise<Company> | Observable<Company> | Company;
 }
 
 export function CompaniesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createCompany"];
+    const grpcMethods: string[] = ["createCompany", "findByProfileId"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CompaniesService", method)(constructor.prototype[method], method, descriptor);

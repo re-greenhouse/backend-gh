@@ -34,4 +34,10 @@ export class OrmFindProfilesRepository implements FindProfilesRepository {
   async existByUserId(userId: string): Promise<boolean> {
     return await this.profileRepository.exists({ where: { userId: userId } });
   }
+
+  async findByCompanyId(companyId: string): Promise<Array<Profile>> {
+    return this.profileRepository.find({
+      where: { company: { id: companyId } },
+    });
+  }
 }

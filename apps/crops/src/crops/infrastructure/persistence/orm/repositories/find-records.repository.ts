@@ -1,6 +1,6 @@
 import { FindRecordsRepository } from '../../../../application/ports/find-records.repository';
 import { Repository } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Crop } from 'apps/crops/src/crops/domain/crop';
 import { CropRecord } from 'apps/crops/src/crops/domain/record';
 import { RecordEntity } from '../entities/record.entity';
@@ -17,6 +17,7 @@ export class OrmFindRecordsRepository implements FindRecordsRepository {
   async findAll(): Promise<Array<CropRecord>> {
     const recordEntities: Array<RecordEntity> =
       await this.recordRepository.find();
+    Logger.log(recordEntities.length);
     return recordEntities.map(RecordMapper.toDomain);
   }
 

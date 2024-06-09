@@ -1,5 +1,12 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { RecordEntity } from './record.entity';
+import { CropPhase } from '../enums/phase.enum';
 
 @Entity('crops')
 export class CropEntity {
@@ -9,11 +16,14 @@ export class CropEntity {
   @Column()
   name: string;
 
-  @Column()
-  createdAt: string;
+  @CreateDateColumn()
+  startDate: string;
+
+  @Column({ enum: CropPhase, default: CropPhase.Stock })
+  phase: string;
 
   @Column()
-  createdBy: string;
+  author: string;
 
   @Column()
   state: boolean;

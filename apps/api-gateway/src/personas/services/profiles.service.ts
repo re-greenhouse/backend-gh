@@ -26,4 +26,8 @@ export class ProfilesService implements OnModuleInit {
   findByUserId(userId: string) {
     return this.profilesService.findByUserId({ userId: userId });
   }
+
+  async findByCompanyId(companyId: string) {
+    return this.profilesService.findByCompanyId({ companyId: companyId });
+  }
 }

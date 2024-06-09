@@ -28,4 +28,10 @@ export class OrmFindCompaniesRepository implements FindCompaniesRepository {
       await this.companyRepository.findOneBy({ id: id });
     return companyEntity ? CompanyMapper.toDomain(companyEntity) : undefined;
   }
+
+  async findByProfileId(profileId: string): Promise<Company | undefined> {
+    const companyEntity: CompanyEntity | null =
+      await this.companyRepository.findOneBy({ employees: { id: profileId } });
+    return companyEntity ? CompanyMapper.toDomain(companyEntity) : undefined;
+  }
 }

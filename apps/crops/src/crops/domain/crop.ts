@@ -1,10 +1,13 @@
+import { CropPhase } from '../infrastructure/persistence/orm/enums/phase.enum';
+
 export class Crop {
   public name: string;
   public author: string;
+  public phase: CropPhase;
+  public startDate: string;
 
   constructor(
     public id: string,
-    public createdDate: string,
-    public active: boolean,
+    public state: boolean,
   ) {}
 }

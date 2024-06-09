@@ -2,23 +2,20 @@ import { CropRecord } from '../record';
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { Crop } from '../crop';
+import { CropPhase } from '../../infrastructure/persistence/orm/enums/phase.enum';
 
 @Injectable()
 export class RecordFactory {
   create(
     author: string,
-    phase: string,
-    payload: Record<string, any>,
+    phase: CropPhase,
+    payload: string,
     crop: Crop,
   ): CropRecord {
     const recordId = randomUUID();
-    const record = new CropRecord(
-      recordId,
-      Date.now().toString(),
-      Date.now().toString(),
-      crop,
-    );
+    const record = new CropRecord(recordId);
 
+    record.crop = crop;
     record.author = author;
     record.phase = phase;
     record.payload = payload;

@@ -27,4 +27,10 @@ export class CompaniesService implements OnModuleInit {
       ownerId: ownerId,
     });
   }
+
+  findByProfileId(profileId: string) {
+    return this.companiesService.findByProfileId({
+      profileId: profileId,
+    });
+  }
 }

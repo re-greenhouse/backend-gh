@@ -12,6 +12,10 @@ import { CompaniesController } from '../presenters/grpc/companies.controller';
 import { CompaniesService } from './companies.service';
 import { GetProfileByUserIdQuery } from './queries/get-profile-by-user-id.query';
 import { GetProfileByIdQueryHandler } from './queries/get-profile-by-id.query-handler';
+import { GetProfilesByCompanyIdQuery } from './queries/get-profiles-by-company-id.query';
+import { GetProfilesByCompanyIdQueryHandler } from './queries/get-profiles-by-company-id.query-handler';
+import { GetCompanyByProfileIdQuery } from './queries/get-company-by-profile-id.query';
+import { GetCompanyByProfileIdQueryHandler } from './queries/get-company-by-profile-id.query-handler';
 
 @Module({
   imports: [PersonasInfrastructureModule],
@@ -27,6 +31,10 @@ import { GetProfileByIdQueryHandler } from './queries/get-profile-by-id.query-ha
     CreateCompanyCommandHandler,
     GetProfileByUserIdQuery,
     GetProfileByIdQueryHandler,
+    GetProfilesByCompanyIdQuery,
+    GetProfilesByCompanyIdQueryHandler,
+    GetCompanyByProfileIdQuery,
+    GetCompanyByProfileIdQueryHandler,
   ],
   controllers: [ProfilesController, CompaniesController],
 })

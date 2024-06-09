@@ -4,14 +4,18 @@ import {
   CropRecordResponse,
   FindAllRecordsByCropAndPhase,
   FindAllRecordsDto,
+  FindOneRecordDto,
   RecordsServiceController,
   RecordsServiceControllerMethods,
+  UpdateRecordDto,
 } from '@app/common/types/crops';
 import { Controller } from '@nestjs/common';
 import { RecordsService } from '../../application/records.service';
 import { CreateRecordCommand } from '../../application/commands/create-record.command';
 import { CropsService } from '../../application/crops.service';
 import { Crop } from '../../domain/crop';
+import { UpdateRecordCommand } from '../../application/commands/update-record.command';
+import { DeleteRecordCommand } from '../../application/commands/delete-record.command';
 
 @Controller()
 @RecordsServiceControllerMethods()
@@ -34,13 +38,34 @@ export class RecordsController implements RecordsServiceController {
   }
 
   async findAll(request: FindAllRecordsDto): Promise<CropRecordResponse> {
-    return this.recordService.findAll();
+    return { records: await this.recordService.findAll() };
   }
 
   async findAllByCropAndPhase(
     request: FindAllRecordsByCropAndPhase,
   ): Promise<CropRecordResponse> {
     const requestCrop: Crop = await this.cropService.findById(request.cropId);
-    return this.recordService.findAllByCropAndPhase(requestCrop, request.phase);
+    return {
+      records: await this.recordService.findAllByCropAndPhase(
+        requestCrop,
+        request.phase,
+      ),
+    };
+  }
+
+  updateRecord(updateRecordDto: UpdateRecordDto): Promise<CropRecord> {
+    return this.recordService.update(
+      new UpdateRecordCommand(updateRecordDto.id, updateRecordDto.payload),
+    );
+  }
+
+  removeRecord(findOneRecordDto: FindOneRecordDto): Promise<CropRecord> {
+    return this.recordService.remove(
+      new DeleteRecordCommand(findOneRecordDto.id),
+    );
+  }
+
+  findOneRecord(findOneRecordDto: FindOneRecordDto): Promise<CropRecord> {
+    return this.recordService.findById(findOneRecordDto.id);
   }
 }

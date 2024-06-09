@@ -6,6 +6,7 @@ import {
 import { CROPS_SERVICE } from '../constants';
 import { ClientGrpc } from '@nestjs/microservices';
 import { CreateRecordDto } from '../dto/create-record.dto';
+import { UpdateRecordDto } from '../dto/update-record.dto';
 
 @Injectable()
 export class RecordsService implements OnModuleInit {
@@ -19,7 +20,12 @@ export class RecordsService implements OnModuleInit {
   }
 
   create(createRecordDto: CreateRecordDto) {
+    createRecordDto.payload = JSON.stringify(createRecordDto.payload);
     return this.recordsService.createRecord(createRecordDto);
+  }
+
+  findOne(id: string) {
+    return this.recordsService.findOneRecord({ id: id });
   }
 
   findAll() {
@@ -31,5 +37,16 @@ export class RecordsService implements OnModuleInit {
       cropId: cropId,
       phase: phase,
     });
+  }
+
+  update(id: string, updateRecordDto: UpdateRecordDto) {
+    return this.recordsService.updateRecord({
+      id: id,
+      payload: updateRecordDto.payload,
+    });
+  }
+
+  remove(id: string) {
+    return this.recordsService.removeRecord({ id: id });
   }
 }

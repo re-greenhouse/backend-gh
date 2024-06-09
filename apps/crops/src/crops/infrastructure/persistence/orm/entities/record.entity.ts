@@ -1,25 +1,33 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { CropEntity } from './crop.entity';
+import { CropPhase } from '../enums/phase.enum';
 
 @Entity('records')
 export class RecordEntity {
   @PrimaryColumn('uuid')
   id: string;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column()
   author: string;
 
-  @Column()
+  @Column({ enum: CropPhase, default: CropPhase.Stock })
   phase: string;
 
   @Column({ type: 'json' })
-  payload: Record<string, string>;
+  payload: string;
 
   @ManyToOne(() => CropEntity, (crop) => crop.records)
   crop: CropEntity;

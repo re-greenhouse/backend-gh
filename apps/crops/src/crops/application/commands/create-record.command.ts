@@ -4,7 +4,7 @@ export class CreateRecordCommand {
   constructor(
     public author: string,
     public phase: string,
-    public payload: object,
+    public payload: string,
     public crop: Crop,
   ) {}
 }
