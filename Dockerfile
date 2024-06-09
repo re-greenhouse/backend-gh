@@ -5,13 +5,17 @@ FROM alpine:latest
 RUN apk update && \
     apk add --no-cache git nodejs npm docker docker-compose
 
-# Copy the application files
-RUN git clone https://github.com/re-greenhouse/backend-gh.git
+# Initialize Git repository
+RUN git init
 
-RUN git checkout feature/deploy
+# Clone the application repository
+RUN git clone https://github.com/re-greenhouse/backend-gh.git
 
 # Set working directory
 WORKDIR /backend-gh
+
+# Checkout the desired branch
+RUN git checkout feature/deploy
 
 # Install npm dependencies
 RUN npm install
