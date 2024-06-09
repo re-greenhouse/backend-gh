@@ -33,6 +33,7 @@ services:
     restart: always
     ports:
       - "3000:3000"
+      - "3010:3010"
     depends_on:
       - pg-iam
       - pg-personas

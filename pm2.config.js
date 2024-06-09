@@ -8,7 +8,20 @@ module.exports = {
       watch: false,
       max_memory_restart: '1G',
       env: {
-        NODE_ENV: 'production'
+        NODE_ENV: 'production',
+        PORT: 3000
+      }
+    },
+    {
+      name: "api-gateway-2",
+      script: "dist/apps/api-gateway/src/main.js",
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3010
       }
     },
     {
