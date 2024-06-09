@@ -1,0 +1,29 @@
+name: Deploy on Push
+
+on:
+  push:
+    branches:
+      - feature/deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Copy SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/gh.pem
+        chmod 600 ~/.ssh/gh.pem
+
+    - name: Execute update script on server
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/gh.pem ec2-user@ec2-18-119-14-190.us-east-2.compute.amazonaws.com 'bash -s' < ./update.sh
