@@ -3,7 +3,7 @@ name: Deploy on Push
 on:
   push:
     branches:
-      - feature/deployment  # Specify your deployment branch here
+      - feature/deploy  # Specify your deployment branch here
 
 jobs:
   deploy:
