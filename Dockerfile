@@ -35,8 +35,5 @@ RUN npm run build api-gateway && \
 # Expose the ports
 EXPOSE 3000
 
-# Copy the PM2 configuration file
-COPY pm2.config.js .
-
 # Start the PM2 processes using the configuration file
 CMD ["pm2-runtime", "start", "pm2.config.js"]
