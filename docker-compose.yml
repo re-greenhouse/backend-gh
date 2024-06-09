@@ -1,23 +1,48 @@
 version: "3.9"
+
 services:
   pg-iam:
     image: postgres
     restart: always
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: pass123
+    networks:
+      custom_network:
+        ipv4_address: 172.16.238.10
+
   pg-personas:
     image: postgres
     restart: always
-    ports:
-      - "5433:5432"
     environment:
       POSTGRES_PASSWORD: pass123
+    networks:
+      custom_network:
+        ipv4_address: 172.16.238.11
+
   pg-crops:
     image: postgres
     restart: always
-    ports:
-      - "5434:5432"
     environment:
       POSTGRES_PASSWORD: pass123
+    networks:
+      custom_network:
+        ipv4_address: 172.16.238.12
+
+  backend-gh:
+    image: backend:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - pg-iam
+      - pg-personas
+      - pg-crops
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24
