@@ -3,7 +3,7 @@ FROM alpine:latest
 
 # Install required packages
 RUN apk update && \
-    apk add --no-cache git nodejs npm docker docker-compose
+    apk add --no-cache git nodejs npm
 
 # Initialize Git repository
 RUN git init
@@ -31,9 +31,6 @@ RUN npm run build api-gateway && \
     npm run build iam && \
     npm run build personas && \
     npm run build crops
-
-# Expose the ports
-EXPOSE 3000
 
 # Start the PM2 processes using the configuration file
 CMD ["pm2-runtime", "start", "pm2.config.js"]

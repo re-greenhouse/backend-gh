@@ -13,18 +13,6 @@ module.exports = {
       }
     },
     {
-      name: "api-gateway-2",
-      script: "dist/apps/api-gateway/src/main.js",
-      instances: 1,
-      autorestart: true,
-      watch: false,
-      max_memory_restart: '1G',
-      env: {
-        NODE_ENV: 'production',
-        PORT: 3010
-      }
-    },
-    {
       name: "iam",
       script: "dist/apps/iam/src/main.js",
       instances: 1,
