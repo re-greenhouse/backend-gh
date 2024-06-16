@@ -29,7 +29,9 @@ services:
         ipv4_address: 172.16.238.12
 
   backend-gh:
-    image: backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     ports:
       - "3000:3000"
@@ -40,8 +42,10 @@ services:
     networks:
       - custom_network
 
-    backend-gh-2:
-    image: backend:latest
+  backend-gh-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     ports:
       - "3010:3000"
