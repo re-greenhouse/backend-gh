@@ -16,7 +16,6 @@ export class UpdateRecordCommandHandler
   ) {}
 
   async execute(command: UpdateRecordCommand): Promise<CropRecord> {
-    Logger.log(command.id);
     const cropRecord = await this.findRecordsRepository.findById(command.id);
     if (cropRecord === undefined) {
       throw new GrpcNotFoundException(`Record '${command.id}' doesn't exist.`);

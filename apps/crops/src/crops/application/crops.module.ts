@@ -28,6 +28,8 @@ import { UpdateRecordCommand } from './commands/update-record.command';
 import { UpdateRecordCommandHandler } from './commands/update-record.command-handler';
 import { DeleteRecordCommand } from './commands/delete-record.command';
 import { DeleteRecordCommandHandler } from './commands/delete-record.command-handler';
+import { GetRecordByIdQuery } from './queries/get-record-by-id.query';
+import { GetRecordByIdQueryHandler } from './queries/get-record-by-id.query-handler';
 
 @Module({
   imports: [CropsInfrastructureModule],
@@ -55,6 +57,8 @@ import { DeleteRecordCommandHandler } from './commands/delete-record.command-han
     GetRecordsQueryHandler,
     GetRecordsByCropAndPhaseQuery,
     GetRecordsByCropAndPhaseQueryHandler,
+    GetRecordByIdQuery,
+    GetRecordByIdQueryHandler,
     UpdateRecordCommand,
     UpdateRecordCommandHandler,
     DeleteRecordCommand,
