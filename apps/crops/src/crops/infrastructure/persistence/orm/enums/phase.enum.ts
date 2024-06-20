@@ -1,5 +1,5 @@
 export enum CropPhase {
-  Stock = 'stock',
+  Formula = 'formula',
   Preparation_Area = 'preparation_area',
   Bunker = 'bunker',
   Tunnel = 'tunnel',

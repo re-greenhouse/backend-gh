@@ -23,6 +23,7 @@ export class RecordMapper {
     record.author = recordEntity.author;
     record.phase = recordEntity.phase as CropPhase;
     record.payload = recordEntity.payload;
+    /*record.crop = CropMapper.toDomain(recordEntity.crop);*/
 
     return record;
   }

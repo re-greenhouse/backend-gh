@@ -19,7 +19,6 @@ export class RecordFactory {
     record.author = author;
     record.phase = phase;
     record.payload = payload;
-    record.crop = crop;
 
     return record;
   }

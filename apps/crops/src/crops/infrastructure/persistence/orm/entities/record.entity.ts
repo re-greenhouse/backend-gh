@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { CropEntity } from './crop.entity';
 import { CropPhase } from '../enums/phase.enum';
+import { JoinColumn } from 'typeorm';
 
 @Entity('records')
 export class RecordEntity {
@@ -23,12 +24,13 @@ export class RecordEntity {
   @Column()
   author: string;
 
-  @Column({ enum: CropPhase, default: CropPhase.Stock })
+  @Column({ enum: CropPhase, default: CropPhase.Formula })
   phase: string;
 
   @Column({ type: 'json' })
   payload: string;
 
   @ManyToOne(() => CropEntity, (crop) => crop.records)
+  @JoinColumn()
   crop: CropEntity;
 }

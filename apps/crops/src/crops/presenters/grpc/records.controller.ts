@@ -44,10 +44,10 @@ export class RecordsController implements RecordsServiceController {
   async findAllByCropAndPhase(
     request: FindAllRecordsByCropAndPhase,
   ): Promise<CropRecordResponse> {
-    const requestCrop: Crop = await this.cropService.findById(request.cropId);
+    /*const requestCrop: Crop = await this.cropService.findById(request.cropId);*/
     return {
       records: await this.recordService.findAllByCropAndPhase(
-        requestCrop,
+        request.cropId,
         request.phase,
       ),
     };
