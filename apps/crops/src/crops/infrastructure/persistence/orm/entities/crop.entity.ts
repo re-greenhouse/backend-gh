@@ -19,7 +19,7 @@ export class CropEntity {
   @CreateDateColumn()
   startDate: string;
 
-  @Column({ enum: CropPhase, default: CropPhase.Stock })
+  @Column({ enum: CropPhase, default: CropPhase.Formula })
   phase: string;
 
   @Column()

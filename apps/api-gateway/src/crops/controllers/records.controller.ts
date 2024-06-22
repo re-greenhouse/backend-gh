@@ -36,11 +36,19 @@ export class RecordsController {
   }
 
   @Get(':cropId/:phase')
-  findAllByCropAndPhase(
+  async findAllByCropAndPhase(
     @Param('cropId') cropId: string,
     @Param('phase') phase: string,
   ) {
-    return this.recordsService.findAllByCropAndPhase(cropId, phase);
+    const res = await firstValueFrom(
+      this.recordsService.findAllByCropAndPhase(cropId, phase),
+    );
+    if (res.records !== undefined) {
+      res.records.forEach(
+        (records) => (records.payload = JSON.parse(records.payload)),
+      );
+    }
+    return res;
   }
 
   @Get(':id')

@@ -10,7 +10,7 @@ export class CropFactory {
     const crop: Crop = new Crop(cropId, true);
     crop.name = name;
     crop.author = author;
-    crop.phase = CropPhase.Stock;
+    crop.phase = CropPhase.Formula;
 
     return crop;
   }

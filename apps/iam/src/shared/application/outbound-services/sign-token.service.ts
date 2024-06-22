@@ -11,10 +11,10 @@ export class SignTokenService {
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
   ) {}
 
-  async signToken<T>(username: string, payload?: T) {
+  async signToken<T>(userId: string, payload?: T) {
     return await this.jwtService.signAsync(
       {
-        sub: username,
+        sub: userId,
         ...payload,
       },
       {
