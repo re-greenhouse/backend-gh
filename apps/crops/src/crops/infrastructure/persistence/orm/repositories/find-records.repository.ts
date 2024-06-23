@@ -39,7 +39,14 @@ export class OrmFindRecordsRepository implements FindRecordsRepository {
 
   async findById(id: string): Promise<CropRecord | undefined> {
     const recordEntity: RecordEntity | null =
-      await this.recordRepository.findOneBy({ id: id });
+      await this.recordRepository.findOne({
+        relations: {
+          crop: true,
+        },
+        where: {
+          id: id,
+        },
+      });
     return recordEntity ? RecordMapper.toDomain(recordEntity) : undefined;
   }
 }

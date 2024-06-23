@@ -30,7 +30,12 @@ export class RecordEntity {
   @Column({ type: 'json' })
   payload: string;
 
-  @ManyToOne(() => CropEntity, (crop) => crop.records)
+  @Column({ nullable: true })
+  cropId: string;
+
+  @ManyToOne(() => CropEntity, (crop) => crop.records, {
+    cascade: true,
+  })
   @JoinColumn()
   crop: CropEntity;
 }

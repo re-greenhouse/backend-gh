@@ -52,17 +52,35 @@ export class RecordsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.recordsService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const res = await firstValueFrom(this.recordsService.findOne(id));
+    if (res !== undefined) {
+      res.payload = JSON.parse(res.payload);
+    }
+    return res;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecordDto: UpdateRecordDto) {
-    return this.recordsService.update(id, updateRecordDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateRecordDto: UpdateRecordDto,
+  ) {
+    updateRecordDto.payload = updateRecordDto.payload.toString();
+    const res = await firstValueFrom(
+      this.recordsService.update(id, updateRecordDto),
+    );
+    if (res !== undefined) {
+      res.payload = JSON.parse(res.payload);
+    }
+    return res;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.recordsService.remove(id);
+  async remove(@Param('id') id: string) {
+    const res = await firstValueFrom(this.recordsService.remove(id));
+    if (res !== undefined) {
+      res.payload = JSON.parse(res.payload);
+    }
+    return res;
   }
 }
