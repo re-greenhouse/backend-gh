@@ -35,8 +35,12 @@ export class SignInCommandHandler implements ICommandHandler<SignInCommand> {
     );
 
     return {
-      token: await this.signTokenService.signToken<{ role: string }>(userId, {
+      token: await this.signTokenService.signToken<{
+        role: string;
+        username: string;
+      }>(userId, {
         role: userRole,
+        username: command.username,
       }),
       userId: userId,
     };
