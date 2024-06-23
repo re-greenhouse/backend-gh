@@ -16,6 +16,8 @@ import { GetProfilesByCompanyIdQuery } from './queries/get-profiles-by-company-i
 import { GetProfilesByCompanyIdQueryHandler } from './queries/get-profiles-by-company-id.query-handler';
 import { GetCompanyByProfileIdQuery } from './queries/get-company-by-profile-id.query';
 import { GetCompanyByProfileIdQueryHandler } from './queries/get-company-by-profile-id.query-handler';
+import { AddEmployeeCommand } from './commands/add-employee.command';
+import { AddEmployeeCommandHandler } from './commands/add-employee.command-handler';
 
 @Module({
   imports: [PersonasInfrastructureModule],
@@ -27,6 +29,8 @@ import { GetCompanyByProfileIdQueryHandler } from './queries/get-company-by-prof
     CreateProfileCommandHandler,
     CompaniesService,
     CompanyFactory,
+    AddEmployeeCommand,
+    AddEmployeeCommandHandler,
     CreateCompanyCommand,
     CreateCompanyCommandHandler,
     GetProfileByUserIdQuery,

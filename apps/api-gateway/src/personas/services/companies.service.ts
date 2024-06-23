@@ -33,4 +33,11 @@ export class CompaniesService implements OnModuleInit {
       profileId: profileId,
     });
   }
+
+  addEmployee(companyId: string, employeeProfileId: string) {
+    return this.companiesService.addEmployee({
+      companyId: companyId,
+      profileId: employeeProfileId,
+    });
+  }
 }

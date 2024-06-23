@@ -1,4 +1,5 @@
 import {
+  AddEmployeeDto,
   CompaniesServiceController,
   CompaniesServiceControllerMethods,
   Company,
@@ -10,6 +11,7 @@ import { CompaniesService } from '../../application/companies.service';
 import { CreateCompanyCommand } from '../../application/commands/create-company.command';
 import { Profile } from '../../domain/profile';
 import { ProfileService } from '../../application/profile.service';
+import { AddEmployeeCommand } from '../../application/commands/add-employee.command';
 
 @Controller()
 @CompaniesServiceControllerMethods()
@@ -35,5 +37,11 @@ export class CompaniesController implements CompaniesServiceController {
 
   async findByProfileId(request: FindOneCompanyByProfileId): Promise<Company> {
     return this.companiesService.findOneByProfileId(request.profileId);
+  }
+
+  addEmployee(request: AddEmployeeDto): Promise<Profile> {
+    return this.companiesService.addEmployee(
+      new AddEmployeeCommand(request.companyId, request.profileId),
+    );
   }
 }
