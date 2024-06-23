@@ -18,10 +18,7 @@ export class CompaniesController {
     @Req() req: Request,
     @Body() createCompanyDto: CreateCompanyDto,
   ) {
-    const userId = await this.userFacadeService.getIdByUsername(
-      req['user']['sub'],
-    );
-    return this.companiesService.create(userId, createCompanyDto);
+    return this.companiesService.create(req['user']['sub'], createCompanyDto);
   }
 
   /*
