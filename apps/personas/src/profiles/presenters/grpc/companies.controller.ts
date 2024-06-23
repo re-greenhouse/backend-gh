@@ -5,6 +5,7 @@ import {
   Company,
   CreateCompanyDto,
   FindOneCompanyByProfileId,
+  UpdateCompanyDto,
 } from '@app/common/types/personas';
 import { Controller } from '@nestjs/common';
 import { CompaniesService } from '../../application/companies.service';
@@ -12,6 +13,7 @@ import { CreateCompanyCommand } from '../../application/commands/create-company.
 import { Profile } from '../../domain/profile';
 import { ProfileService } from '../../application/profile.service';
 import { AddEmployeeCommand } from '../../application/commands/add-employee.command';
+import { UpdateCompanyCommand } from '../../application/commands/update-company.command';
 
 @Controller()
 @CompaniesServiceControllerMethods()
@@ -42,6 +44,17 @@ export class CompaniesController implements CompaniesServiceController {
   addEmployee(request: AddEmployeeDto): Promise<Profile> {
     return this.companiesService.addEmployee(
       new AddEmployeeCommand(request.companyId, request.profileId),
+    );
+  }
+
+  updateCompany(request: UpdateCompanyDto): Promise<Company> {
+    return this.companiesService.updateCompany(
+      new UpdateCompanyCommand(
+        request.id,
+        request.name,
+        request.tin,
+        request.logoUrl,
+      ),
     );
   }
 }

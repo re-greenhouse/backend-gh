@@ -25,6 +25,13 @@ export interface Company {
   membershipId: string;
 }
 
+export interface UpdateCompanyDto {
+  id: string;
+  name?: string | undefined;
+  tin?: string | undefined;
+  logoUrl?: string | undefined;
+}
+
 export interface CreateProfileDto {
   userId: string;
   firstName: string;
@@ -97,6 +104,8 @@ export interface CompaniesServiceClient {
   addEmployee(request: AddEmployeeDto): Observable<Profile>;
 
   findByProfileId(request: FindOneCompanyByProfileId): Observable<Company>;
+
+  updateCompany(request: UpdateCompanyDto): Observable<Company>;
 }
 
 export interface CompaniesServiceController {
@@ -105,11 +114,13 @@ export interface CompaniesServiceController {
   addEmployee(request: AddEmployeeDto): Promise<Profile> | Observable<Profile> | Profile;
 
   findByProfileId(request: FindOneCompanyByProfileId): Promise<Company> | Observable<Company> | Company;
+
+  updateCompany(request: UpdateCompanyDto): Promise<Company> | Observable<Company> | Company;
 }
 
 export function CompaniesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createCompany", "addEmployee", "findByProfileId"];
+    const grpcMethods: string[] = ["createCompany", "addEmployee", "findByProfileId", "updateCompany"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CompaniesService", method)(constructor.prototype[method], method, descriptor);

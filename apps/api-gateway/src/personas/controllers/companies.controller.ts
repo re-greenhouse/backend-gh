@@ -1,10 +1,20 @@
-import { Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  Req,
+} from '@nestjs/common';
 import { CompaniesService } from '../services/companies.service';
 import { CreateCompanyDto } from '../dto/create-company.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AddEmployeeDto } from '../dto/add-employee.dto';
 import { ProfilesService } from '../services/profiles.service';
 import { firstValueFrom } from 'rxjs';
+import { UpdateCompanyDto } from '../dto/update-company.dto';
 
 @ApiBearerAuth()
 @ApiTags('Companies')
@@ -47,5 +57,13 @@ export class CompaniesController {
       company.id,
       addEmployeeDto.employeeProfileId,
     );
+  }
+
+  @Patch(':companyId')
+  async updateCompany(
+    @Param('companyId') companyId: string,
+    @Body() updateCompanyDto: UpdateCompanyDto,
+  ) {
+    return this.companiesService.update(companyId, updateCompanyDto);
   }
 }
