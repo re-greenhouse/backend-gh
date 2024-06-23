@@ -17,7 +17,6 @@ export class OrmFindRecordsRepository implements FindRecordsRepository {
   async findAll(): Promise<Array<CropRecord>> {
     const recordEntities: Array<RecordEntity> =
       await this.recordRepository.find();
-    Logger.log(recordEntities.length);
     return recordEntities.map(RecordMapper.toDomain);
   }
 
@@ -26,7 +25,13 @@ export class OrmFindRecordsRepository implements FindRecordsRepository {
     phase: string,
   ): Promise<Array<CropRecord> | undefined> {
     const recordEntities: Array<RecordEntity> =
-      await this.recordRepository.findBy({ crop: crop, phase: phase });
+      await this.recordRepository.find({
+        relations: ['crop'],
+        where: {
+          crop: { id: crop.id },
+          phase: phase,
+        },
+      });
     return recordEntities
       ? recordEntities.map(RecordMapper.toDomain)
       : undefined;
@@ -34,7 +39,14 @@ export class OrmFindRecordsRepository implements FindRecordsRepository {
 
   async findById(id: string): Promise<CropRecord | undefined> {
     const recordEntity: RecordEntity | null =
-      await this.recordRepository.findOneBy({ id: id });
+      await this.recordRepository.findOne({
+        relations: {
+          crop: true,
+        },
+        where: {
+          id: id,
+        },
+      });
     return recordEntity ? RecordMapper.toDomain(recordEntity) : undefined;
   }
 }

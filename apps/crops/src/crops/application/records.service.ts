@@ -28,9 +28,9 @@ export class RecordsService {
     return this.queryBus.execute(new GetRecordByIdQuery(id));
   }
 
-  findAllByCropAndPhase(crop: Crop, phase: string) {
+  findAllByCropAndPhase(cropId: string, phase: string) {
     return this.queryBus.execute(
-      new GetRecordsByCropAndPhaseQuery(crop, phase),
+      new GetRecordsByCropAndPhaseQuery(cropId, phase),
     );
   }
 
