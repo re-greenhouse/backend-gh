@@ -2,16 +2,12 @@ import { Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
 import { CompaniesService } from '../services/companies.service';
 import { CreateCompanyDto } from '../dto/create-company.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { UserFacadeService } from '../../iam/facades/user-facade.service';
 
 @ApiBearerAuth()
 @ApiTags('Companies')
 @Controller('api/v1/companies')
 export class CompaniesController {
-  constructor(
-    private readonly companiesService: CompaniesService,
-    private readonly userFacadeService: UserFacadeService,
-  ) {}
+  constructor(private readonly companiesService: CompaniesService) {}
 
   @Post()
   async create(
