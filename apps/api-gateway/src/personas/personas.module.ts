@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { ProfilesService } from './services/profiles.service';
 import { ProfilesController } from './controllers/profiles.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -8,6 +8,7 @@ import { join } from 'path';
 import { CompaniesService } from './services/companies.service';
 import { CompaniesController } from './controllers/companies.controller';
 import { ProfileFacadeService } from './facades/profile-facade.service';
+import { IamModule } from '../iam/iam.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ProfileFacadeService } from './facades/profile-facade.service';
         },
       },
     ]),
+    forwardRef(() => IamModule),
   ],
   controllers: [ProfilesController, CompaniesController],
   providers: [ProfilesService, CompaniesService, ProfileFacadeService],

@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { ProfilesService } from '../services/profiles.service';
 import { CreateProfileDto } from '../dto/create-profile.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { firstValueFrom } from 'rxjs';
 
 @ApiBearerAuth()
 @ApiTags('Profiles')
@@ -20,8 +21,11 @@ export class ProfilesController {
   }
 
   @Get('/users/me')
-  findByUserMe(@Req() req: Request) {
-    return this.profilesService.findByUserId(req['user']['sub']);
+  async findByUserMe(@Req() req: Request) {
+    const profile = await firstValueFrom(
+      this.profilesService.findByUserId(req['user']['sub']),
+    );
+    return { ...profile, username: req['user']['username'] };
   }
 
   @Get('/companies/:companyId')

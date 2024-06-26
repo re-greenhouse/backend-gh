@@ -1,5 +1,5 @@
 import { FindProfilesRepository } from '../../../../application/ports/find-profiles.repository';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../entities/profile.entity';
 import { Repository } from 'typeorm';

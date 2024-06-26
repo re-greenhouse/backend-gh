@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { UsersService } from './services/users.service';
 import { UsersController } from './controllers/users.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 import { AuthController } from './controllers/auth.controller';
 import { SharedModule } from '../shared/shared.module';
 import { PersonasModule } from '../personas/personas.module';
+import { UserFacadeService } from './facades/user-facade.service';
 
 @Module({
   imports: [
@@ -22,10 +23,11 @@ import { PersonasModule } from '../personas/personas.module';
         },
       },
     ]),
-    PersonasModule,
+    forwardRef(() => PersonasModule),
     SharedModule,
   ],
   controllers: [AuthController, UsersController],
-  providers: [AuthService, UsersService],
+  providers: [AuthService, UsersService, UserFacadeService],
+  exports: [UserFacadeService],
 })
 export class IamModule {}

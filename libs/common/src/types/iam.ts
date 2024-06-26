@@ -20,6 +20,7 @@ export interface TokenInfo {
   exp: number;
   aud: string;
   iss: string;
+  username: string;
 }
 
 export interface SignUpDto {

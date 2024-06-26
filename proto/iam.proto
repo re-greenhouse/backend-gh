@@ -24,6 +24,7 @@ message TokenInfo {
   int64 exp = 4;
   string aud = 5;
   string iss = 6;
+  string username = 7;
 }
 
 message SignUpDto {

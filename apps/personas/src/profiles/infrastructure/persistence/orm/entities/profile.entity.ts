@@ -28,6 +28,7 @@ export class ProfileEntity {
 
   @ManyToOne(() => CompanyEntity, (company) => company.employees, {
     nullable: true,
+    eager: true,
   })
   company: CompanyEntity | null;
 }

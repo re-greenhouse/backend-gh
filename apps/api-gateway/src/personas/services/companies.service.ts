@@ -6,6 +6,7 @@ import {
   COMPANIES_SERVICE_NAME,
 } from '@app/common/types/personas';
 import { CreateCompanyDto } from '../dto/create-company.dto';
+import { UpdateCompanyDto } from '../dto/update-company.dto';
 
 @Injectable()
 export class CompaniesService implements OnModuleInit {
@@ -31,6 +32,22 @@ export class CompaniesService implements OnModuleInit {
   findByProfileId(profileId: string) {
     return this.companiesService.findByProfileId({
       profileId: profileId,
+    });
+  }
+
+  addEmployee(companyId: string, employeeProfileId: string) {
+    return this.companiesService.addEmployee({
+      companyId: companyId,
+      profileId: employeeProfileId,
+    });
+  }
+
+  update(companyId: string, updateCompanyDto: UpdateCompanyDto) {
+    return this.companiesService.updateCompany({
+      id: companyId,
+      name: updateCompanyDto.name,
+      tin: updateCompanyDto.tin,
+      logoUrl: updateCompanyDto.logoUrl,
     });
   }
 }

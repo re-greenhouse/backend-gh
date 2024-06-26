@@ -10,7 +10,9 @@ service ProfilesService {
 
 service CompaniesService {
   rpc CreateCompany (CreateCompanyDto) returns (Company) {}
+  rpc AddEmployee (AddEmployeeDto) returns (Profile) {}
   rpc FindByProfileId (FindOneCompanyByProfileId) returns (Company) {}
+  rpc UpdateCompany (UpdateCompanyDto) returns (Company) {}
 }
 
 message Profile {
@@ -34,11 +36,23 @@ message Company {
   string membershipId = 5;
 }
 
+message UpdateCompanyDto {
+  string id = 1;
+  optional string name = 2;
+  optional string tin = 3;
+  optional string logoUrl = 4;
+}
+
 message CreateProfileDto {
   string userId = 1;
   string firstName = 2;
   string lastName = 3;
   string iconUrl = 4;
+}
+
+message AddEmployeeDto {
+  string profileId = 1;
+  string companyId = 2;
 }
 
 message FindOneProfileByUserIdDto {
