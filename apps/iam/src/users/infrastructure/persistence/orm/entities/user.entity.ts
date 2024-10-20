@@ -15,6 +15,15 @@ export class UserEntity {
   })
   username: string;
 
+  @Column({
+    unique: true,
+    transformer: {
+      to: (value: string) => value.toLowerCase(),
+      from: (value: string) => value.toLowerCase(),
+    },
+  })
+  email: string;
+
   @Column()
   password: string;
 

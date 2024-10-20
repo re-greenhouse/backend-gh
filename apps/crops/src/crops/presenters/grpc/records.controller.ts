@@ -37,7 +37,7 @@ export class RecordsController implements RecordsServiceController {
     );
   }
 
-  async findAll(request: FindAllRecordsDto): Promise<CropRecordResponse> {
+  async findAll({}: FindAllRecordsDto): Promise<CropRecordResponse> {
     return { records: await this.recordService.findAll() };
   }
 

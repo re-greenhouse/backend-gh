@@ -74,6 +74,15 @@
         ],
         "watchAssets": true
       }
+    },
+    "mailing": {
+      "type": "application",
+      "root": "apps/mailing",
+      "entryFile": "main",
+      "sourceRoot": "apps/mailing/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/mailing/tsconfig.app.json"
+      }
     }
   }
 }
