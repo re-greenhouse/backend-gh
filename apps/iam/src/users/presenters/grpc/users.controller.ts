@@ -20,7 +20,11 @@ export class UsersController implements UsersServiceController {
 
   createUser(createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.create(
-      new CreateUserCommand(createUserDto.username, createUserDto.password),
+      new CreateUserCommand(
+        createUserDto.username,
+        createUserDto.email,
+        createUserDto.password,
+      ),
     );
   }
 

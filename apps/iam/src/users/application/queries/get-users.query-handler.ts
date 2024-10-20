@@ -9,7 +9,7 @@ export class GetUsersQueryHandler
 {
   constructor(private readonly findUsersRepository: FindUsersRepository) {}
 
-  async execute(query: GetUsersQuery): Promise<Array<User>> {
+  async execute({}: GetUsersQuery): Promise<Array<User>> {
     return this.findUsersRepository.findAll();
   }
 }
