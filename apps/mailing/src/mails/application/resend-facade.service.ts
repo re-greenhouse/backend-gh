@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { Resend } from 'resend';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Mail } from '../domain/mail';
+import { Resend } from 'resend';
 
 @Injectable()
 export class ResendFacadeService {
@@ -12,12 +13,13 @@ export class ResendFacadeService {
     );
   }
 
-  async sendMail(email: string, template: string) {
+  async sendMail(email: string, mail: Mail) {
+    Logger.log('HERE');
     return await this.resendClient.emails.send({
       from: 'mailing@greenhouse.com',
       to: email,
-      subject: 'hello world',
-      text: 'it works!',
+      subject: mail.subject,
+      html: mail.body,
     });
   }
 }

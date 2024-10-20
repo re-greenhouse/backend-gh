@@ -2,8 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
-import { CROPS_PACKAGE_NAME } from '@app/common/types/crops';
 import { MailingModule } from './mailing.module';
+import { MAILING_PACKAGE_NAME } from '@app/common/types/mailing';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -11,8 +11,8 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        protoPath: join(__dirname, '../crops.proto'),
-        package: CROPS_PACKAGE_NAME,
+        protoPath: join(__dirname, '../mailing.proto'),
+        package: MAILING_PACKAGE_NAME,
         url: 'localhost:5003',
       },
     },
