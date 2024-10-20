@@ -78,10 +78,14 @@
     "mailing": {
       "type": "application",
       "root": "apps/mailing",
-      "entryFile": "main",
-      "sourceRoot": "apps/mailing/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/mailing/tsconfig.app.json"
+        "tsConfigPath": "apps/mailing/tsconfig.app.json",
+        "assets": [
+          "proto/*.proto"
+        ],
+        "watchAssets": true
       }
     }
   }

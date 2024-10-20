@@ -21,3 +21,10 @@ services:
       - "5434:5432"
     environment:
       POSTGRES_PASSWORD: pass123
+  pg-mailing:
+    image: postgres
+    restart: always
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_PASSWORD: pass123

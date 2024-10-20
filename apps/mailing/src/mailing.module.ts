@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { CoreModule } from './core/core.module';
+import { MailModule } from './mails/application/mail.module';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [],
-  providers: [],
+  imports: [CqrsModule.forRoot(), CoreModule, MailModule],
 })
 export class MailingModule {}
