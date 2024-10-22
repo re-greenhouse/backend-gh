@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Mail } from '../domain/mail';
 import { Resend } from 'resend';
@@ -14,9 +14,8 @@ export class ResendFacadeService {
   }
 
   async sendMail(email: string, mail: Mail) {
-    Logger.log('HERE');
     return await this.resendClient.emails.send({
-      from: 'mailing@greenhouse.com',
+      from: 'mailing@mailing.integradis.shop',
       to: email,
       subject: mail.subject,
       html: mail.body,

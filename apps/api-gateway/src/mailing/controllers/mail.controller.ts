@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Logger, Post } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SendMailDto } from '../dtos/send-mail.dto';
 import { MailService } from '../services/mail.service';
@@ -15,7 +15,6 @@ export class MailController {
     description: 'Send a mail',
   })
   async sendMail(@Body() sendMailDto: SendMailDto) {
-    Logger.log('HERE');
     return this.mailService.sendMail(sendMailDto);
   }
 }
