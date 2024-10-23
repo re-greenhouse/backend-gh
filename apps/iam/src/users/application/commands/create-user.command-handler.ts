@@ -22,8 +22,16 @@ export class CreateUserCommandHandler
         `There's an existing user with '${command.username}' as username.`,
       );
     }
+
+    if (await this.findUsersRepository.findByEmail(command.email)) {
+      throw new GrpcAlreadyExistsException(
+        `There's an existing user with '${command.email}' as email.`,
+      );
+    }
+
     const user: User = this.userFactory.create(
       command.username,
+      command.email,
       command.password,
     );
     return await this.createUserRepository.save(user);

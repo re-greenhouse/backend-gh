@@ -4,7 +4,6 @@ import { FindRecordsRepository } from '../ports/find-records.repository';
 import { SaveRecordRepository } from '../ports/save-record.repository';
 import { CropRecord } from '../../domain/record';
 import { GrpcNotFoundException } from 'nestjs-grpc-exceptions';
-import { Logger } from '@nestjs/common';
 
 @CommandHandler(UpdateRecordCommand)
 export class UpdateRecordCommandHandler

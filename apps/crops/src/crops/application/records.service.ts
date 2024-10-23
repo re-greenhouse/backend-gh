@@ -3,7 +3,6 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateRecordCommand } from './commands/create-record.command';
 import { GetRecordsQuery } from './queries/get-records.query';
 import { GetRecordsByCropAndPhaseQuery } from './queries/get-records-by-crop-and-phase.query';
-import { Crop } from '../domain/crop';
 import { UpdateRecordCommand } from './commands/update-record.command';
 import { CropRecord } from '../domain/record';
 import { DeleteRecordCommand } from './commands/delete-record.command';

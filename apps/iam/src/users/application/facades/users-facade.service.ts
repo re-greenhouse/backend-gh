@@ -12,8 +12,10 @@ export class UsersFacadeService {
     private readonly queryBus: QueryBus,
   ) {}
 
-  createUser(username: string, password: string) {
-    return this.commandBus.execute(new CreateUserCommand(username, password));
+  createUser(username: string, email: string, password: string) {
+    return this.commandBus.execute(
+      new CreateUserCommand(username, email, password),
+    );
   }
 
   comparePasswordForUsername(

@@ -44,6 +44,17 @@ module.exports = {
       env: {
         NODE_ENV: 'production'
       }
+    },
+    {
+      name: "mailing",
+      script: "dist/apps/mailing/src/main.js",
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'production'
+      }
     }
   ]
 };

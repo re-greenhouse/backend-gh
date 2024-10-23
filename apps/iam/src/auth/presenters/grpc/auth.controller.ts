@@ -1,4 +1,4 @@
-import { Controller, Logger } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import {
   AuthenticatedUser,
   AuthServiceController,
@@ -33,7 +33,11 @@ export class AuthController implements AuthServiceController {
 
   async signUp(request: SignUpDto): Promise<User> {
     const hashedPassword = await this.hashingService.hash(request.password);
-    return this.usersFacadeService.createUser(request.username, hashedPassword);
+    return this.usersFacadeService.createUser(
+      request.username,
+      request.email,
+      hashedPassword,
+    );
   }
 
   async validateToken(request: TokenDto): Promise<TokenValidationStatus> {

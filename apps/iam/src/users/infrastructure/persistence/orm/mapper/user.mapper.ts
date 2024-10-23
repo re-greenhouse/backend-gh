@@ -4,7 +4,7 @@ import { Role } from '../enums/role.enum';
 
 export class UserMapper {
   static toDomain(userEntity: UserEntity): User {
-    const user = new User(userEntity.id);
+    const user = new User(userEntity.id, userEntity.email);
 
     user.username = userEntity.username;
     user.password = userEntity.password;
@@ -18,6 +18,7 @@ export class UserMapper {
 
     userEntity.id = user.id;
     userEntity.username = user.username;
+    userEntity.email = user.email.toString();
     userEntity.password = user.password;
     userEntity.role = user.role;
 

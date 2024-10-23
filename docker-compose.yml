@@ -28,6 +28,15 @@ services:
       custom_network:
         ipv4_address: 172.16.238.12
 
+  pg-mailing:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pass123
+    networks:
+      custom_network:
+        ipv4_address: 172.16.238.13
+
   backend-gh:
     build:
       context: .
@@ -39,8 +48,10 @@ services:
       - pg-iam
       - pg-personas
       - pg-crops
+      - pg-mailing
     networks:
-      - custom_network
+      custom_network:
+        ipv4_address: 172.16.238.14
 
   backend-gh-2:
     build:
@@ -53,8 +64,10 @@ services:
       - pg-iam
       - pg-personas
       - pg-crops
+      - pg-mailing
     networks:
-      - custom_network
+      custom_network:
+        ipv4_address: 172.16.238.15
 
 networks:
   custom_network:
