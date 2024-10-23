@@ -31,8 +31,6 @@ services:
   pg-mailing:
     image: postgres
     restart: always
-    ports:
-      - "5435:5432"
     environment:
       POSTGRES_PASSWORD: pass123
     networks:
@@ -52,7 +50,8 @@ services:
       - pg-crops
       - pg-mailing
     networks:
-      - custom_network
+      - custom_network:
+        ipv4_address: 172.16.238.14
 
   backend-gh-2:
     build:
@@ -67,7 +66,8 @@ services:
       - pg-crops
       - pg-mailing
     networks:
-      - custom_network
+      - custom_network:
+        ipv4_address: 172.16.238.15
 
 networks:
   custom_network:
