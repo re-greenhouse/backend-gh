@@ -7,9 +7,11 @@ import {
   Profiles,
   ProfilesServiceController,
   ProfilesServiceControllerMethods,
+  UpdateProfileDto,
 } from '@app/common/types/personas';
 import { ProfileService } from '../../application/profile.service';
 import { CreateProfileCommand } from '../../application/commands/create-profile.command';
+import { UpdateProfileCommand } from '../../application/commands/update-profile.command';
 
 @Controller()
 @ProfilesServiceControllerMethods()
@@ -41,5 +43,16 @@ export class ProfilesController implements ProfilesServiceController {
         findAllByCompanyIdDto.companyId,
       ),
     };
+  }
+
+  async updateProfileById(request: UpdateProfileDto): Promise<Profile> {
+    return this.profileService.updateProfileById(
+      new UpdateProfileCommand(
+        request.profileId,
+        request.firstName,
+        request.lastName,
+        request.iconUrl,
+      ),
+    );
   }
 }

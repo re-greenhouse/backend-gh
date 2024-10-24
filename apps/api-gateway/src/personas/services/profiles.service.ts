@@ -6,6 +6,7 @@ import {
 } from '@app/common/types/personas';
 import { PERSONAS_SERVICE } from '../constants';
 import { ClientGrpc } from '@nestjs/microservices';
+import { UpdateProfileDto } from '../dto/update-profile.dto';
 
 @Injectable()
 export class ProfilesService implements OnModuleInit {
@@ -27,7 +28,14 @@ export class ProfilesService implements OnModuleInit {
     return this.profilesService.findByUserId({ userId: userId });
   }
 
-  async findByCompanyId(companyId: string) {
+  findByCompanyId(companyId: string) {
     return this.profilesService.findByCompanyId({ companyId: companyId });
+  }
+
+  updateByProfileId(profileId: string, updateProfileDto: UpdateProfileDto) {
+    return this.profilesService.updateProfileById({
+      profileId: profileId,
+      ...updateProfileDto,
+    });
   }
 }

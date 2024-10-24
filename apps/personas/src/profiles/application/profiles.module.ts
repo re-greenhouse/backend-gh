@@ -20,6 +20,8 @@ import { AddEmployeeCommand } from './commands/add-employee.command';
 import { AddEmployeeCommandHandler } from './commands/add-employee.command-handler';
 import { UpdateCompanyCommandHandler } from './commands/update-company.command-handler';
 import { UpdateCompanyCommand } from './commands/update-company.command';
+import { UpdateProfileCommand } from './commands/update-profile.command';
+import { UpdateProfileCommandHandler } from './commands/update-profile.command-handler';
 
 @Module({
   imports: [PersonasInfrastructureModule],
@@ -29,6 +31,8 @@ import { UpdateCompanyCommand } from './commands/update-company.command';
     ProfileFactory,
     CreateProfileCommand,
     CreateProfileCommandHandler,
+    UpdateProfileCommand,
+    UpdateProfileCommandHandler,
     UpdateCompanyCommand,
     UpdateCompanyCommandHandler,
     CompaniesService,
