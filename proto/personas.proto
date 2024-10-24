@@ -61,6 +61,7 @@ message UpdateProfileDto {
 message AddEmployeeDto {
   string profileId = 1;
   string companyId = 2;
+  bool isAdmin = 3;
 }
 
 message FindOneProfileByUserIdDto {

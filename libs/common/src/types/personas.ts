@@ -49,6 +49,7 @@ export interface UpdateProfileDto {
 export interface AddEmployeeDto {
   profileId: string;
   companyId: string;
+  isAdmin: boolean;
 }
 
 export interface FindOneProfileByUserIdDto {
