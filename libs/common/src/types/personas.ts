@@ -39,9 +39,17 @@ export interface CreateProfileDto {
   iconUrl: string;
 }
 
+export interface UpdateProfileDto {
+  profileId: string;
+  firstName?: string | undefined;
+  lastName?: string | undefined;
+  iconUrl?: string | undefined;
+}
+
 export interface AddEmployeeDto {
   profileId: string;
   companyId: string;
+  isAdmin: boolean;
 }
 
 export interface FindOneProfileByUserIdDto {
@@ -71,6 +79,8 @@ export interface ProfilesServiceClient {
   findByUserId(request: FindOneProfileByUserIdDto): Observable<Profile>;
 
   findByCompanyId(request: FindAllByCompanyIdDto): Observable<Profiles>;
+
+  updateProfileById(request: UpdateProfileDto): Observable<Profile>;
 }
 
 export interface ProfilesServiceController {
@@ -79,11 +89,13 @@ export interface ProfilesServiceController {
   findByUserId(request: FindOneProfileByUserIdDto): Promise<Profile> | Observable<Profile> | Profile;
 
   findByCompanyId(request: FindAllByCompanyIdDto): Promise<Profiles> | Observable<Profiles> | Profiles;
+
+  updateProfileById(request: UpdateProfileDto): Promise<Profile> | Observable<Profile> | Profile;
 }
 
 export function ProfilesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createProfile", "findByUserId", "findByCompanyId"];
+    const grpcMethods: string[] = ["createProfile", "findByUserId", "findByCompanyId", "updateProfileById"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("ProfilesService", method)(constructor.prototype[method], method, descriptor);

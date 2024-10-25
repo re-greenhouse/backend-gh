@@ -43,7 +43,11 @@ export class CompaniesController implements CompaniesServiceController {
 
   addEmployee(request: AddEmployeeDto): Promise<Profile> {
     return this.companiesService.addEmployee(
-      new AddEmployeeCommand(request.companyId, request.profileId),
+      new AddEmployeeCommand(
+        request.companyId,
+        request.profileId,
+        request.isAdmin,
+      ),
     );
   }
 

@@ -20,7 +20,11 @@ export class UsersController implements UsersServiceController {
 
   createUser(createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.create(
-      new CreateUserCommand(createUserDto.username, createUserDto.password),
+      new CreateUserCommand(
+        createUserDto.username,
+        createUserDto.email,
+        createUserDto.password,
+      ),
     );
   }
 
@@ -28,23 +32,28 @@ export class UsersController implements UsersServiceController {
     return { users: await this.usersService.findAll() };
   }
 
-  findOneUser(findOneUserDto: FindOneUserDto): Promise<User> {
-    return this.usersService.findByUsername(findOneUserDto.username);
+  async findOneUser(findOneUserDto: FindOneUserDto): Promise<User> {
+    const user = await this.usersService.findByUsername(
+      findOneUserDto.username,
+    );
+    return { ...user, email: user.email.toString() };
   }
 
-  removeUser(findOneUserDto: FindOneUserDto): Promise<User> {
-    return this.usersService.remove(
+  async removeUser(findOneUserDto: FindOneUserDto): Promise<User> {
+    const user = await this.usersService.remove(
       new DeleteUserCommand(findOneUserDto.username),
     );
+    return { ...user, email: user.email.toString() };
   }
 
-  updateUser(updateUserDto: UpdateUserDto): Promise<User> {
-    return this.usersService.update(
+  async updateUser(updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await this.usersService.update(
       new UpdateUserCommand(
         updateUserDto.username,
         updateUserDto.password,
         updateUserDto.role,
       ),
     );
+    return { ...user, email: user.email.toString() };
   }
 }

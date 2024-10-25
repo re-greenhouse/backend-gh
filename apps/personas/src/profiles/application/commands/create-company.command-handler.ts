@@ -6,6 +6,7 @@ import { Company } from '../../domain/company';
 import { GrpcAlreadyExistsException } from 'nestjs-grpc-exceptions';
 import { FindCompaniesRepository } from '../ports/find-companies.repository';
 import { CreateProfileRepository } from '../ports/create-profile.repository';
+import { Role } from '../../infrastructure/persistence/orm/enums/role.enum';
 
 @CommandHandler(CreateCompanyCommand)
 export class CreateCompanyCommandHandler
@@ -39,6 +40,7 @@ export class CreateCompanyCommandHandler
 
     const savedCompany = await this.createCompanyRepository.save(newCompany);
     command.owner.company = savedCompany;
+    command.owner.role = Role.Owner;
     await this.createProfileRepository.save(command.owner);
     return savedCompany;
   }

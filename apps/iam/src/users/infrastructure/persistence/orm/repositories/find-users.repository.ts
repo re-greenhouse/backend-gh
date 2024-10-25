@@ -24,4 +24,11 @@ export class OrmFindUsersRepository implements FindUsersRepository {
     });
     return userEntity ? UserMapper.toDomain(userEntity) : undefined;
   }
+
+  async findByEmail(email: string): Promise<User | undefined> {
+    const userEntity: UserEntity | null = await this.userRepository.findOneBy({
+      email: email,
+    });
+    return userEntity ? UserMapper.toDomain(userEntity) : undefined;
+  }
 }

@@ -30,6 +30,7 @@ message TokenInfo {
 message SignUpDto {
   string username = 1;
   string password = 2;
+  string email = 3;
 }
 
 message SignInDto {
@@ -58,12 +59,14 @@ message FindOneUserDto {
 message CreateUserDto {
   string username = 1;
   string password = 2;
+  string email = 3;
 }
 
 message User {
   string id = 1;
   string username = 2;
   string role = 3;
+  string email = 4;
 }
 
 message AuthenticatedUser {

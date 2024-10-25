@@ -8,6 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import { SignUpResponseDto } from '../dtos/SignUpResponse.dto';
 import { SignInRequestDto } from '../dtos/SignInRequest.dto';
 import { SignInResponseDto } from '../dtos/SignInResponse.dto';
+import { MailFacadeService } from '../../mailing/facade/mail-facade.service';
 
 @ApiTags('Auth')
 @Controller('api/v1/auth')
@@ -15,6 +16,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly profileFacadeService: ProfileFacadeService,
+    private readonly mailFacadeService: MailFacadeService,
   ) {}
 
   @Public()
@@ -57,6 +59,16 @@ export class AuthController {
           'https://publicdomainvectors.org/tn_img/abstract-user-flat-4.webp',
       }),
     );
+    this.mailFacadeService.sendMail({
+      email: user.email,
+      eventName: 'user.registered',
+      payloadVariables: [
+        { variable: 'firstName', value: profile.firstName },
+        { variable: 'lastName', value: profile.lastName },
+        { variable: 'username', value: user.username },
+        { variable: 'email', value: user.email },
+      ],
+    });
     return { user: user, profile: profile };
   }
 }
