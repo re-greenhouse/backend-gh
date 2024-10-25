@@ -35,10 +35,11 @@ export class CompaniesService implements OnModuleInit {
     });
   }
 
-  addEmployee(companyId: string, employeeProfileId: string) {
+  addEmployee(companyId: string, employeeProfileId: string, isAdmin: boolean) {
     return this.companiesService.addEmployee({
       companyId: companyId,
       profileId: employeeProfileId,
+      isAdmin: isAdmin,
     });
   }
 

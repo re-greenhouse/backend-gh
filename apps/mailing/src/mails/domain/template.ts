@@ -10,12 +10,12 @@ export class Template {
   ) {}
 
   buildMail(payload: Array<PayloadVariable>): Mail {
-    const customSubject = this.subject;
-    const customBody = this.body;
+    let customSubject = this.subject;
+    let customBody = this.body;
 
     payload.forEach(({ variable, value }) => {
-      customSubject.replaceAll(`{{ ${variable} }}`, value);
-      customBody.replaceAll(`{{ ${variable} }}`, value);
+      customSubject = customSubject.replaceAll(`{{ ${variable} }}`, value);
+      customBody = customBody.replaceAll(`{{ ${variable} }}`, value);
     });
 
     return new Mail(customSubject, customBody);

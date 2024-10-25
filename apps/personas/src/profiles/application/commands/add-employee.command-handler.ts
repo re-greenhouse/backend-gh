@@ -7,6 +7,7 @@ import {
 } from 'nestjs-grpc-exceptions';
 import { FindProfilesRepository } from '../ports/find-profiles.repository';
 import { CreateProfileRepository } from '../ports/create-profile.repository';
+import { Role } from '../../infrastructure/persistence/orm/enums/role.enum';
 
 @CommandHandler(AddEmployeeCommand)
 export class AddEmployeeCommandHandler
@@ -46,6 +47,7 @@ export class AddEmployeeCommandHandler
     }
 
     employee.company = company;
+    employee.role = command.isAdmin ? Role.Administrator : Role.Technician;
     return this.createProfileRepository.save(employee);
   }
 }
