@@ -14,7 +14,7 @@ export class MembershipPaymentFactory {
     const membershipPaymentId = randomUUID();
     const membershipPayment = new MembershipPayment(membershipPaymentId);
 
-    membershipPayment.membership = membershipPaymentId;
+    membershipPayment.membership = membership;
     membershipPayment.amount = amount;
     membershipPayment.paymentDate = paymentDate;
     membershipPayment.paymentMethod = paymentMethod;

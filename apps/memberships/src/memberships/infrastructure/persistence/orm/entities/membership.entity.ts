@@ -2,12 +2,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { MembershipStatus } from '../enums/membership.status.enum';
 import { MembershipPaymentEntity } from './membership-payment.entity';
+import { MembershipLevelEntity } from './membership-level.entity';
+import { Company } from '@app/common/types/personas';
+import { CompanyEntity } from '../../../../../../../personas/src/profiles/infrastructure/persistence/orm/entities/company.entity';
 
 @Entity('memberships')
 export class MembershipEntity {
@@ -27,14 +31,20 @@ export class MembershipEntity {
   endDate: string;
 
   @Column({ enum: MembershipStatus, default: MembershipStatus.Active })
-  status: string;
+  status: MembershipStatus;
 
-  @Column()
-  companyId: string;
+  @OneToOne(() => CompanyEntity, (company) => company.membership)
+  company: Company;
 
   @OneToOne(
     () => MembershipPaymentEntity,
     (membershipPayment) => membershipPayment.membership,
   )
   membershipPayment: MembershipPaymentEntity;
+
+  @OneToMany(
+    () => MembershipLevelEntity,
+    (membershipLevel) => membershipLevel.membership,
+  )
+  membershipLevel: MembershipLevelEntity;
 }

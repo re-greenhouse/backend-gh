@@ -11,7 +11,7 @@ export class MembershipFactory {
   create(
     membershipLevel: MembershipLevel,
     membershipPayment: MembershipPayment,
-    company: Company,
+    companyId: string,
     startDate: string,
     endDate: string,
     status: MembershipStatus,
@@ -21,7 +21,7 @@ export class MembershipFactory {
 
     membership.membershipLevel = membershipLevel;
     membership.membershipPayment = membershipPayment;
-    membership.company = company;
+    membership.companyId = companyId;
     membership.startDate = startDate;
     membership.endDate = endDate;
     membership.status = status;

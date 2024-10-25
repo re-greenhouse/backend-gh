@@ -21,11 +21,7 @@ services:
       - "5434:5432"
     environment:
       POSTGRES_PASSWORD: pass123
-<<<<<<< Updated upstream
-  pg-mailing:
-=======
   pg-memberships:
->>>>>>> Stashed changes
     image: postgres
     restart: always
     ports:

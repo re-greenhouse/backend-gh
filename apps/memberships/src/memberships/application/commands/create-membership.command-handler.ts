@@ -18,7 +18,7 @@ export class CreateMembershipCommandHandler
     const newMembership: Membership = this.membershipFactory.create(
       command.membershipLevel,
       command.membershipPayment,
-      command.company,
+      command.companyId,
       command.startDate,
       command.endDate,
       MembershipStatus.Active,

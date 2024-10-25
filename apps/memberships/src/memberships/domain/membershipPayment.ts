@@ -1,7 +1,5 @@
-import { Membership } from './membership';
-
 export class MembershipPayment {
-  public membership: Membership;
+  public membershipId: string;
   public amount: number;
   public paymentDate: string;
   public paymentMethod: string;

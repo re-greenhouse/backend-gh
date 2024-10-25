@@ -6,7 +6,7 @@ import { MembershipStatus } from '../infrastructure/persistence/orm/enums/member
 export class Membership {
   public membershipLevel: MembershipLevel;
   public membershipPayment: MembershipPayment;
-  public company: Company | null;
+  public companyId: string;
   public startDate: string;
   public endDate: string;
   public status: MembershipStatus;
