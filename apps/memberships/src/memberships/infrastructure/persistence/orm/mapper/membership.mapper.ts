@@ -2,6 +2,7 @@ import { MembershipEntity } from '../entities/membership.entity';
 import { Membership } from '../../../../domain/membership';
 import { MembershipPayment } from '../../../../domain/membershipPayment';
 import { MembershipStatus } from '../enums/membership.status.enum';
+import { MembershipPaymentMapper } from './membership-payment.mapper';
 
 //Pendiente añadir relaciones de membership con company y MembershipLevel
 export class MembershipMapper {
@@ -22,7 +23,9 @@ export class MembershipMapper {
     membershipEntity.startDate = membership.startDate;
     membershipEntity.endDate = membership.endDate;
     membershipEntity.status = membership.status;
-    //Add membershipPayment toPersistence
+    membershipEntity.membershipPayment = MembershipPaymentMapper.toPersistence(
+      membership.membershipPayment,
+    );
 
     return membershipEntity;
   }
