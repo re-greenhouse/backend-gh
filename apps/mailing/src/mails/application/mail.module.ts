@@ -22,6 +22,7 @@ import { FindTemplateByIdQuery } from './queries/find-template-by-id.query';
 import { FindTemplateByIdQueryHandler } from './queries/find-template-by-id.query-handler';
 import { FindTemplateByEventNameQueryQueryHandler } from './queries/find-template-by-event-name.query-handler';
 import { EmployeeInvitedListener } from './listeners/employee-invited.listener';
+import { EmployeeCreatedListener } from './listeners/employee-created.listener';
 
 @Module({
   controllers: [MailController, TemplateController],
@@ -34,6 +35,7 @@ import { EmployeeInvitedListener } from './listeners/employee-invited.listener';
     TemplateFactory,
     UserRegisteredListener,
     EmployeeInvitedListener,
+    EmployeeCreatedListener,
     MailService,
     TemplateService,
     ResendFacadeService,
