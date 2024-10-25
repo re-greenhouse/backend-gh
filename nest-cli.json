@@ -75,6 +75,7 @@
         "watchAssets": true
       }
     },
+<<<<<<< Updated upstream
     "mailing": {
       "type": "application",
       "root": "apps/mailing",
@@ -86,6 +87,15 @@
           "proto/*.proto"
         ],
         "watchAssets": true
+=======
+    "memberships": {
+      "type": "application",
+      "root": "apps/memberships",
+      "entryFile": "main",
+      "sourceRoot": "apps/memberships/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/memberships/tsconfig.app.json"
+>>>>>>> Stashed changes
       }
     }
   }
