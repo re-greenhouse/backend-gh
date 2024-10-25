@@ -94,7 +94,11 @@
       "entryFile": "main",
       "sourceRoot": "apps/memberships/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/memberships/tsconfig.app.json"
+        "tsConfigPath": "apps/memberships/tsconfig.app.json",
+        "assets": [
+          "proto/*.proto"
+        ],
+        "watchAssets": true
       }
     }
   }

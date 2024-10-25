@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Membership } from '../membership';
 import { MembershipPayment } from '../membershipPayment';
 import { randomUUID } from 'crypto';
 
 @Injectable()
 export class MembershipPaymentFactory {
   create(
-    membership: Membership,
+    membershipId: string,
     amount: number,
     paymentDate: string,
     paymentMethod: string,
@@ -14,7 +13,7 @@ export class MembershipPaymentFactory {
     const membershipPaymentId = randomUUID();
     const membershipPayment = new MembershipPayment(membershipPaymentId);
 
-    membershipPayment.membership = membership;
+    membershipPayment.membershipId = membershipId;
     membershipPayment.amount = amount;
     membershipPayment.paymentDate = paymentDate;
     membershipPayment.paymentMethod = paymentMethod;

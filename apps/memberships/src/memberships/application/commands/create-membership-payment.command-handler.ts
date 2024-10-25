@@ -17,7 +17,7 @@ export class CreateMembershipPaymentCommandHandler
     command: CreateMembershipPaymentCommand,
   ): Promise<MembershipPayment> {
     const newMembershipPayment = this.membershipPaymentFactory.create(
-      command.membership,
+      command.membershipId,
       command.amount,
       command.paymentDate,
       command.paymentMethod,
