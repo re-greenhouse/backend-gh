@@ -10,6 +10,7 @@ import { AuthController } from './controllers/auth.controller';
 import { SharedModule } from '../shared/shared.module';
 import { PersonasModule } from '../personas/personas.module';
 import { UserFacadeService } from './facades/user-facade.service';
+import { MailingModule } from '../mailing/mailing.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UserFacadeService } from './facades/user-facade.service';
       },
     ]),
     forwardRef(() => PersonasModule),
+    MailingModule,
     SharedModule,
   ],
   controllers: [AuthController, UsersController],
