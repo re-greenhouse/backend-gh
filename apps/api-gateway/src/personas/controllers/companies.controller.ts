@@ -56,6 +56,7 @@ export class CompaniesController {
     return this.companiesService.addEmployee(
       company.id,
       addEmployeeDto.employeeProfileId,
+      addEmployeeDto.isAdmin,
     );
   }
 

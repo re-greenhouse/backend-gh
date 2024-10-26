@@ -8,6 +8,7 @@ import { MailController } from './controllers/mail.controller';
 import { MailService } from './services/mail.service';
 import { TemplateController } from './controllers/template.controller';
 import { TemplateService } from './services/template.service';
+import { MailFacadeService } from './facade/mail-facade.service';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { TemplateService } from './services/template.service';
     SharedModule,
   ],
   controllers: [MailController, TemplateController],
-  providers: [MailService, TemplateService],
+  providers: [MailService, TemplateService, MailFacadeService],
+  exports: [MailFacadeService],
 })
 export class MailingModule {}

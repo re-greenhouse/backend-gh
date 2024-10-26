@@ -6,6 +6,7 @@ service ProfilesService {
   rpc CreateProfile (CreateProfileDto) returns (Profile) {}
   rpc FindByUserId (FindOneProfileByUserIdDto) returns (Profile) {}
   rpc FindByCompanyId (FindAllByCompanyIdDto) returns (Profiles) {}
+  rpc UpdateProfileById (UpdateProfileDto) returns (Profile) {}
 }
 
 service CompaniesService {
@@ -50,9 +51,17 @@ message CreateProfileDto {
   string iconUrl = 4;
 }
 
+message UpdateProfileDto {
+  string profileId = 1;
+  optional string firstName = 2;
+  optional string lastName = 3;
+  optional string iconUrl = 4;
+}
+
 message AddEmployeeDto {
   string profileId = 1;
   string companyId = 2;
+  bool isAdmin = 3;
 }
 
 message FindOneProfileByUserIdDto {
