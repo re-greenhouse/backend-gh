@@ -14,9 +14,10 @@ export class MembershipPaymentEntity {
   @Column()
   paymentMethod: string;
 
-  @OneToOne(
+  /*@OneToOne(
     () => MembershipEntity,
     (membership) => membership.membershipPayment,
-  )
-  membership: MembershipEntity;
+  )*/
+  @Column()
+  membershipId: string;
 }

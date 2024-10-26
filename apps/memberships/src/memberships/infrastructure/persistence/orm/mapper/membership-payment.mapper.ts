@@ -12,8 +12,7 @@ export class MembershipPaymentMapper {
     membershipPayment.paymentDate = membershipPaymentEntity.paymentDate;
     membershipPayment.paymentMethod = membershipPaymentEntity.paymentMethod;
     //Fix membership relations
-    membershipPayment.membership =
-      membershipPaymentEntity.membership! as unknown as Membership;
+    membershipPayment.membershipId = membershipPaymentEntity.membershipId;
 
     return membershipPayment;
   }
@@ -26,9 +25,8 @@ export class MembershipPaymentMapper {
     membershipPaymentEntity.paymentDate = membershipPayment.paymentDate;
     membershipPaymentEntity.paymentMethod = membershipPayment.paymentMethod;
     membershipPaymentEntity.amount = membershipPayment.amount;
-    membershipPaymentEntity.membership = MembershipMapper.toPersistence(
-      membershipPayment.membership,
-    );
+    membershipPaymentEntity.membershipId = membershipPayment.membershipId;
+
     return membershipPaymentEntity;
   }
 }

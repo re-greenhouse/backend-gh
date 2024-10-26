@@ -5,18 +5,18 @@ import {
 } from '@app/common/types/memberships';
 
 export class CreateMembershipDto {
-  @IsNotEmpty
+  @IsNotEmpty()
   membershipLevel: MembershipLevel;
 
-  @IsNotEmpty
+  @IsNotEmpty()
   membershipPayment: MembershipPayment;
 
-  @IsNotEmpty
+  @IsNotEmpty()
   companyId: string;
 
-  @IsNotEmpty
+  @IsNotEmpty()
   startDate: string;
 
-  @IsNotEmpty
+  @IsNotEmpty()
   endDate: string;
 }

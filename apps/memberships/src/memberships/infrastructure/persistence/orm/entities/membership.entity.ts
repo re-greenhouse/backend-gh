@@ -38,7 +38,7 @@ export class MembershipEntity {
 
   @OneToOne(
     () => MembershipPaymentEntity,
-    (membershipPayment) => membershipPayment.membership,
+    (membershipPayment) => membershipPayment.membershipId,
   )
   membershipPayment: MembershipPaymentEntity;
 
