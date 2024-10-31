@@ -1,4 +1,4 @@
-,import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreateRecordCommand } from './create-record.command';
 import { RecordFactory } from '../../domain/factories/record.factory';
 import { CreateRecordRepository } from '../ports/create-record.repository';

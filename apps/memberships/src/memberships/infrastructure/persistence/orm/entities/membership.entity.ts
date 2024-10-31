@@ -33,8 +33,8 @@ export class MembershipEntity {
   @Column({ enum: MembershipStatus, default: MembershipStatus.Active })
   status: MembershipStatus;
 
-  @OneToOne(() => CompanyEntity, (company) => company.membership)
-  company: Company;
+  //@OneToOne(() => CompanyEntity, (company) => company.membership)
+  //company: Company;
 
   @OneToOne(
     () => MembershipPaymentEntity,

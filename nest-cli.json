@@ -91,8 +91,8 @@
     "memberships": {
       "type": "application",
       "root": "apps/memberships",
-      "entryFile": "main",
-      "sourceRoot": "apps/memberships/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
         "tsConfigPath": "apps/memberships/tsconfig.app.json",
         "assets": [
