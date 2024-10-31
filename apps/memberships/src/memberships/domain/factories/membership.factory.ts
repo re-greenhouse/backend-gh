@@ -10,7 +10,6 @@ import { MembershipStatus } from '../../infrastructure/persistence/orm/enums/mem
 export class MembershipFactory {
   create(
     membershipLevel: MembershipLevel,
-    membershipPayment: MembershipPayment,
     companyId: string,
     startDate: string,
     endDate: string,
@@ -20,7 +19,6 @@ export class MembershipFactory {
     const membership = new Membership(membershipId);
 
     membership.membershipLevel = membershipLevel;
-    membership.membershipPayment = membershipPayment;
     membership.companyId = companyId;
     membership.startDate = startDate;
     membership.endDate = endDate;

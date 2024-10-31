@@ -28,13 +28,10 @@ export class OrmFindMembershipsRepository implements FindMembershipsRepository {
       : undefined;
   }
 
-  async findByCompany(company: Company): Promise<Membership | undefined> {
+  async findByCompany(companyId: string): Promise<Membership | undefined> {
     const membershipEntity: MembershipEntity | null =
-      await this.membershipRepository.findOne({
-        relations: ['company'],
-        where: {
-          company: { id: company.id },
-        },
+      await this.membershipRepository.findOneBy({
+        companyId: companyId,
       });
     return membershipEntity
       ? MembershipMapper.toDomain(membershipEntity)

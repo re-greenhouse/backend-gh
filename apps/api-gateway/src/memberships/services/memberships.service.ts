@@ -23,8 +23,7 @@ export class MembershipsService implements OnModuleInit {
 
   create(createMembershipDto: CreateMembershipDto) {
     return this.membershipsService.createMembership({
-      membershipLevel: createMembershipDto.membershipLevel,
-      membershipPayment: createMembershipDto.membershipPayment,
+      membershipLevelName: createMembershipDto.membershipLevelName,
       companyId: createMembershipDto.companyId,
       startDate: createMembershipDto.startDate,
       endDate: createMembershipDto.endDate,

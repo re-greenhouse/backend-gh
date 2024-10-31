@@ -1,5 +1,4 @@
-import { Column, CreateDateColumn, OneToOne, PrimaryColumn } from 'typeorm';
-import { MembershipEntity } from './membership.entity';
+import { Column, CreateDateColumn, PrimaryColumn } from 'typeorm';
 
 export class MembershipPaymentEntity {
   @PrimaryColumn('uuid')

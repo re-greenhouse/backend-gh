@@ -19,8 +19,7 @@ message Membership {
     string startDate = 2;
     string endDate = 3;
     string status = 4;
-    MembershipLevel membership_level = 5;
-    MembershipPayment membership_payment = 6;
+    string membershipLevelName = 5;
 }
 
 message MembershipLevel {
@@ -44,8 +43,7 @@ message Benefit {
 message CreateMembershipDto {
     string startDate = 1;
     string endDate = 2;
-    MembershipLevel membership_level = 3;
-    MembershipPayment membership_payment = 4;
+    string membershipLevelName = 3;
     string companyId = 5;
 }
 

@@ -7,6 +7,7 @@ service CropsService {
     rpc FindAll (FindAllCropsDto) returns (CropResponse) {}
     rpc FindAllByState (FindAllCropsByStateDto) returns (CropResponse) {}
     rpc FindOneCrop (FindOneCropDto) returns (Crop) {}
+    rpc FindByCompanyId (FindByCompanyIdDto) returns (CropResponse) {}
     rpc UpdateCrop (UpdateCropDto) returns (Crop) {}
     rpc RemoveCrop (FindOneCropDto) returns (Crop) {}
 }
@@ -49,6 +50,7 @@ message CropRecordResponse {
 message CreateCropDto {
     string name = 1;
     string author = 2;
+    string companyId = 3;
 }
 
 message FindAllCropsDto {}
@@ -59,6 +61,10 @@ message FindAllCropsByStateDto {
 
 message FindOneCropDto {
     string id = 1;
+}
+
+message FindByCompanyIdDto {
+    string companyId = 1;
 }
 
 message UpdateCropDto {

@@ -15,7 +15,6 @@ export class GetMembershipsByCompanyQueryHandler
   ) {}
 
   async execute(query: GetMembershipsByCompanyQuery): Promise<Membership> {
-    const company = await this.findCompanyRepository.findById(query.companyId);
-    return await this.findMembershipsRepository.findByCompany(company);
+    return await this.findMembershipsRepository.findByCompany(query.companyId);
   }
 }

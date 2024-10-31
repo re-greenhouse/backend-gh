@@ -14,7 +14,11 @@ export class CreateCropCommandHandler
   ) {}
 
   async execute(command: CreateCropCommand): Promise<Crop> {
-    const newCrop: Crop = this.cropFactory.create(command.name, command.author);
+    const newCrop: Crop = this.cropFactory.create(
+      command.name,
+      command.author,
+      command.companyId,
+    );
     return await this.createCropRepository.save(newCrop);
   }
 }

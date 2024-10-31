@@ -1,7 +1,6 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import {
   MEMBERSHIPS_PAYMENT_SERVICE_NAME,
-  MEMBERSHIPS_SERVICE_NAME,
   MembershipsPaymentServiceClient,
 } from '@app/common/types/memberships';
 import { MEMBERSHIPS_SERVICE } from '../constants';

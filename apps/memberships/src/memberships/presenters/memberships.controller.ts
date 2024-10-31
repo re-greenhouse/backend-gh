@@ -17,8 +17,7 @@ export class MembershipsController implements MembershipsServiceController {
   async createMembership(request: CreateMembershipDto): Promise<Membership> {
     return this.membershipsService.create(
       new CreateMembershipCommand(
-        request.membershipLevel,
-        request.membershipPayment,
+        request.membershipLevelName,
         request.companyId,
         request.startDate,
         request.endDate,

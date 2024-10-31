@@ -23,6 +23,7 @@ export class CropsService implements OnModuleInit {
     return this.cropsService.createCrop({
       name: createCropDto.name,
       author: createCropDto.author,
+      companyId: createCropDto.companyId,
     });
   }
 
@@ -36,6 +37,10 @@ export class CropsService implements OnModuleInit {
 
   findAllByState(state: boolean) {
     return this.cropsService.findAllByState({ state: state });
+  }
+
+  findByCompanyId(companyId: string) {
+    return this.cropsService.findByCompanyId({ companyId: companyId });
   }
 
   update(id: string, updateCropDto: UpdateCropDto) {

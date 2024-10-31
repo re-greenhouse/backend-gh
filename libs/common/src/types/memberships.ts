@@ -5,18 +5,17 @@
 // source: proto/memberships.proto
 
 /* eslint-disable */
-import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
+import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { Observable } from "rxjs";
 
-export const protobufPackage = 'memberships';
+export const protobufPackage = "memberships";
 
 export interface Membership {
   id: string;
   startDate: string;
   endDate: string;
   status: string;
-  membershipLevel: MembershipLevel | undefined;
-  membershipPayment: MembershipPayment | undefined;
+  membershipLevelName: string;
 }
 
 export interface MembershipLevel {
@@ -30,19 +29,17 @@ export interface MembershipPayment {
   amount: number;
   paymentDate: string;
   paymentMethod: string;
-  membershipId: string;
 }
 
 export interface Benefit {
   name: string;
-  value: number;
+  value: string;
 }
 
 export interface CreateMembershipDto {
   startDate: string;
   endDate: string;
-  membershipLevel: MembershipLevel | undefined;
-  membershipPayment: MembershipPayment | undefined;
+  membershipLevelName: string;
   companyId: string;
 }
 
@@ -61,7 +58,7 @@ export interface FindMembershipsLevelByName {
   name: string;
 }
 
-export const MEMBERSHIPS_PACKAGE_NAME = 'memberships';
+export const MEMBERSHIPS_PACKAGE_NAME = "memberships";
 
 export interface MembershipsServiceClient {
   createMembership(request: CreateMembershipDto): Observable<Membership>;
@@ -70,91 +67,54 @@ export interface MembershipsServiceClient {
 }
 
 export interface MembershipsServiceController {
-  createMembership(
-    request: CreateMembershipDto,
-  ): Promise<Membership> | Observable<Membership> | Membership;
+  createMembership(request: CreateMembershipDto): Promise<Membership> | Observable<Membership> | Membership;
 
-  findByCompany(
-    request: FindMembershipByCompany,
-  ): Promise<Membership> | Observable<Membership> | Membership;
+  findByCompany(request: FindMembershipByCompany): Promise<Membership> | Observable<Membership> | Membership;
 }
 
 export function MembershipsServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['createMembership', 'findByCompany'];
+    const grpcMethods: string[] = ["createMembership", "findByCompany"];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcMethod('MembershipsService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("MembershipsService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcStreamMethod('MembershipsService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("MembershipsService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const MEMBERSHIPS_SERVICE_NAME = 'MembershipsService';
+export const MEMBERSHIPS_SERVICE_NAME = "MembershipsService";
 
 export interface MembershipsPaymentServiceClient {
-  createMembershipPayment(
-    request: CreateMembershipPaymentDto,
-  ): Observable<MembershipPayment>;
+  createMembershipPayment(request: CreateMembershipPaymentDto): Observable<MembershipPayment>;
 }
 
 export interface MembershipsPaymentServiceController {
   createMembershipPayment(
     request: CreateMembershipPaymentDto,
-  ):
-    | Promise<MembershipPayment>
-    | Observable<MembershipPayment>
-    | MembershipPayment;
+  ): Promise<MembershipPayment> | Observable<MembershipPayment> | MembershipPayment;
 }
 
 export function MembershipsPaymentServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['createMembershipPayment'];
+    const grpcMethods: string[] = ["createMembershipPayment"];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcMethod('MembershipsPaymentService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("MembershipsPaymentService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcStreamMethod('MembershipsPaymentService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("MembershipsPaymentService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const MEMBERSHIPS_PAYMENT_SERVICE_NAME = 'MembershipsPaymentService';
+export const MEMBERSHIPS_PAYMENT_SERVICE_NAME = "MembershipsPaymentService";
 
 export interface MembershipsLevelServiceClient {
   findByName(request: FindMembershipsLevelByName): Observable<MembershipLevel>;
@@ -168,31 +128,17 @@ export interface MembershipsLevelServiceController {
 
 export function MembershipsLevelServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ['findByName'];
+    const grpcMethods: string[] = ["findByName"];
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcMethod('MembershipsLevelService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcMethod("MembershipsLevelService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(
-        constructor.prototype,
-        method,
-      );
-      GrpcStreamMethod('MembershipsLevelService', method)(
-        constructor.prototype[method],
-        method,
-        descriptor,
-      );
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
+      GrpcStreamMethod("MembershipsLevelService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const MEMBERSHIPS_LEVEL_SERVICE_NAME = 'MembershipsLevelService';
+export const MEMBERSHIPS_LEVEL_SERVICE_NAME = "MembershipsLevelService";

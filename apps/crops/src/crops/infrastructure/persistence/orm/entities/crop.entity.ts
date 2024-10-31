@@ -28,6 +28,9 @@ export class CropEntity {
   @Column()
   state: boolean;
 
+  @Column()
+  companyId: string;
+
   @OneToMany(() => RecordEntity, (record) => record.crop)
   records: Array<RecordEntity>;
 }
