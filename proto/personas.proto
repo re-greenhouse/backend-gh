@@ -14,6 +14,7 @@ service CompaniesService {
   rpc AddEmployee (AddEmployeeDto) returns (Profile) {}
   rpc FindByProfileId (FindOneCompanyByProfileId) returns (Company) {}
   rpc UpdateCompany (UpdateCompanyDto) returns (Company) {}
+  rpc ExistByTin (ExistByTinDto) returns (Exist) {}
 }
 
 message Profile {
@@ -58,6 +59,10 @@ message UpdateProfileDto {
   optional string iconUrl = 4;
 }
 
+message ExistByTinDto {
+  string tin = 1;
+}
+
 message AddEmployeeDto {
   string profileId = 1;
   string companyId = 2;
@@ -74,6 +79,10 @@ message FindAllByCompanyIdDto {
 
 message FindOneCompanyByProfileId {
   string profileId = 1;
+}
+
+message Exist {
+  bool exist = 1;
 }
 
 message CreateCompanyDto {

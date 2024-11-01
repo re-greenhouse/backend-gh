@@ -22,6 +22,8 @@ import { UpdateCompanyCommandHandler } from './commands/update-company.command-h
 import { UpdateCompanyCommand } from './commands/update-company.command';
 import { UpdateProfileCommand } from './commands/update-profile.command';
 import { UpdateProfileCommandHandler } from './commands/update-profile.command-handler';
+import { ExistCompanyWithTinQuery } from './queries/exist-company-with-tin.query';
+import { ExistCompanyWithTinQueryHandler } from './queries/exist-company-with-tin.query-handler';
 
 @Module({
   imports: [PersonasInfrastructureModule],
@@ -41,6 +43,8 @@ import { UpdateProfileCommandHandler } from './commands/update-profile.command-h
     AddEmployeeCommandHandler,
     CreateCompanyCommand,
     CreateCompanyCommandHandler,
+    ExistCompanyWithTinQuery,
+    ExistCompanyWithTinQueryHandler,
     GetProfileByUserIdQuery,
     GetProfileByIdQueryHandler,
     GetProfilesByCompanyIdQuery,

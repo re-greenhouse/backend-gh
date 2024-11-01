@@ -71,6 +71,14 @@ export interface CreateCompanyDto {
   logoUrl: string;
 }
 
+export interface ExistByTinDto {
+  tin: string;
+}
+
+export interface Exist {
+  exist: boolean;
+}
+
 export const PERSONAS_PACKAGE_NAME = "personas";
 
 export interface ProfilesServiceClient {
@@ -118,6 +126,8 @@ export interface CompaniesServiceClient {
   findByProfileId(request: FindOneCompanyByProfileId): Observable<Company>;
 
   updateCompany(request: UpdateCompanyDto): Observable<Company>;
+
+  existByTin(request: ExistByTinDto): Observable<Exist>;
 }
 
 export interface CompaniesServiceController {
@@ -128,6 +138,8 @@ export interface CompaniesServiceController {
   findByProfileId(request: FindOneCompanyByProfileId): Promise<Company> | Observable<Company> | Company;
 
   updateCompany(request: UpdateCompanyDto): Promise<Company> | Observable<Company> | Company;
+
+  existByTin(request: ExistByTinDto): Promise<Exist> | Observable<Exist> | Exist;
 }
 
 export function CompaniesServiceControllerMethods() {

@@ -5,6 +5,7 @@ import { GetCompanyByProfileIdQuery } from './queries/get-company-by-profile-id.
 import { Profile } from '../domain/profile';
 import { AddEmployeeCommand } from './commands/add-employee.command';
 import { UpdateCompanyCommand } from './commands/update-company.command';
+import { ExistCompanyWithTinQuery } from './queries/exist-company-with-tin.query';
 
 @Injectable()
 export class CompaniesService {
@@ -20,6 +21,11 @@ export class CompaniesService {
   findOneByProfileId(profileId: string) {
     return this.queryBus.execute(new GetCompanyByProfileIdQuery(profileId));
   }
+
+  existByTin(tin: string) {
+    return this.queryBus.execute(new ExistCompanyWithTinQuery(tin));
+  }
+
 
   addEmployee(addEmployeeCommand: AddEmployeeCommand): Promise<Profile> {
     return this.commandBus.execute(addEmployeeCommand);
