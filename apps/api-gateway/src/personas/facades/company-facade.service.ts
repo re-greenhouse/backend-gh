@@ -26,7 +26,9 @@ export class CompanyFacadeService implements OnModuleInit {
   createCompany(ownerId: string, createCompanyDto: CreateCompanyDto) {
     return this.companiesService.createCompany({
       ownerId: ownerId,
-      ...createCompanyDto,
+      tin: createCompanyDto.tin,
+      name: createCompanyDto.name,
+      logoUrl: createCompanyDto.logoUrl,
     });
   }
 }

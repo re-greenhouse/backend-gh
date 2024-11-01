@@ -113,7 +113,7 @@ export class AuthController {
       }),
     );
 
-    this.companyFacadeService.createCompany(user.id, {
+    this.companyFacadeService.createCompany(profile.id, {
       tin: signUpDto.tin,
       name: signUpDto.name,
       logoUrl:
