@@ -4,6 +4,8 @@ import {
   CompaniesServiceControllerMethods,
   Company,
   CreateCompanyDto,
+  Exist,
+  ExistByTinDto,
   FindOneCompanyByProfileId,
   UpdateCompanyDto,
 } from '@app/common/types/personas';
@@ -60,5 +62,9 @@ export class CompaniesController implements CompaniesServiceController {
         request.logoUrl,
       ),
     );
+  }
+
+  existByTin(request: ExistByTinDto): Promise<Exist> {
+    return this.companiesService.existByTin(request.tin);
   }
 }
