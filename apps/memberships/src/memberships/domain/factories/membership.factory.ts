@@ -9,7 +9,7 @@ import { MembershipStatus } from '../../infrastructure/persistence/orm/enums/mem
 @Injectable()
 export class MembershipFactory {
   create(
-    membershipLevel: MembershipLevel,
+    membershipLevelName: string,
     companyId: string,
     startDate: string,
     endDate: string,
@@ -17,8 +17,7 @@ export class MembershipFactory {
   ): Membership {
     const membershipId = randomUUID();
     const membership = new Membership(membershipId);
-
-    membership.membershipLevel = membershipLevel;
+    membership.membershipLevelName = membershipLevelName;
     membership.companyId = companyId;
     membership.startDate = startDate;
     membership.endDate = endDate;

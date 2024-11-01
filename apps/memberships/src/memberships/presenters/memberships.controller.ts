@@ -15,14 +15,18 @@ export class MembershipsController implements MembershipsServiceController {
   constructor(private readonly membershipsService: MembershipsService) {}
 
   async createMembership(request: CreateMembershipDto): Promise<Membership> {
-    return this.membershipsService.create(
-      new CreateMembershipCommand(
-        request.membershipLevelName,
-        request.companyId,
-        request.startDate,
-        request.endDate,
-      ),
-    );
+    try {
+      return this.membershipsService.create(
+        new CreateMembershipCommand(
+          request.membershipLevelName,
+          request.companyId,
+          request.startDate,
+          request.endDate,
+        ),
+      );
+    } catch (e) {
+      console.error('Non-Json response');
+    }
   }
   async findByCompany(request: FindMembershipByCompany): Promise<Membership> {
     return await this.membershipsService.findByCompany(request.companyId);

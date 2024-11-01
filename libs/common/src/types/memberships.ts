@@ -12,10 +12,10 @@ export const protobufPackage = "memberships";
 
 export interface Membership {
   id: string;
+  membershipLevelName: string;
+  companyId: string;
   startDate: string;
   endDate: string;
-  status: string;
-  membershipLevelName: string;
 }
 
 export interface MembershipLevel {
@@ -37,10 +37,10 @@ export interface Benefit {
 }
 
 export interface CreateMembershipDto {
-  startDate: string;
-  endDate: string;
   membershipLevelName: string;
   companyId: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface CreateMembershipPaymentDto {
@@ -50,11 +50,11 @@ export interface CreateMembershipPaymentDto {
   paymentMethod: string;
 }
 
-export interface FindMembershipByCompany {
+export interface FindMembershipByCompanyDto {
   companyId: string;
 }
 
-export interface FindMembershipsLevelByName {
+export interface FindMembershipsLevelByNameDto {
   name: string;
 }
 
@@ -63,13 +63,13 @@ export const MEMBERSHIPS_PACKAGE_NAME = "memberships";
 export interface MembershipsServiceClient {
   createMembership(request: CreateMembershipDto): Observable<Membership>;
 
-  findByCompany(request: FindMembershipByCompany): Observable<Membership>;
+  findByCompany(request: FindMembershipByCompanyDto): Observable<Membership>;
 }
 
 export interface MembershipsServiceController {
   createMembership(request: CreateMembershipDto): Promise<Membership> | Observable<Membership> | Membership;
 
-  findByCompany(request: FindMembershipByCompany): Promise<Membership> | Observable<Membership> | Membership;
+  findByCompany(request: FindMembershipByCompanyDto): Promise<Membership> | Observable<Membership> | Membership;
 }
 
 export function MembershipsServiceControllerMethods() {
@@ -117,12 +117,12 @@ export function MembershipsPaymentServiceControllerMethods() {
 export const MEMBERSHIPS_PAYMENT_SERVICE_NAME = "MembershipsPaymentService";
 
 export interface MembershipsLevelServiceClient {
-  findByName(request: FindMembershipsLevelByName): Observable<MembershipLevel>;
+  findByName(request: FindMembershipsLevelByNameDto): Observable<MembershipLevel>;
 }
 
 export interface MembershipsLevelServiceController {
   findByName(
-    request: FindMembershipsLevelByName,
+    request: FindMembershipsLevelByNameDto,
   ): Promise<MembershipLevel> | Observable<MembershipLevel> | MembershipLevel;
 }
 

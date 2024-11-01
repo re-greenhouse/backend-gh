@@ -4,22 +4,22 @@ package memberships;
 
 service MembershipsService {
     rpc CreateMembership (CreateMembershipDto) returns (Membership) {}
-    rpc FindByCompany (FindMembershipByCompany) returns (Membership) {}
+    rpc FindByCompany (FindMembershipByCompanyDto) returns (Membership) {}
 }
 service MembershipsPaymentService {
     rpc CreateMembershipPayment (CreateMembershipPaymentDto) returns (MembershipPayment) {}
 }
 
 service MembershipsLevelService {
-    rpc FindByName (FindMembershipsLevelByName) returns (MembershipLevel) {}
+    rpc FindByName (FindMembershipsLevelByNameDto) returns (MembershipLevel) {}
 }
 
 message Membership {
     string id = 1;
-    string startDate = 2;
-    string endDate = 3;
-    string status = 4;
-    string membershipLevelName = 5;
+    string membershipLevelName = 2;
+    string companyId = 3;
+    string startDate = 4;
+    string endDate = 5;
 }
 
 message MembershipLevel {
@@ -41,10 +41,10 @@ message Benefit {
 }
 
 message CreateMembershipDto {
-    string startDate = 1;
-    string endDate = 2;
-    string membershipLevelName = 3;
-    string companyId = 5;
+    string membershipLevelName = 1;
+    string companyId = 2;
+    string startDate = 3;
+    string endDate = 4;
 }
 
 message CreateMembershipPaymentDto {
@@ -54,10 +54,10 @@ message CreateMembershipPaymentDto {
     string paymentMethod = 4;
 }
 
-message FindMembershipByCompany {
+message FindMembershipByCompanyDto {
     string companyId = 1;
 }
 
-message FindMembershipsLevelByName {
+message FindMembershipsLevelByNameDto {
     string name = 1;
 }

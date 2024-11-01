@@ -11,9 +11,9 @@ export class BenefitEntity {
   @Column()
   value: string;
 
-  @ManyToOne(
+  /*@ManyToOne(
     () => MembershipLevelEntity,
     (membershipLevel) => membershipLevel.benefits,
   )
-  membershipLevel: MembershipLevelEntity;
+  membershipLevel: MembershipLevelEntity;*/
 }

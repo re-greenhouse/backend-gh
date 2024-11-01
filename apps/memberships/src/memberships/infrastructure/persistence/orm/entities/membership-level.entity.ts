@@ -1,5 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
-import { MembershipEntity } from './membership.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { BenefitEntity } from './benefit.entity';
 
 @Entity('membership-levels')
@@ -10,10 +9,6 @@ export class MembershipLevelEntity {
   @Column()
   name: string;
 
-  @OneToMany(() => BenefitEntity, (benefit) => benefit.membershipLevel)
-  benefits: Array<BenefitEntity>;
-
-  // No sé cómo hacer esta relación, si alguien sabe, que opine
-  @ManyToOne(() => MembershipEntity, (membership) => membership.membershipLevel)
-  membership: MembershipEntity;
+  //@OneToMany(() => BenefitEntity, (benefit) => benefit.membershipLevel)
+  //benefits: Array<BenefitEntity>;
 }
