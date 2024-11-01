@@ -5,15 +5,16 @@ import { Exist } from '@app/common/types/personas';
 
 @QueryHandler(ExistCompanyWithTinQuery)
 export class ExistCompanyWithTinQueryHandler
-  implements IQueryHandler<ExistCompanyWithTinQuery, Exist | undefined>
+  implements IQueryHandler<ExistCompanyWithTinQuery, Exist>
 {
   constructor(
     private readonly findCompaniesRepository: FindCompaniesRepository,
   ) {}
 
-  async execute(query: ExistCompanyWithTinQuery): Promise<Exist | undefined> {
+  async execute(query: ExistCompanyWithTinQuery): Promise<Exist> {
+    const response = await this.findCompaniesRepository.existByTin(query.tin);
     return {
-      exist: await this.findCompaniesRepository.existByTin(query.tin),
+      exist: response,
     };
   }
 }

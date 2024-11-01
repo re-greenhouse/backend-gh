@@ -3,7 +3,9 @@ import {
   CompaniesServiceController,
   CompaniesServiceControllerMethods,
   Company,
-  CreateCompanyDto, Exist, ExistByTinDto,
+  CreateCompanyDto,
+  Exist,
+  ExistByTinDto,
   FindOneCompanyByProfileId,
   UpdateCompanyDto,
 } from '@app/common/types/personas';
@@ -14,7 +16,6 @@ import { Profile } from '../../domain/profile';
 import { ProfileService } from '../../application/profile.service';
 import { AddEmployeeCommand } from '../../application/commands/add-employee.command';
 import { UpdateCompanyCommand } from '../../application/commands/update-company.command';
-import { Observable } from 'rxjs';
 
 @Controller()
 @CompaniesServiceControllerMethods()
@@ -63,9 +64,7 @@ export class CompaniesController implements CompaniesServiceController {
     );
   }
 
-  existByTin(
-    request: ExistByTinDto,
-  ): Promise<Exist> | Observable<Exist> | Exist {
+  existByTin(request: ExistByTinDto): Promise<Exist> {
     return this.companiesService.existByTin(request.tin);
   }
 }

@@ -26,7 +26,6 @@ export class CompaniesService {
     return this.queryBus.execute(new ExistCompanyWithTinQuery(tin));
   }
 
-
   addEmployee(addEmployeeCommand: AddEmployeeCommand): Promise<Profile> {
     return this.commandBus.execute(addEmployeeCommand);
   }

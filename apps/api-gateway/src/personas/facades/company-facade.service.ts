@@ -5,6 +5,7 @@ import {
 } from '@app/common/types/personas';
 import { PERSONAS_SERVICE } from '../constants';
 import { ClientGrpc } from '@nestjs/microservices';
+import { CreateCompanyDto } from '../dto/create-company.dto';
 
 @Injectable()
 export class CompanyFacadeService implements OnModuleInit {
@@ -20,5 +21,12 @@ export class CompanyFacadeService implements OnModuleInit {
 
   existByTin(tin: string) {
     return this.companiesService.existByTin({ tin: tin });
+  }
+
+  createCompany(ownerId: string, createCompanyDto: CreateCompanyDto) {
+    return this.companiesService.createCompany({
+      ownerId: ownerId,
+      ...createCompanyDto,
+    });
   }
 }

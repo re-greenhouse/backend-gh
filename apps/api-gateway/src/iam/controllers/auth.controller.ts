@@ -1,4 +1,11 @@
-import { BadRequestException, Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { Public } from '../../shared/decorators/public.decorator';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -106,6 +113,13 @@ export class AuthController {
       }),
     );
 
+    this.companyFacadeService.createCompany(user.id, {
+      tin: signUpDto.tin,
+      name: signUpDto.name,
+      logoUrl:
+        'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2018/02/toad.jpeg?tf=1200x1200',
+    });
+
     this.mailFacadeService.sendMail({
       email: user.email,
       eventName: 'user.registered',
@@ -116,6 +130,7 @@ export class AuthController {
         { variable: 'email', value: user.email },
       ],
     });
+
     return { user: user, profile: profile };
   }
 }
