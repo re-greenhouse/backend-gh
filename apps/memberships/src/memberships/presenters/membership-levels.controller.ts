@@ -1,5 +1,5 @@
 import {
-  FindMembershipsLevelByName,
+  FindMembershipsLevelByNameDto,
   MembershipLevel,
   MembershipsLevelServiceController,
 } from '@app/common/types/memberships';
@@ -17,7 +17,7 @@ export class MembershipLevelsController
   ) {}
 
   async findByName(
-    request: FindMembershipsLevelByName,
+    request: FindMembershipsLevelByNameDto,
   ): Promise<MembershipLevel> {
     return await this.membershipLevelService.findByName(request.name);
   }

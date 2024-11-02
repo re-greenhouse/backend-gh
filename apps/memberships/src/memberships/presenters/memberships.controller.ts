@@ -1,6 +1,6 @@
 import {
   CreateMembershipDto,
-  FindMembershipByCompany,
+  FindMembershipByCompanyDto,
   Membership,
   MembershipsServiceController,
   MembershipsServiceControllerMethods,
@@ -28,7 +28,7 @@ export class MembershipsController implements MembershipsServiceController {
       console.error('Non-Json response');
     }
   }
-  async findByCompany(request: FindMembershipByCompany): Promise<Membership> {
+  async findByCompany(request: FindMembershipByCompanyDto): Promise<Membership> {
     return await this.membershipsService.findByCompany(request.companyId);
   }
 }
