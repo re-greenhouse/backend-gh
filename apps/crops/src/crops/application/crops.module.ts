@@ -30,6 +30,8 @@ import { DeleteRecordCommand } from './commands/delete-record.command';
 import { DeleteRecordCommandHandler } from './commands/delete-record.command-handler';
 import { GetRecordByIdQuery } from './queries/get-record-by-id.query';
 import { GetRecordByIdQueryHandler } from './queries/get-record-by-id.query-handler';
+import { GetCropByCompanyIdQuery } from './queries/get-crop-by-company-id.query';
+import { GetCropByCompanyIdQueryHandler } from './queries/get-crop-by-company-id.query-handler';
 
 @Module({
   imports: [CropsInfrastructureModule],
@@ -45,6 +47,8 @@ import { GetRecordByIdQueryHandler } from './queries/get-record-by-id.query-hand
     GetCropByIdQueryHandler,
     GetCropsByStateQuery,
     GetCropsByStateQueryHandler,
+    GetCropByCompanyIdQuery,
+    GetCropByCompanyIdQueryHandler,
     UpdateCropCommand,
     UpdateCropCommandHandler,
     DeleteCropCommand,

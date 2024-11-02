@@ -36,11 +36,20 @@ services:
     networks:
       custom_network:
         ipv4_address: 172.16.238.13
+        
+  pg-memberships:
+    image: postgres
+    restart: always
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_PASSWORD: pass123
+    networks:
+      custom_network:
+        ipv4_address: 172.16.238.14
 
   backend-gh:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: backend:latest
     restart: always
     ports:
       - "3000:3000"
@@ -49,9 +58,10 @@ services:
       - pg-personas
       - pg-crops
       - pg-mailing
+      - pg-memberships
     networks:
       custom_network:
-        ipv4_address: 172.16.238.14
+        ipv4_address: 172.16.238.15
 
   backend-gh-2:
     build:
@@ -65,9 +75,10 @@ services:
       - pg-personas
       - pg-crops
       - pg-mailing
+      - pg-memberships
     networks:
       custom_network:
-        ipv4_address: 172.16.238.15
+        ipv4_address: 172.16.238.16
 
 networks:
   custom_network:

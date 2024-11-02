@@ -6,6 +6,7 @@ import {
   CropsServiceControllerMethods,
   FindAllCropsByStateDto,
   FindAllCropsDto,
+  FindByCompanyIdDto,
   FindOneCropDto,
   UpdateCropDto,
 } from '@app/common/types/crops';
@@ -22,7 +23,7 @@ export class CropsController implements CropsServiceController {
 
   async createCrop(request: CreateCropDto): Promise<Crop> {
     return this.cropsService.create(
-      new CreateCropCommand(request.name, request.author),
+      new CreateCropCommand(request.name, request.author, request.companyId),
     );
   }
   async findAll({}: FindAllCropsDto): Promise<CropResponse> {
@@ -30,6 +31,12 @@ export class CropsController implements CropsServiceController {
   }
   async findAllByState(request: FindAllCropsByStateDto): Promise<CropResponse> {
     return { crops: await this.cropsService.findByState(request.state) };
+  }
+
+  async findByCompanyId(request: FindByCompanyIdDto): Promise<CropResponse> {
+    return {
+      crops: await this.cropsService.findByCompanyId(request.companyId),
+    };
   }
 
   findOneCrop(findOneCropDto: FindOneCropDto): Promise<Crop> {

@@ -5,6 +5,7 @@ export class Crop {
   public author: string;
   public phase: CropPhase;
   public startDate: string;
+  public companyId: string;
 
   constructor(
     public id: string,
