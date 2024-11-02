@@ -31,7 +31,8 @@ RUN npm run build api-gateway && \
     npm run build iam && \
     npm run build personas && \
     npm run build crops && \
-    npm run build mailing
+    npm run build mailing && \
+    npm run build memberships
 
 # Start the PM2 processes using the configuration file
 CMD ["pm2-runtime", "start", "pm2.config.js"]
