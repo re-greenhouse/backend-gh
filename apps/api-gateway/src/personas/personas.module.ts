@@ -9,6 +9,7 @@ import { CompaniesService } from './services/companies.service';
 import { CompaniesController } from './controllers/companies.controller';
 import { ProfileFacadeService } from './facades/profile-facade.service';
 import { IamModule } from '../iam/iam.module';
+import { CompanyFacadeService } from './facades/company-facade.service';
 
 @Module({
   imports: [
@@ -26,7 +27,12 @@ import { IamModule } from '../iam/iam.module';
     forwardRef(() => IamModule),
   ],
   controllers: [ProfilesController, CompaniesController],
-  providers: [ProfilesService, CompaniesService, ProfileFacadeService],
-  exports: [ProfileFacadeService],
+  providers: [
+    ProfilesService,
+    CompaniesService,
+    ProfileFacadeService,
+    CompanyFacadeService,
+  ],
+  exports: [ProfileFacadeService, CompanyFacadeService],
 })
 export class PersonasModule {}
