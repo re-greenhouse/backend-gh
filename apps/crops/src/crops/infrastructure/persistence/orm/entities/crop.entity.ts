@@ -29,12 +29,12 @@ export class CropEntity {
   @Column()
   state: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   imageUrl: string;
 
-  @Column({ enum: CropQuality })
+  @Column({ enum: CropQuality, nullable: true })
   quality: string;
-  
+
   @Column()
   companyId: string;
 
