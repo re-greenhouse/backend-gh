@@ -17,6 +17,8 @@ export interface Crop {
   state: boolean;
   phase: string;
   startDate: string;
+  imageUrl: string;
+  quality: string;
 }
 
 export interface CropResponse {
@@ -63,6 +65,12 @@ export interface UpdateCropDto {
   state?: boolean | undefined;
 }
 
+export interface UpdateCropImageDto {
+  id: string;
+  imageUrl?: string | undefined;
+  quality?: string | undefined;
+}
+
 export interface CreateRecordDto {
   author: string;
   phase: string;
@@ -102,6 +110,8 @@ export interface CropsServiceClient {
 
   updateCrop(request: UpdateCropDto): Observable<Crop>;
 
+  updateCropImage(request: UpdateCropImageDto): Observable<Crop>;
+
   removeCrop(request: FindOneCropDto): Observable<Crop>;
 }
 
@@ -118,6 +128,8 @@ export interface CropsServiceController {
 
   updateCrop(request: UpdateCropDto): Promise<Crop> | Observable<Crop> | Crop;
 
+  updateCropImage(request: UpdateCropImageDto): Promise<Crop> | Observable<Crop> | Crop;
+
   removeCrop(request: FindOneCropDto): Promise<Crop> | Observable<Crop> | Crop;
 }
 
@@ -130,6 +142,7 @@ export function CropsServiceControllerMethods() {
       "findOneCrop",
       "findByCompanyId",
       "updateCrop",
+      "updateCropImage",
       "removeCrop",
     ];
     for (const method of grpcMethods) {

@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { RecordEntity } from './record.entity';
 import { CropPhase } from '../enums/phase.enum';
+import { CropQuality } from '../enums/quality.enum';
 
 @Entity('crops')
 export class CropEntity {
@@ -28,6 +29,12 @@ export class CropEntity {
   @Column()
   state: boolean;
 
+  @Column()
+  imageUrl: string;
+
+  @Column({ enum: CropQuality })
+  quality: string;
+  
   @Column()
   companyId: string;
 
