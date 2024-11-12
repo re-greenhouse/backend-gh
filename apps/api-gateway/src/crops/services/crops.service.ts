@@ -7,6 +7,7 @@ import { CROPS_SERVICE } from '../constants';
 import { ClientGrpc } from '@nestjs/microservices';
 import { CreateCropDto } from '../dto/create-crop.dto';
 import { UpdateCropDto } from '../dto/update-crop.dto';
+import { UpdateCropImageDto } from '../dto/update-crop-image.dto';
 
 @Injectable()
 export class CropsService implements OnModuleInit {
@@ -43,6 +44,14 @@ export class CropsService implements OnModuleInit {
       id: id,
       phase: updateCropDto.phase,
       state: updateCropDto.state,
+    });
+  }
+
+  updateImage(id: string, updateCropImageDto: UpdateCropImageDto) {
+    return this.cropsService.updateCropImage({
+      id: id,
+      imageUrl: updateCropImageDto.imageUrl,
+      quality: updateCropImageDto.quality,
     });
   }
 

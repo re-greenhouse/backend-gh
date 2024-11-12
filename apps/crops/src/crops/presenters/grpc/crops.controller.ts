@@ -8,12 +8,14 @@ import {
   FindAllCropsDto,
   FindOneCropDto,
   UpdateCropDto,
+  UpdateCropImageDto,
 } from '@app/common/types/crops';
 import { Controller } from '@nestjs/common';
 import { CropsService } from '../../application/crops.service';
 import { CreateCropCommand } from '../../application/commands/create-crop.command';
 import { UpdateCropCommand } from '../../application/commands/update-crop.command';
 import { DeleteCropCommand } from '../../application/commands/delete-crop.command';
+import { UpdateCropImageCommand } from '../../application/commands/update-crop-image.command';
 
 @Controller()
 @CropsServiceControllerMethods()
@@ -42,6 +44,16 @@ export class CropsController implements CropsServiceController {
         updateCropDto.id,
         updateCropDto.phase,
         updateCropDto.state,
+      ),
+    );
+  }
+
+  updateCropImage(updateCropImageDto: UpdateCropImageDto): Promise<Crop> {
+    return this.cropsService.updateImage(
+      new UpdateCropImageCommand(
+        updateCropImageDto.id,
+        updateCropImageDto.imageUrl,
+        updateCropImageDto.quality,
       ),
     );
   }
