@@ -87,6 +87,19 @@
         ],
         "watchAssets": true
       }
+    },
+    "memberships": {
+      "type": "application",
+      "root": "apps/memberships",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
+      "compilerOptions": {
+        "tsConfigPath": "apps/memberships/tsconfig.app.json",
+        "assets": [
+          "proto/*.proto"
+        ],
+        "watchAssets": true
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ export class CropMapper {
     crop.startDate = new Date(cropEntity.startDate).toLocaleString();
     crop.author = cropEntity.author;
     crop.name = cropEntity.name;
+    crop.companyId = cropEntity.companyId;
     crop.phase = cropEntity.phase as CropPhase;
     crop.imageUrl = cropEntity.imageUrl;
     crop.quality = cropEntity.quality as CropQuality;
@@ -23,6 +24,7 @@ export class CropMapper {
     cropEntity.name = crop.name;
     cropEntity.author = crop.author;
     cropEntity.state = crop.state;
+    cropEntity.companyId = crop.companyId;
     cropEntity.phase = crop.phase;
     cropEntity.imageUrl = crop.imageUrl;
     cropEntity.quality = crop.quality;

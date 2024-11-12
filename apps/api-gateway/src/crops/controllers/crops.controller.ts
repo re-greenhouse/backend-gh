@@ -39,6 +39,11 @@ export class CropsController {
     return this.cropsService.findAllByState(state);
   }
 
+  @Get('/company/:companyId')
+  findByCompanyId(@Param('companyId') companyId: string) {
+    return this.cropsService.findByCompanyId(companyId);
+  }
+
   @Patch(':id')
   updateStatus(@Param('id') id: string, @Body() updateCropDto: UpdateCropDto) {
     return this.cropsService.update(id, updateCropDto);

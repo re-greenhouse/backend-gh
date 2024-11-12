@@ -8,6 +8,7 @@ import { UpdateCropCommand } from './commands/update-crop.command';
 import { Crop } from '../domain/crop';
 import { DeleteCropCommand } from './commands/delete-crop.command';
 import { UpdateCropImageCommand } from './commands/update-crop-image.command';
+import { GetCropByCompanyIdQuery } from './queries/get-crop-by-company-id.query';
 
 @Injectable()
 export class CropsService {
@@ -26,6 +27,10 @@ export class CropsService {
 
   findById(id: string) {
     return this.queryBus.execute(new GetCropByIdQuery(id));
+  }
+
+  findByCompanyId(companyId: string) {
+    return this.queryBus.execute(new GetCropByCompanyIdQuery(companyId));
   }
 
   findByState(state: boolean) {

@@ -34,6 +34,9 @@ export class CropEntity {
 
   @Column({ enum: CropQuality })
   quality: string;
+  
+  @Column()
+  companyId: string;
 
   @OneToMany(() => RecordEntity, (record) => record.crop)
   records: Array<RecordEntity>;

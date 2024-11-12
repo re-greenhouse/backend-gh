@@ -41,6 +41,7 @@ export interface CropRecordResponse {
 export interface CreateCropDto {
   name: string;
   author: string;
+  companyId: string;
 }
 
 export interface FindAllCropsDto {
@@ -52,6 +53,10 @@ export interface FindAllCropsByStateDto {
 
 export interface FindOneCropDto {
   id: string;
+}
+
+export interface FindByCompanyIdDto {
+  companyId: string;
 }
 
 export interface UpdateCropDto {
@@ -101,6 +106,8 @@ export interface CropsServiceClient {
 
   findOneCrop(request: FindOneCropDto): Observable<Crop>;
 
+  findByCompanyId(request: FindByCompanyIdDto): Observable<CropResponse>;
+
   updateCrop(request: UpdateCropDto): Observable<Crop>;
 
   updateCropImage(request: UpdateCropImageDto): Observable<Crop>;
@@ -117,6 +124,8 @@ export interface CropsServiceController {
 
   findOneCrop(request: FindOneCropDto): Promise<Crop> | Observable<Crop> | Crop;
 
+  findByCompanyId(request: FindByCompanyIdDto): Promise<CropResponse> | Observable<CropResponse> | CropResponse;
+
   updateCrop(request: UpdateCropDto): Promise<Crop> | Observable<Crop> | Crop;
 
   updateCropImage(request: UpdateCropImageDto): Promise<Crop> | Observable<Crop> | Crop;
@@ -131,6 +140,7 @@ export function CropsServiceControllerMethods() {
       "findAll",
       "findAllByState",
       "findOneCrop",
+      "findByCompanyId",
       "updateCrop",
       "updateCropImage",
       "removeCrop",

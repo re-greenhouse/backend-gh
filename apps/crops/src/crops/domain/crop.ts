@@ -8,6 +8,7 @@ export class Crop {
   public startDate: string;
   public imageUrl: string;
   public quality: CropQuality;
+  public companyId: string;
 
   constructor(
     public id: string,
