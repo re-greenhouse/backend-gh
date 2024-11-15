@@ -40,6 +40,7 @@ export class RecordsService implements OnModuleInit {
   }
 
   update(id: string, updateRecordDto: UpdateRecordDto) {
+    updateRecordDto.payload = JSON.stringify(updateRecordDto.payload);
     return this.recordsService.updateRecord({
       id: id,
       payload: updateRecordDto.payload,
