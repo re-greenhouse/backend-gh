@@ -36,6 +36,16 @@ export class ProfilesController {
     });
   }
 
+  @Get('/:profileId')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Find a profile by id',
+    type: ProfileDto,
+  })
+  async findByProfileId(@Param('profileId') profileId: string) {
+    return this.profilesService.findByProfileId(profileId);
+  }
+
   @Get('/users/me')
   @ApiResponse({
     status: HttpStatus.OK,

@@ -66,6 +66,10 @@ export interface FindOneProfileByUserIdDto {
   userId: string;
 }
 
+export interface FindOneProfileByProfileIdDto {
+  profileId: string;
+}
+
 export interface FindAllByCompanyIdDto {
   companyId: string;
 }
@@ -94,6 +98,8 @@ export interface ProfilesServiceClient {
 
   findByCompanyId(request: FindAllByCompanyIdDto): Observable<Profiles>;
 
+  findByProfileId(request: FindOneProfileByProfileIdDto): Promise<Profile> | Observable<Profile> | Profile;
+
   updateProfileById(request: UpdateProfileDto): Observable<Profile>;
 }
 
@@ -102,6 +108,8 @@ export interface ProfilesServiceController {
 
   findByUserId(request: FindOneProfileByUserIdDto): Promise<Profile> | Observable<Profile> | Profile;
 
+  findByProfileId(request: FindOneProfileByProfileIdDto): Promise<Profile> | Observable<Profile> | Profile;
+
   findByCompanyId(request: FindAllByCompanyIdDto): Promise<Profiles> | Observable<Profiles> | Profiles;
 
   updateProfileById(request: UpdateProfileDto): Promise<Profile> | Observable<Profile> | Profile;
@@ -109,7 +117,7 @@ export interface ProfilesServiceController {
 
 export function ProfilesServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createProfile", "findByUserId", "findByCompanyId", "updateProfileById"];
+    const grpcMethods: string[] = ["createProfile", "findByUserId", "findByProfileId", "findByCompanyId", "updateProfileById"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("ProfilesService", method)(constructor.prototype[method], method, descriptor);

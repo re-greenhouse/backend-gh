@@ -10,7 +10,7 @@ import { CreateCompanyCommand } from './commands/create-company.command';
 import { CreateCompanyCommandHandler } from './commands/create-company.command-handler';
 import { CompaniesController } from '../presenters/grpc/companies.controller';
 import { CompaniesService } from './companies.service';
-import { GetProfileByUserIdQuery } from './queries/get-profile-by-user-id.query';
+import { GetProfileByProfileIdQuery } from './queries/get-profile-by-profile-id.query';
 import { GetProfileByIdQueryHandler } from './queries/get-profile-by-id.query-handler';
 import { GetProfilesByCompanyIdQuery } from './queries/get-profiles-by-company-id.query';
 import { GetProfilesByCompanyIdQueryHandler } from './queries/get-profiles-by-company-id.query-handler';
@@ -24,6 +24,8 @@ import { UpdateProfileCommand } from './commands/update-profile.command';
 import { UpdateProfileCommandHandler } from './commands/update-profile.command-handler';
 import { ExistCompanyWithTinQuery } from './queries/exist-company-with-tin.query';
 import { ExistCompanyWithTinQueryHandler } from './queries/exist-company-with-tin.query-handler';
+import { GetProfileByUserIdQuery } from './queries/get-profile-by-user-id.query';
+import { GetProfileByProfileIdQueryHandler } from './queries/get-profile-by-profile-id.query-handler';
 
 @Module({
   imports: [PersonasInfrastructureModule],
@@ -47,6 +49,8 @@ import { ExistCompanyWithTinQueryHandler } from './queries/exist-company-with-ti
     ExistCompanyWithTinQueryHandler,
     GetProfileByUserIdQuery,
     GetProfileByIdQueryHandler,
+    GetProfileByProfileIdQuery,
+    GetProfileByProfileIdQueryHandler,
     GetProfilesByCompanyIdQuery,
     GetProfilesByCompanyIdQueryHandler,
     GetCompanyByProfileIdQuery,
