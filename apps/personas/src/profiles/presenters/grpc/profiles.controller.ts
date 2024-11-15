@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import {
   CreateProfileDto,
-  FindAllByCompanyIdDto,
+  FindAllByCompanyIdDto, FindOneProfileByProfileIdDto,
   FindOneProfileByUserIdDto,
   Profile,
   Profiles,
@@ -33,6 +33,12 @@ export class ProfilesController implements ProfilesServiceController {
     findOneUserByIdDto: FindOneProfileByUserIdDto,
   ): Promise<Profile> {
     return this.profileService.findByUserId(findOneUserByIdDto.userId);
+  }
+
+  async findByProfileId(
+    findOneProfileByIdDto: FindOneProfileByProfileIdDto,
+  ): Promise<Profile> {
+    return this.profileService.findByProfileId(findOneProfileByIdDto.profileId);
   }
 
   async findByCompanyId(

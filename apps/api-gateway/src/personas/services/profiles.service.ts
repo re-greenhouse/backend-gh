@@ -28,6 +28,10 @@ export class ProfilesService implements OnModuleInit {
     return this.profilesService.findByUserId({ userId: userId });
   }
 
+  findByProfileId(profileId: string) {
+    return this.profilesService.findByProfileId({ profileId: profileId });
+  }
+
   findByCompanyId(companyId: string) {
     return this.profilesService.findByCompanyId({ companyId: companyId });
   }
