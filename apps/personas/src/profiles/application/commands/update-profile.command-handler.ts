@@ -23,9 +23,9 @@ export class UpdateProfileCommandHandler
       );
     }
 
-    profile.firstName ??= command.firstName;
-    profile.lastName ??= command.lastName;
-    profile.iconUrl ??= command.iconUrl;
+    profile.firstName = command.firstName ?? profile.firstName;
+    profile.lastName = command.lastName ?? profile.lastName;
+    profile.iconUrl = command.iconUrl ?? profile.iconUrl;
 
     return this.createProfileRepository.save(profile);
   }

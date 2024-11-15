@@ -70,7 +70,7 @@ export class ProfilesController {
   }
 
   @Patch('/:profileId')
-  updateById(@Body() updateProfileDto: UpdateProfileDto, profileId: string) {
+  updateById(@Param('profileId') profileId: string, @Body() updateProfileDto: UpdateProfileDto) {
     return this.profilesService.updateByProfileId(profileId, updateProfileDto);
   }
 }
