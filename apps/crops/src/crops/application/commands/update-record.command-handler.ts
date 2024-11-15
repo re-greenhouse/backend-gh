@@ -19,6 +19,7 @@ export class UpdateRecordCommandHandler
     if (cropRecord === undefined) {
       throw new GrpcNotFoundException(`Record '${command.id}' doesn't exist.`);
     }
+    cropRecord.payload = command.payload ?? cropRecord.payload;
     return await this.saveRecordRepository.save(cropRecord);
   }
 }
