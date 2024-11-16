@@ -34,7 +34,7 @@ export interface MembershipPayment {
 
 export interface Benefit {
   name: string;
-  value: string;
+  value: number;
 }
 
 export interface CreateMembershipDto {
@@ -42,6 +42,11 @@ export interface CreateMembershipDto {
   companyId: string;
   startDate: string;
   endDate: string;
+}
+
+export interface CreateMembershipLevelDto {
+  name: string;
+  benefits: Benefit[];
 }
 
 export interface CreateMembershipPaymentDto {
@@ -118,10 +123,16 @@ export function MembershipsPaymentServiceControllerMethods() {
 export const MEMBERSHIPS_PAYMENT_SERVICE_NAME = "MembershipsPaymentService";
 
 export interface MembershipsLevelServiceClient {
+  createMembershipLevel(request: CreateMembershipLevelDto): Observable<MembershipLevel>;
+
   findByName(request: FindMembershipsLevelByNameDto): Observable<MembershipLevel>;
 }
 
 export interface MembershipsLevelServiceController {
+  createMembershipLevel(
+    request: CreateMembershipLevelDto,
+  ): Promise<MembershipLevel> | Observable<MembershipLevel> | MembershipLevel;
+
   findByName(
     request: FindMembershipsLevelByNameDto,
   ): Promise<MembershipLevel> | Observable<MembershipLevel> | MembershipLevel;
@@ -129,7 +140,7 @@ export interface MembershipsLevelServiceController {
 
 export function MembershipsLevelServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["findByName"];
+    const grpcMethods: string[] = ["createMembershipLevel", "findByName"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("MembershipsLevelService", method)(constructor.prototype[method], method, descriptor);

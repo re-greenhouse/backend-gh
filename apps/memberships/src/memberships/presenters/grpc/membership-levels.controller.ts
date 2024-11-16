@@ -1,4 +1,5 @@
 import {
+  CreateMembershipLevelDto,
   FindMembershipsLevelByNameDto,
   MembershipLevel,
   MembershipsLevelServiceController,
@@ -6,6 +7,7 @@ import {
 } from '@app/common/types/memberships';
 import { Controller } from '@nestjs/common';
 import { MembershipLevelService } from '../../application/membership-level.service';
+import { CreateMembershipLevelCommand } from '../../application/commands/create-membership-level.command';
 
 @Controller()
 @MembershipsLevelServiceControllerMethods()
@@ -15,6 +17,14 @@ export class MembershipLevelsController
   constructor(
     private readonly membershipLevelService: MembershipLevelService,
   ) {}
+
+  async createMembershipLevel(
+    request: CreateMembershipLevelDto,
+  ): Promise<MembershipLevel> {
+    return this.membershipLevelService.create(
+      new CreateMembershipLevelCommand(request.name, request.benefits),
+    );
+  }
 
   async findByName(
     request: FindMembershipsLevelByNameDto,

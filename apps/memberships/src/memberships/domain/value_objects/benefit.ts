@@ -1,9 +1,9 @@
+import { MembershipLevel } from '../membershipLevel';
+
 export class Benefit {
   public name: string;
   public value: number;
+  public membershipLevel?: MembershipLevel;
 
-  constructor(name: string, value: number) {
-    this.name = name;
-    this.value = value;
-  }
+  constructor(id: string) {}
 }
