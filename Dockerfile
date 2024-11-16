@@ -15,7 +15,7 @@ RUN git clone https://github.com/re-greenhouse/backend-gh.git
 WORKDIR /backend-gh
 
 # Checkout the desired branch
-RUN git checkout feature/deploy
+RUN git checkout feature/deployment
 
 # Install npm dependencies
 RUN npm install
