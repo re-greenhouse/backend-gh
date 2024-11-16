@@ -1,6 +1,7 @@
-import { Column, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import { MembershipLevelEntity } from './membership-level.entity';
 
+@Entity('benefits')
 export class BenefitEntity {
   @PrimaryColumn('uuid')
   id: string;
@@ -11,9 +12,9 @@ export class BenefitEntity {
   @Column()
   value: string;
 
-  /*@ManyToOne(
+  @ManyToOne(
     () => MembershipLevelEntity,
     (membershipLevel) => membershipLevel.benefits,
   )
-  membershipLevel: MembershipLevelEntity;*/
+  membershipLevel: MembershipLevelEntity;
 }

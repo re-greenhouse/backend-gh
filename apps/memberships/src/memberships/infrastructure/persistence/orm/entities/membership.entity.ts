@@ -5,6 +5,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { MembershipLevelName } from '../enums/membership.level.name.enum';
 import { MembershipStatus } from '../enums/membership.status.enum';
 
 @Entity('memberships')
@@ -30,6 +31,6 @@ export class MembershipEntity {
   @Column()
   companyId: string;
 
-  @Column()
+  @Column({ enum: MembershipLevelName })
   membershipLevelName: string;
 }

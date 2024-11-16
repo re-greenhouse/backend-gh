@@ -4,11 +4,7 @@ import { MEMBERSHIPS_SERVICE } from './constants';
 import { MEMBERSHIPS_PACKAGE_NAME } from '@app/common/types/memberships';
 import { join } from 'path';
 import { MembershipsController } from './controllers/memberships.controller';
-import { MembershipLevelsController } from './controllers/membership-levels.controller';
-import { MembershipPaymentsController } from './controllers/membership-payments.controller';
 import { MembershipsService } from './services/memberships.service';
-import { MembershipLevelsService } from './services/membership-levels.service';
-import { MembershipPaymentsService } from './services/membership-payments.service';
 
 @Module({
   imports: [
@@ -24,15 +20,7 @@ import { MembershipPaymentsService } from './services/membership-payments.servic
       },
     ]),
   ],
-  controllers: [
-    MembershipsController,
-    MembershipLevelsController,
-    MembershipPaymentsController,
-  ],
-  providers: [
-    MembershipsService,
-    MembershipLevelsService,
-    MembershipPaymentsService,
-  ],
+  controllers: [MembershipsController],
+  providers: [MembershipsService],
 })
 export class MembershipsModule {}

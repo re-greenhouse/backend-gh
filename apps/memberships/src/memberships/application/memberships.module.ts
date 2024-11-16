@@ -11,6 +11,11 @@ import { MembershipPaymentFactory } from '../domain/factories/membershipPayment.
 import { CreateMembershipPaymentCommand } from './commands/create-membership-payment.command';
 import { MembershipLevelService } from './membership-level.service';
 import { GetMembershipsLevelByNameQuery } from './queries/get-memberships-level-by-name.query';
+import { CreateMembershipCommandHandler } from './commands/create-membership.command-handler';
+import { MembershipsController } from '../presenters/grpc/memberships.controller';
+import { MembershipLevelsController } from '../presenters/grpc/membership-levels.controller';
+import { MembershipPaymentsController } from '../presenters/grpc/membership-payments.controller';
+import { MembershipLevelFactory } from '../domain/factories/membershipLevel.factory';
 
 @Module({
   imports: [MembershipsInfrastructureModule],
@@ -19,7 +24,7 @@ import { GetMembershipsLevelByNameQuery } from './queries/get-memberships-level-
     MembershipsService,
     MembershipFactory,
     CreateMembershipCommand,
-    CreateMembershipPaymentCommandHandler,
+    CreateMembershipCommandHandler,
     GetMembershipsByCompanyQuery,
     GetMembershipsByCompanyQueryHandler,
     MembershipsPaymentService,
@@ -27,9 +32,14 @@ import { GetMembershipsLevelByNameQuery } from './queries/get-memberships-level-
     CreateMembershipPaymentCommand,
     CreateMembershipPaymentCommandHandler,
     MembershipLevelService,
+    MembershipLevelFactory,
     GetMembershipsLevelByNameQuery,
     GetMembershipsByCompanyQueryHandler,
   ],
-  controllers: [],
+  controllers: [
+    MembershipsController,
+    MembershipLevelsController,
+    MembershipPaymentsController,
+  ],
 })
 export class MembershipsModule {}

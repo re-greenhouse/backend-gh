@@ -2,13 +2,13 @@ import {
   FindMembershipsLevelByNameDto,
   MembershipLevel,
   MembershipsLevelServiceController,
+  MembershipsLevelServiceControllerMethods,
 } from '@app/common/types/memberships';
 import { Controller } from '@nestjs/common';
-import { CropsServiceControllerMethods } from '@app/common/types/crops';
-import { MembershipLevelService } from '../application/membership-level.service';
+import { MembershipLevelService } from '../../application/membership-level.service';
 
 @Controller()
-@CropsServiceControllerMethods()
+@MembershipsLevelServiceControllerMethods()
 export class MembershipLevelsController
   implements MembershipsLevelServiceController
 {

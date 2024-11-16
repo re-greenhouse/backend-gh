@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import {
   MEMBERSHIPS_SERVICE_NAME,
   MembershipsServiceClient,
@@ -30,7 +30,9 @@ export class MembershipsService implements OnModuleInit {
     });
   }
 
-  findByCompany(companyId: string) {
-    return this.membershipsService.findByCompany({ companyId: companyId });
+  findByCompanyId(companyId: string) {
+    return this.membershipsService.findByCompanyId({
+      companyId: companyId,
+    });
   }
 }

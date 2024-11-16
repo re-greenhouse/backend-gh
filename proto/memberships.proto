@@ -4,7 +4,7 @@ package memberships;
 
 service MembershipsService {
     rpc CreateMembership (CreateMembershipDto) returns (Membership) {}
-    rpc FindByCompany (FindMembershipByCompanyDto) returns (Membership) {}
+    rpc FindByCompanyId (FindMembershipByCompanyDto) returns (Membership) {}
 }
 service MembershipsPaymentService {
     rpc CreateMembershipPayment (CreateMembershipPaymentDto) returns (MembershipPayment) {}
@@ -20,6 +20,7 @@ message Membership {
     string companyId = 3;
     string startDate = 4;
     string endDate = 5;
+    string status = 6;
 }
 
 message MembershipLevel {

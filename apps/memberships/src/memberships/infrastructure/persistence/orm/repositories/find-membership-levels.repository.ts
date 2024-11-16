@@ -15,8 +15,9 @@ export class OrmFindMembershipLevelsRepository
 
   async findByName(name: string): Promise<MembershipLevel | undefined> {
     const membershipLevelEntity: MembershipLevelEntity | null =
-      await this.membershipLevelRepository.findOneBy({
-        name: name,
+      await this.membershipLevelRepository.findOne({
+        where: { name: name },
+        relations: ['benefits'],
       });
     return membershipLevelEntity
       ? MembershipLevelMapper.toDomain(membershipLevelEntity)

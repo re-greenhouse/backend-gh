@@ -5,8 +5,8 @@ import {
   MembershipsPaymentServiceControllerMethods,
 } from '@app/common/types/memberships';
 import { Controller } from '@nestjs/common';
-import { MembershipsPaymentService } from '../application/memberships-payment.service';
-import { CreateMembershipPaymentCommand } from '../application/commands/create-membership-payment.command';
+import { MembershipsPaymentService } from '../../application/memberships-payment.service';
+import { CreateMembershipPaymentCommand } from '../../application/commands/create-membership-payment.command';
 
 @Controller()
 @MembershipsPaymentServiceControllerMethods()

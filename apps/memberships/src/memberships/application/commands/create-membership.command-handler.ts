@@ -3,7 +3,8 @@ import { CreateMembershipCommand } from './create-membership.command';
 import { MembershipFactory } from '../../domain/factories/membership.factory';
 import { CreateMembershipRepository } from '../ports/create-membership.repository';
 import { Membership } from '../../domain/membership';
-import { MembershipStatus } from '../../infrastructure/persistence/orm/enums/membership.status.enum';
+import { MembershipLevelName } from '../../infrastructure/persistence/orm/enums/membership.level.name.enum';
+import { GrpcInvalidArgumentException } from 'nestjs-grpc-exceptions';
 
 @CommandHandler(CreateMembershipCommand)
 export class CreateMembershipCommandHandler
@@ -15,12 +16,21 @@ export class CreateMembershipCommandHandler
   ) {}
 
   async execute(command: CreateMembershipCommand): Promise<Membership> {
+    if (
+      !Object.values(MembershipLevelName).includes(
+        command.membershipLevelName as MembershipLevelName,
+      )
+    ) {
+      throw new GrpcInvalidArgumentException(
+        `${command.membershipLevelName} is not a valid membership level name.`,
+      );
+    }
+
     const newMembership: Membership = this.membershipFactory.create(
-      command.membershipLevelName,
+      command.membershipLevelName as MembershipLevelName,
       command.companyId,
       command.startDate,
       command.endDate,
-      MembershipStatus.Active,
     );
 
     return await this.createMembershipRepository.save(newMembership);

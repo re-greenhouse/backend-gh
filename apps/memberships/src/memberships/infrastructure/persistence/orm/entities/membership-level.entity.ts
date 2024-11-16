@@ -9,6 +9,6 @@ export class MembershipLevelEntity {
   @Column()
   name: string;
 
-  //@OneToMany(() => BenefitEntity, (benefit) => benefit.membershipLevel)
-  //benefits: Array<BenefitEntity>;
+  @OneToMany(() => BenefitEntity, (benefit) => benefit.membershipLevel)
+  benefits: BenefitEntity[];
 }

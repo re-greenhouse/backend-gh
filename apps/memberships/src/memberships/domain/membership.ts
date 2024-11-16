@@ -1,7 +1,8 @@
+import { MembershipLevelName } from '../infrastructure/persistence/orm/enums/membership.level.name.enum';
 import { MembershipStatus } from '../infrastructure/persistence/orm/enums/membership.status.enum';
 
 export class Membership {
-  public membershipLevelName: string;
+  public membershipLevelName: MembershipLevelName;
   public companyId: string;
   public startDate: string;
   public endDate: string;

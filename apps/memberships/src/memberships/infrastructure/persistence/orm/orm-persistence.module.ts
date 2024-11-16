@@ -11,6 +11,7 @@ import { FindMembershipsRepository } from '../../../application/ports/find-membe
 import { OrmFindMembershipsRepository } from './repositories/find-memberships.repository';
 import { FindMembershipLevelsRepository } from '../../../application/ports/find-membership-levels.repository';
 import { OrmFindMembershipLevelsRepository } from './repositories/find-membership-levels.repository';
+import { BenefitEntity } from './entities/benefit.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { OrmFindMembershipLevelsRepository } from './repositories/find-membershi
       MembershipEntity,
       MembershipLevelEntity,
       MembershipPaymentEntity,
+      BenefitEntity,
     ]),
   ],
   providers: [

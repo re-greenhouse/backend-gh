@@ -14,7 +14,7 @@ export class MembershipsService {
     return this.commandBus.execute(createMembershipCommand);
   }
 
-  findByCompany(companyId: string) {
+  findByCompanyId(companyId: string) {
     return this.queryBus.execute(new GetMembershipsByCompanyQuery(companyId));
   }
 }
