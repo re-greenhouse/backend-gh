@@ -19,11 +19,13 @@ export class MembershipLevelMapper {
     membershipLevel: MembershipLevel,
   ): MembershipLevelEntity {
     const membershipLevelEntity = new MembershipLevelEntity();
-
     membershipLevelEntity.id = membershipLevel.id;
     membershipLevelEntity.name = membershipLevel.name;
     membershipLevelEntity.benefits = membershipLevel.benefits.map((benefit) =>
-      BenefitMapper.toPersistence(benefit),
+      BenefitMapper.toPersistence({
+        ...benefit,
+        membershipLevel: null,
+      }),
     );
 
     return membershipLevelEntity;

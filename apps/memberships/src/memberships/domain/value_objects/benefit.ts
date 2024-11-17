@@ -5,5 +5,5 @@ export class Benefit {
   public value: number;
   public membershipLevel?: MembershipLevel;
 
-  constructor(id: string) {}
+  constructor(public id?: string) {}
 }

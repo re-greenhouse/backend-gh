@@ -14,6 +14,8 @@ import { OrmFindMembershipLevelsRepository } from './repositories/find-membershi
 import { BenefitEntity } from './entities/benefit.entity';
 import { CreateMembershipLevelRepository } from '../../../application/ports/create-membership-level.repository';
 import { OrmCreateMembershipLevelRepository } from './repositories/create-membership-level.repository';
+import { CreateBenefitRepository } from '../../../application/ports/create-benefit.repository';
+import { OrmCreateBenefitRepository } from './repositories/create-benefit.repository';
 
 @Module({
   imports: [
@@ -38,6 +40,10 @@ import { OrmCreateMembershipLevelRepository } from './repositories/create-member
       useClass: OrmCreateMembershipLevelRepository,
     },
     {
+      provide: CreateBenefitRepository,
+      useClass: OrmCreateBenefitRepository,
+    },
+    {
       provide: FindMembershipsRepository,
       useClass: OrmFindMembershipsRepository,
     },
@@ -50,6 +56,7 @@ import { OrmCreateMembershipLevelRepository } from './repositories/create-member
     CreateMembershipRepository,
     CreateMembershipPaymentRepository,
     CreateMembershipLevelRepository,
+    CreateBenefitRepository,
     FindMembershipsRepository,
     FindMembershipLevelsRepository,
   ],

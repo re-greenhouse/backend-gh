@@ -18,6 +18,7 @@ import { MembershipPaymentsController } from '../presenters/grpc/membership-paym
 import { MembershipLevelFactory } from '../domain/factories/membershipLevel.factory';
 import { CreateMembershipLevelCommand } from './commands/create-membership-level.command';
 import { CreateMembershipLevelCommandHandler } from './commands/create-membership-level.command-handler';
+import { BenefitFactory } from '../domain/factories/benefit.factory';
 
 @Module({
   imports: [MembershipsInfrastructureModule],
@@ -39,6 +40,7 @@ import { CreateMembershipLevelCommandHandler } from './commands/create-membershi
     CreateMembershipLevelCommandHandler,
     GetMembershipsLevelByNameQuery,
     GetMembershipsByCompanyQueryHandler,
+    BenefitFactory,
   ],
   controllers: [
     MembershipsController,
