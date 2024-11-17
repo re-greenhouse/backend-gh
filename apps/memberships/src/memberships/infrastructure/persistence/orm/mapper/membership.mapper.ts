@@ -3,7 +3,6 @@ import { Membership } from '../../../../domain/membership';
 import { MembershipStatus } from '../enums/membership.status.enum';
 import { MembershipLevelName } from '../enums/membership.level.name.enum';
 
-//Pendiente añadir relaciones de membership con company y MembershipLevel
 export class MembershipMapper {
   static toDomain(membershipEntity: MembershipEntity): Membership {
     const membership = new Membership(membershipEntity.id);

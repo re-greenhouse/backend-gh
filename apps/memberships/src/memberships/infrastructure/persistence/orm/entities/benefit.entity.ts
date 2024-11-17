@@ -10,7 +10,7 @@ export class BenefitEntity {
   name: string;
 
   @Column()
-  value: string;
+  value: number;
 
   @ManyToOne(
     () => MembershipLevelEntity,
