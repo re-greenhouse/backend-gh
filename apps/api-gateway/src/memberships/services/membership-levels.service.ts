@@ -28,4 +28,10 @@ export class MembershipLevelsService implements OnModuleInit {
       benefits: createMembershipLevelDto.benefits,
     });
   }
+
+  findByName(name: string) {
+    return this.membershipLevelsService.findByName({
+      name: name,
+    });
+  }
 }
