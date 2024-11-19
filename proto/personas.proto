@@ -5,6 +5,7 @@ package personas;
 service ProfilesService {
   rpc CreateProfile (CreateProfileDto) returns (Profile) {}
   rpc FindByUserId (FindOneProfileByUserIdDto) returns (Profile) {}
+  rpc FindByProfileId (FindOneProfileByProfileIdDto) returns (Profile) {}
   rpc FindByCompanyId (FindAllByCompanyIdDto) returns (Profiles) {}
   rpc UpdateProfileById (UpdateProfileDto) returns (Profile) {}
 }
@@ -71,6 +72,10 @@ message AddEmployeeDto {
 
 message FindOneProfileByUserIdDto {
   string userId = 1;
+}
+
+message FindOneProfileByProfileIdDto {
+  string profileId = 1;
 }
 
 message FindAllByCompanyIdDto {

@@ -11,6 +11,7 @@ import {
 import { CropsService } from '../services/crops.service';
 import { CreateCropDto } from '../dto/create-crop.dto';
 import { UpdateCropDto } from '../dto/update-crop.dto';
+import { UpdateCropImageDto } from '../dto/update-crop-image.dto';
 
 @ApiBearerAuth()
 @ApiTags('Crops')
@@ -38,9 +39,22 @@ export class CropsController {
     return this.cropsService.findAllByState(state);
   }
 
+  @Get('/company/:companyId')
+  findByCompanyId(@Param('companyId') companyId: string) {
+    return this.cropsService.findByCompanyId(companyId);
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCropDto: UpdateCropDto) {
+  updateStatus(@Param('id') id: string, @Body() updateCropDto: UpdateCropDto) {
     return this.cropsService.update(id, updateCropDto);
+  }
+
+  @Patch('/image/:id')
+  updateImage(
+    @Param('id') id: string,
+    @Body() updateCropImageDto: UpdateCropImageDto,
+  ) {
+    return this.cropsService.updateImage(id, updateCropImageDto);
   }
 
   @Delete(':id')

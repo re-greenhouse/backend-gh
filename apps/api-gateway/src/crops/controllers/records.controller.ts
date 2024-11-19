@@ -65,22 +65,22 @@ export class RecordsController {
     @Param('id') id: string,
     @Body() updateRecordDto: UpdateRecordDto,
   ) {
-    updateRecordDto.payload = updateRecordDto.payload.toString();
+    //updateRecordDto.payload = updateRecordDto.payload.toString();
     const res = await firstValueFrom(
       this.recordsService.update(id, updateRecordDto),
     );
-    if (res !== undefined) {
+    /*if (res !== undefined) {
       res.payload = JSON.parse(res.payload);
-    }
+    }*/
     return res;
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
     const res = await firstValueFrom(this.recordsService.remove(id));
-    if (res !== undefined) {
+    /*if (res !== undefined) {
       res.payload = JSON.parse(res.payload);
-    }
+    }*/
     return res;
   }
 }

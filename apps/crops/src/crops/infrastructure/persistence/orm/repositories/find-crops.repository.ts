@@ -29,4 +29,11 @@ export class OrmFindCropsRepository implements FindCropsRepository {
     });
     return cropsEntities.map(CropMapper.toDomain);
   }
+
+  async findByCompanyId(companyId: string): Promise<Array<Crop>> {
+    const cropsEntities: Array<CropEntity> = await this.cropRepository.findBy({
+      companyId: companyId,
+    });
+    return cropsEntities.map(CropMapper.toDomain);
+  }
 }

@@ -6,4 +6,7 @@ export class CreateCropDto {
 
   @IsNotEmpty()
   author: string;
+
+  @IsNotEmpty()
+  companyId: string;
 }
