@@ -16,6 +16,8 @@ import { CreateMembershipLevelRepository } from '../../../application/ports/crea
 import { OrmCreateMembershipLevelRepository } from './repositories/create-membership-level.repository';
 import { CreateBenefitRepository } from '../../../application/ports/create-benefit.repository';
 import { OrmCreateBenefitRepository } from './repositories/create-benefit.repository';
+import { SaveMembershipRepository } from '../../../application/ports/save-membership.repository';
+import { OrmSaveMembershipRepository } from './repositories/save-membership.repository';
 
 @Module({
   imports: [
@@ -30,6 +32,10 @@ import { OrmCreateBenefitRepository } from './repositories/create-benefit.reposi
     {
       provide: CreateMembershipRepository,
       useClass: OrmCreateMembershipRepository,
+    },
+    {
+      provide: SaveMembershipRepository,
+      useClass: OrmSaveMembershipRepository,
     },
     {
       provide: CreateMembershipPaymentRepository,
@@ -54,6 +60,7 @@ import { OrmCreateBenefitRepository } from './repositories/create-benefit.reposi
   ],
   exports: [
     CreateMembershipRepository,
+    SaveMembershipRepository,
     CreateMembershipPaymentRepository,
     CreateMembershipLevelRepository,
     CreateBenefitRepository,
