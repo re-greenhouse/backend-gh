@@ -44,6 +44,11 @@ export interface CreateMembershipDto {
   endDate: string;
 }
 
+export interface UpdateMembershipDto {
+  id: string;
+  membershipLevelName: string;
+}
+
 export interface CreateMembershipLevelDto {
   name: string;
   benefits: Benefit[];
@@ -69,18 +74,22 @@ export const MEMBERSHIPS_PACKAGE_NAME = "memberships";
 export interface MembershipsServiceClient {
   createMembership(request: CreateMembershipDto): Observable<Membership>;
 
+  updateMembership(request: UpdateMembershipDto): Observable<Membership>;
+
   findByCompanyId(request: FindMembershipByCompanyDto): Observable<Membership>;
 }
 
 export interface MembershipsServiceController {
   createMembership(request: CreateMembershipDto): Promise<Membership> | Observable<Membership> | Membership;
 
+  updateMembership(request: UpdateMembershipDto): Promise<Membership> | Observable<Membership> | Membership;
+
   findByCompanyId(request: FindMembershipByCompanyDto): Promise<Membership> | Observable<Membership> | Membership;
 }
 
 export function MembershipsServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createMembership", "findByCompanyId"];
+    const grpcMethods: string[] = ["createMembership", "updateMembership", "findByCompanyId"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("MembershipsService", method)(constructor.prototype[method], method, descriptor);

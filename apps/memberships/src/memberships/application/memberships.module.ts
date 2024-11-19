@@ -20,6 +20,8 @@ import { CreateMembershipLevelCommand } from './commands/create-membership-level
 import { CreateMembershipLevelCommandHandler } from './commands/create-membership-level.command-handler';
 import { BenefitFactory } from '../domain/factories/benefit.factory';
 import { GetMembershipsLevelByNameQueryHandler } from './queries/get-memberships-level-by-name.query-handler';
+import { UpdateMembershipCommand } from './commands/update-membership.command';
+import { UpdateMembershipCommandHandler } from './commands/update-membership.command-handler';
 
 @Module({
   imports: [MembershipsInfrastructureModule],
@@ -31,6 +33,8 @@ import { GetMembershipsLevelByNameQueryHandler } from './queries/get-memberships
     CreateMembershipCommandHandler,
     GetMembershipsByCompanyQuery,
     GetMembershipsByCompanyQueryHandler,
+    UpdateMembershipCommand,
+    UpdateMembershipCommandHandler,
     MembershipsPaymentService,
     MembershipPaymentFactory,
     CreateMembershipPaymentCommand,

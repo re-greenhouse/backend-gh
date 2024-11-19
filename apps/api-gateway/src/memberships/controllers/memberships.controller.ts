@@ -1,7 +1,8 @@
 import { MembershipsService } from '../services/memberships.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateMembershipDto } from '../dto/create-membership.dto';
+import { UpdateMembershipDto } from '../dto/update-membership.dto';
 
 @ApiBearerAuth()
 @ApiTags('Memberships')
@@ -17,5 +18,13 @@ export class MembershipsController {
   @Get('/:companyId')
   findByCompanyId(@Param('companyId') companyId: string) {
     return this.membershipsService.findByCompanyId(companyId);
+  }
+
+  @Patch(':id')
+  updateLevel(
+    @Param('id') id: string,
+    @Body() updateMembershipDto: UpdateMembershipDto,
+  ) {
+    return this.membershipsService.update(id, updateMembershipDto);
   }
 }

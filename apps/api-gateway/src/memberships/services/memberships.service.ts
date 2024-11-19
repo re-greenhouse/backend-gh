@@ -6,6 +6,7 @@ import {
 import { MEMBERSHIPS_SERVICE } from '../constants';
 import { ClientGrpc } from '@nestjs/microservices';
 import { CreateMembershipDto } from '../dto/create-membership.dto';
+import { UpdateMembershipDto } from '../dto/update-membership.dto';
 
 @Injectable()
 export class MembershipsService implements OnModuleInit {
@@ -33,6 +34,13 @@ export class MembershipsService implements OnModuleInit {
   findByCompanyId(companyId: string) {
     return this.membershipsService.findByCompanyId({
       companyId: companyId,
+    });
+  }
+
+  update(id: string, updateMembershipDto: UpdateMembershipDto) {
+    return this.membershipsService.updateMembership({
+      id: id,
+      membershipLevelName: updateMembershipDto.membershipLevelName,
     });
   }
 }
