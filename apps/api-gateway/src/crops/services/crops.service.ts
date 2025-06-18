@@ -8,6 +8,8 @@ import { ClientGrpc } from '@nestjs/microservices';
 import { CreateCropDto } from '../dto/create-crop.dto';
 import { UpdateCropDto } from '../dto/update-crop.dto';
 import { UpdateCropImageDto } from '../dto/update-crop-image.dto';
+import * as process from 'node:process';
+require('dotenv').config();
 
 @Injectable()
 export class CropsService implements OnModuleInit {
@@ -45,6 +47,30 @@ export class CropsService implements OnModuleInit {
   }
 
   update(id: string, updateCropDto: UpdateCropDto) {
+    if (
+      updateCropDto.phase in
+      {
+        incubation: 'incubation',
+        casing: 'casing',
+        induction: 'induction',
+        harvest: 'harvest',
+      }
+    ) {
+      const growRoomCropInfo: object = {
+        cropId: id,
+        phase: updateCropDto.phase,
+      };
+      fetch(process.env.EDGE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(growRoomCropInfo),
+      })
+        .then((res) => res.json())
+        .then((response) => console.log('Response: ', response))
+        .catch((error) => console.error('Error: ', error));
+    }
     return this.cropsService.updateCrop({
       id: id,
       phase: updateCropDto.phase,
